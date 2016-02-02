@@ -18,8 +18,6 @@ namespace Auction.Web.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contacts";
-
             return View();
         }
     }
