@@ -3,8 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{A82517D1-BA2F-4EA0-8DF5-5498D42836CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9A1A6B79-809A-4A11-90B9-78B782D52DAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1F112F8A-C67A-48A1-B590-26B40463D085}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2C0B3ECF-38EA-4C07-8109-482E728013A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Web", "Web\Auction.Web\Auction.Web.csproj", "{8BB09B90-CD4F-4553-85DD-05CA3571AA00}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BB09B90-CD4F-4553-85DD-05CA3571AA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB09B90-CD4F-4553-85DD-05CA3571AA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB09B90-CD4F-4553-85DD-05CA3571AA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB09B90-CD4F-4553-85DD-05CA3571AA00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BB09B90-CD4F-4553-85DD-05CA3571AA00} = {A82517D1-BA2F-4EA0-8DF5-5498D42836CE}
 	EndGlobalSection
 EndGlobal
