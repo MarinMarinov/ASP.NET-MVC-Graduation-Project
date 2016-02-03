@@ -8,7 +8,7 @@
 
     public class UserController : BaseController
     {
-
+        [Authorize]
         public ActionResult UserDetails()
         {
             var currentUserName = this.User.Identity.Name;
