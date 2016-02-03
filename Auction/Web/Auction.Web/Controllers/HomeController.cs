@@ -18,12 +18,15 @@ namespace Auction.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Application for managing on-line and live auctions.";
-
             return View();
         }
 
         public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult Test()
         {
             return View();
         }
