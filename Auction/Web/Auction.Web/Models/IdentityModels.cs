@@ -4,17 +4,17 @@
     using Migrations;
     using System.Data.Entity;
 
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class AuctionDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext()
+        public AuctionDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuctionDbContext, Configuration>());
         }
 
-        public static ApplicationDbContext Create()
+        public static AuctionDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new AuctionDbContext();
         }
     }
 }

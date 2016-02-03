@@ -6,17 +6,17 @@
     using System.Web;
     using System.Web.Mvc;
 
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        public ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult UserDetails()
         {
             var currentUserName = this.User.Identity.Name;
-            var user =
-                this.db.Users.FirstOrDefault(u => u.UserName == currentUserName);
 
-            return View(user);
+                this.CurrentUser =
+                    this.DbContext.Users.FirstOrDefault(u => u.UserName == currentUserName);
+
+            return View(this.CurrentUser);
         }
             
     }

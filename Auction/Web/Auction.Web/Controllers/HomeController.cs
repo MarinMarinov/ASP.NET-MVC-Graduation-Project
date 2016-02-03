@@ -4,7 +4,7 @@ namespace Auction.Web.Controllers
 {
     using Infrastructure;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public HomeController(IAuctionService addService)
         {
