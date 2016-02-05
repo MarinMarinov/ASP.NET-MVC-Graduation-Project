@@ -3,8 +3,6 @@
 namespace Auction.Web.Controllers
 {
     using Models;
-    using System.Linq;
-    using Infrastructure;
 
     public abstract class BaseController : Controller
     {
@@ -33,7 +31,7 @@ namespace Auction.Web.Controllers
             }
         }*/
 
-        public User CurrentUser { get; set; }
+        public UserViewModel CurrentUser { get; set; }
 
         public AuctionDbContext DbContext
         {

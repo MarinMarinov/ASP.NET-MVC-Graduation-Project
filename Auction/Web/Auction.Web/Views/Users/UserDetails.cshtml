@@ -1,4 +1,4 @@
-﻿@model Auction.Web.Models.User
+﻿@model Auction.Web.Models.UserViewModel
 
 @{
     ViewBag.Title = "UserDetails";
@@ -7,5 +7,6 @@
 <h2>UserDetails</h2>
 <p>ID: @Model.Id</p>
 <p>Username: @Model.UserName</p>
+<p>Phione number: @Model.PhoneNumber</p>
 
 @Html.Submit()

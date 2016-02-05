@@ -10,23 +10,16 @@ namespace Auction.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "StaticPages",
-                url: "{action}",
-                defaults: new { controller = "Home" }
-                );
-
-            routes.MapRoute(
-                  name: "UserDetails",
-                  url: "{controller}/{action}/{id}",
-                  defaults: new { controller = "User", action = "UserDetails", id = UrlParameter.Optional }
-                  );
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
                 );
 
+            routes.MapRoute(
+                  name: "Users",
+                  url: "{controller}/{action}/{id}",
+                  defaults: new { controller = "Users", action = UrlParameter.Optional, id = UrlParameter.Optional }
+                  );
 
         }
     }
