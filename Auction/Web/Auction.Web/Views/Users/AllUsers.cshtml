@@ -1,11 +1,13 @@
-﻿@{
+﻿@model IEnumerable<Auction.Web.Models.UserViewModel>
+
+@{
     ViewBag.Title = "AllUsers";
 }
 
 <h2>All Users</h2>
 <ol id="users"></ol>
 <script>
-    jQuery(function() {
+    jQuery(function () {
         jQuery.getJSON("AllUsersAsJson", "", function (data) {
             jQuery(data).each(function (index, user) {
                 var newUser = $("<li class='user' style='display:none'>" + user.UserName + "</li>");
@@ -15,3 +17,26 @@
         });
     });
 </script>
+
+<h2>Search for Users:</h2>
+
+@using (Ajax.BeginForm("Search", null,
+    new AjaxOptions
+    {
+        UpdateTargetId = "results",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    }, new { id = "searchForm" }))
+{
+    <input type="text" name="query" oninput="changed()" />
+    <input type="submit" class="btn btn-info" />
+}
+<script>
+    function changed() {
+        $('#searchForm').submit();
+    }
+</script>
+
+<div id="results">
+    @Html.Partial("_UsersSearchResults", Model)
+</div>

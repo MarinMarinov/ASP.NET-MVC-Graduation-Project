@@ -1,12 +1,10 @@
 ﻿@model Auction.Web.Models.UserViewModel
 
 @{
-    ViewBag.Title = "UserDetails";
+    ViewBag.Title = "CurrentUserDetails";
 }
 
-<h2>UserDetails</h2>
+<h2>Your Details</h2>
 <p>ID: @Model.Id</p>
 <p>Username: @Model.UserName</p>
 <p>Phione number: @Model.PhoneNumber</p>
-
-@Html.Submit()
