@@ -1,0 +1,32 @@
+﻿@model Auction.Web.Models.CreateAuctionModel
+
+<h2>Create Auction</h2>
+
+@using (Html.BeginForm("CreateAuction", "Auction", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="row">
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.ItemTitle)
+        @Html.EditorFor(m => m.ItemTitle)
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.DateOfAuction)
+        @Html.TextBoxFor(m => m.DateOfAuction, new { @Value = DateTime.Now, id = "datepicker" })
+    </div>
+
+    @Html.Submit()
+}A
+
+@section scripts{
+    <script>
+        $(document).ready(function () { $("#datepicker").datepicker({}); });
+    </script>
+}
+
+
