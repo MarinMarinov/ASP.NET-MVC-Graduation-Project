@@ -85,6 +85,7 @@ namespace Auction.Web.Migrations
                     Name = "Auction " + i,
                     DateOfCreation = DateTime.UtcNow,
                     DateOfAuction = DateTime.UtcNow.AddHours(24 + (24 * i)),
+                    Active = false,
                     Item = this.Items[i],
                     Creator = this.Users[randUser]
                 };
