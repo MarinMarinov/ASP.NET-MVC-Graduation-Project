@@ -1,7 +1,7 @@
 ﻿
 namespace Auction.Web.Models
 {
-    public enum Type
+    public enum ItemType
     {
         Picture,
         Statue,
