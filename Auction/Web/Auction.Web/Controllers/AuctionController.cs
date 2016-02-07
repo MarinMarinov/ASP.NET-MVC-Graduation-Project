@@ -7,6 +7,7 @@
     using Auction.Models;
     using Data.Repositories;
     using Models;
+    using AutoMapper.QueryableExtensions;
 
     public class AuctionController : BaseController
     {

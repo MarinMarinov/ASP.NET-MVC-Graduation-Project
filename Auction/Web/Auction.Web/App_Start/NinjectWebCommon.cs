@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Auction.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Auction.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Auction.Web.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Auction.Web.NinjectWebCommon), "Stop")]
 
-namespace Auction.Web.App_Start
+namespace Auction.Web
 {
     using Infrastructure;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;

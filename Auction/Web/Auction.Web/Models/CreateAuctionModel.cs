@@ -2,8 +2,11 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Auction.Models;
+    using AutoMapper;
+    using Infrastructure.Mappings;
 
-    public class CreateAuctionModel
+    public class CreateAuctionModel : IMapFrom<Auction>
     {
         [Required]
         public string Name { get; set; }

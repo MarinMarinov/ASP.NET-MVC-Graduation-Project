@@ -5,6 +5,8 @@ using System.Web.Routing;
 
 namespace Auction.Web
 {
+    using System.Reflection;
+
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -15,6 +17,7 @@ namespace Auction.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbConfig.Initialize();
+            AutoMapperConfig.RegisterMappings(Assembly.Load("Auction.Web"));
         }
     }
 }
