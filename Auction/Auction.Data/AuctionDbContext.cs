@@ -4,7 +4,7 @@
     using System.Data.Entity;
     using Models;
 
-    public class AuctionDbContext : IdentityDbContext<User>
+    public class AuctionDbContext : IdentityDbContext<User>, IAuctionDbContext
     {
         public AuctionDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -9,6 +9,9 @@ namespace Auction.Web.App_Start
     using Ninject.Web.Common;
     using System;
     using System.Web;
+    using Data;
+    using Data.Repositories;
+    using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon 
     {
@@ -60,7 +63,16 @@ namespace Auction.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IAuctionService>().To<AuctionService>();
+            kernel.Bind<IAuctionDbContext>().To<AuctionDbContext>().InRequestScope();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
+
+            kernel.Bind(b => b.From("Auction.Web").SelectAllClasses().BindDefaultInterfaces());
+
+            //kernel.Bind<IAuctionService>().To<AuctionService>();
+
+            /*kernel.Bind<IRepository<Auction>>().To<EfGenericRepository<Auction>>();
+            kernel.Bind<IRepository<Item>>().To<EfGenericRepository<Item>>();
+            kernel.Bind<IRepository<User>>().To<EfGenericRepository<User>>();*/
         }        
     }
 }

@@ -13,11 +13,11 @@
         private IRepository<Item> dataItem;
         private IRepository<User> dataUser;
 
-        public UsersController()
+        public UsersController(IRepository<Auction> auctions, IRepository<Item> items, IRepository<User> users)
         {
-            this.dataAuction = new EfGenericRepository<Auction>(this.DbContext);
-            this.dataItem = new EfGenericRepository<Item>(this.DbContext);
-            this.dataUser = new EfGenericRepository<User>(this.DbContext);
+            this.dataAuction = auctions;
+            this.dataItem = items;
+            this.dataUser = users;
         }
 
         [Authorize]
@@ -83,8 +83,8 @@
 
         public JsonResult AllUsersAsJson()
         {
-            var users = this.dataUser.All()
-            .Select(UserViewModel.FromUser);
+            var users = this.DbContext.Users.OrderBy(n => n.UserName)
+                .Select(UserViewModel.FromUser).ToList();
 
             return this.Json(users, JsonRequestBehavior.AllowGet);
         }

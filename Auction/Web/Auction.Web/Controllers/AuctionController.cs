@@ -14,11 +14,11 @@
         private IRepository<Item> dataItem;
         private IRepository<User> dataUser;
 
-        public AuctionController()
+        public AuctionController(IRepository<Auction> auctions, IRepository<Item> items, IRepository<User> users)
         {
-            this.dataAuction = new EfGenericRepository<Auction>(this.DbContext);
-            this.dataItem = new EfGenericRepository<Item>(this.DbContext);
-            this.dataUser = new EfGenericRepository<User>(this.DbContext);
+            this.dataAuction = auctions;
+            this.dataItem = items;
+            this.dataUser = users;
         }
 
         // GET: Auction
