@@ -25,7 +25,8 @@
     </div>
     <div class="row">
         @Html.LabelFor(m => m.DateOfAuction)
-        @Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})
+        @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
+        @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker"})
         @*@Html.ValidationMessageFor(m => m.DateOfAuction)*@
     </div>
 
@@ -35,7 +36,7 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(document).ready(function() { $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }) });
+        $(document).ready(function() { $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val() });
     </script>
 }
 

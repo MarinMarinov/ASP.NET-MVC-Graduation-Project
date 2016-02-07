@@ -3,6 +3,7 @@
 namespace Auction.Web.Controllers
 {
     using Data;
+    using Data.Repositories;
     using Models;
 
     public abstract class BaseController : Controller
