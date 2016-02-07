@@ -1,6 +1,12 @@
 ﻿@model Auction.Web.Models.CreateAuctionModel
 
 <h2>Create Auction</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="row">
+        @TempData["Success"]
+    </div>
+}
 
 @using (Html.BeginForm("CreateAuction", "Auction", FormMethod.Post))
 {
@@ -21,11 +27,11 @@
     </div>
 
     @Html.Submit()
-}A
+}
 
 @section scripts{
     <script>
-        $(document).ready(function () { $("#datepicker").datepicker({}); });
+        $(document).ready(function() { $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).Val() });
     </script>
 }
 

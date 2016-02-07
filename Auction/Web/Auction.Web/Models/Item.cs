@@ -6,7 +6,7 @@ namespace Auction.Web.Models
 
     public class Item
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -20,8 +20,7 @@ namespace Auction.Web.Models
         [Required]
         public string Description { get; set; }
 
-        [Key, ForeignKey("Auction")]
-        public int AuctionId { get; set; }
+        public int? AuctionId { get; set; }
 
         public virtual Auction Auction { get; set; }
     }

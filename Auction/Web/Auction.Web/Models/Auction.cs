@@ -7,10 +7,12 @@
     public class Auction
     {
         private ICollection<User> bidders;
+        private ICollection<Item> items;
 
         public Auction()
         {
             this.bidders = new HashSet<User>();
+            this.items = new HashSet<Item>();
         }
 
         public int Id { get; set; }
@@ -23,10 +25,6 @@
 
         public bool Active { get; set; }
 
-        //public int ItemId { get; set; }
-
-        public virtual Item Item { get; set; }
-
         public string CreatorId { get; set; }
 
         [ForeignKey("CreatorId")]
@@ -36,6 +34,12 @@
         {
             get { return this.bidders; }
             set { this.bidders = value; }
+        }
+
+        public virtual ICollection<Item> Items
+        {
+            get { return this.items; }
+            set { this.items = value; }
         }
     }
 }

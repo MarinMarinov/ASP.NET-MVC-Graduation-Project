@@ -80,13 +80,15 @@ namespace Auction.Web.Migrations
             for (var i = 0; i < 10; i++)
             {
                 var randUser = this.random.Next(0, 3);
+                var items = new List<Item> {this.Items[i]};
+
                 var auction = new Auction
                 {
                     Name = "Auction " + i,
                     DateOfCreation = DateTime.UtcNow,
                     DateOfAuction = DateTime.UtcNow.AddHours(24 + (24 * i)),
                     Active = false,
-                    Item = this.Items[i],
+                    Items = items,
                     Creator = this.Users[randUser]
                 };
                 this.Auctions.Add(auction);
