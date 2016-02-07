@@ -1,5 +1,4 @@
-﻿
-namespace Auction.Web.Models
+﻿namespace Auction.Models
 {
     public enum ItemType
     {

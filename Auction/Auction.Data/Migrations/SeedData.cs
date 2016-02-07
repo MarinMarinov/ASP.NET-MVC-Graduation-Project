@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Auction.Web.Migrations
+﻿namespace Auction.Data.Migrations
 {
+    using System;
+    using System.Collections.Generic;
     using Microsoft.AspNet.Identity;
     using Models;
     using System.Data.Entity.Migrations;
+    using Data;
 
     public class SeedData
     {

@@ -1,4 +1,4 @@
-﻿namespace Auction.Web.Models
+﻿namespace Auction.Models
 {
     using System;
     using System.Collections.Generic;

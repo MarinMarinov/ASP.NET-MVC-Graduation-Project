@@ -1,8 +1,8 @@
-namespace Auction.Web.Migrations
+namespace Auction.Data.Migrations
 {
-    using Models;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Data;
 
     public sealed class Configuration : DbMigrationsConfiguration<AuctionDbContext>
     {

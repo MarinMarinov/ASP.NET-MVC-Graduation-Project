@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Auction.Web
 {
+    using Auction.Models;
+    using Data;
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

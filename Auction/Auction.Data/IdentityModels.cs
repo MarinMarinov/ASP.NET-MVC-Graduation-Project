@@ -1,7 +1,8 @@
-﻿namespace Auction.Web.Models
+﻿namespace Auction.Data
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity;
+    using Models;
 
     public class AuctionDbContext : IdentityDbContext<User>
     {

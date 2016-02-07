@@ -5,6 +5,7 @@ namespace Auction.Web.Controllers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Auction.Models;
     using Models;
 
     public class AuctionController : BaseController

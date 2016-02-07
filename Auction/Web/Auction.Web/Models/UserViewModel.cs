@@ -3,6 +3,7 @@
 namespace Auction.Web.Models
 {
     using System.Linq.Expressions;
+    using Auction.Models;
 
     public class UserViewModel
     {
