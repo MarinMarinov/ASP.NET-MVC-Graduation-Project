@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Web", "Web\Auction.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Models", "Data\Auction.Models\Auction.Models.csproj", "{7A3ED687-0E0B-41E8-ADEE-1E2A97B3ECC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Data", "Auction.Data\Auction.Data.csproj", "{17565A4D-03C5-4726-BE7C-D19BA48F0A58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Data", "Data\Auction.Data\Auction.Data.csproj", "{17565A4D-03C5-4726-BE7C-D19BA48F0A58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

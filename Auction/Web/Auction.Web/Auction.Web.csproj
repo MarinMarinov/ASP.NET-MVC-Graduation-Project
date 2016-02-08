@@ -307,14 +307,17 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Auction.Data\Auction.Data.csproj">
-      <Project>{17565A4D-03C5-4726-BE7C-D19BA48F0A58}</Project>
+    <ProjectReference Include="..\..\Data\Auction.Data\Auction.Data.csproj">
+      <Project>{17565a4d-03c5-4726-be7c-d19ba48f0a58}</Project>
       <Name>Auction.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Auction.Models\Auction.Models.csproj">
       <Project>{7A3ED687-0E0B-41E8-ADEE-1E2A97B3ECC3}</Project>
       <Name>Auction.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

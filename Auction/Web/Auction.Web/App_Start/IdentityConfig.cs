@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Auction.Web
 {
     using Auction.Models;
-    using Data;
+    using Auction.Data;
 
     public class EmailService : IIdentityMessageService
     {

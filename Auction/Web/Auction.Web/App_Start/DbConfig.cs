@@ -1,8 +1,9 @@
 ﻿namespace Auction.Web
 {
     using System.Data.Entity;
-    using Data;
+    using Auction.Data;
     using Data.Migrations;
+
 
     public class DbConfig
     {
