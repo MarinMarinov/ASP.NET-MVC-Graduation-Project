@@ -15,19 +15,19 @@
 
     <div class="row">
         @Html.LabelFor(m => m.Name)
-        @Html.EditorFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="row">
         @Html.LabelFor(m => m.ItemTitle)
-        @Html.EditorFor(m => m.ItemTitle)
+        @Html.TextBoxFor(m => m.ItemTitle, new{@class = "form-control"})
         @Html.ValidationMessageFor(m => m.ItemTitle)
     </div>
     <div class="row">
         @Html.LabelFor(m => m.DateOfAuction)
         @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
-        @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker"})
-        @*@Html.ValidationMessageFor(m => m.DateOfAuction)*@
+        @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker", @class="form-control"})
+        @Html.ValidationMessageFor(m => m.DateOfAuction)
     </div>
 
     @Html.Submit()
@@ -36,7 +36,9 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(document).ready(function() { $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val() });
+        $(document).ready(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+        });
     </script>
 }
 
