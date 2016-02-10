@@ -1,11 +1,11 @@
 ﻿namespace Auction.Web.Controllers
 {
+    using Auction.Models;
+    using Data.Repositories;
     using Models;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using Auction.Models;
-    using Data.Repositories;
 
     public class UsersController : BaseController
     {
@@ -74,6 +74,7 @@
         }
 
         [Authorize]
+        //[OutputCache(Duration = 15 * 60)] // cache the result
         public ActionResult AllUsers()
         {
             var allUsers = this.dataUser.All()

@@ -8,30 +8,36 @@
     </div>
 }
 
-@using (Html.BeginForm("CreateAuction", "Auction", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<div class="container">
+    @using (Html.BeginForm("CreateAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <div class="row">
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Name)
-    </div>
-    <div class="row">
-        @Html.LabelFor(m => m.ItemTitle)
-        @Html.TextBoxFor(m => m.ItemTitle, new{@class = "form-control"})
-        @Html.ValidationMessageFor(m => m.ItemTitle)
-    </div>
-    <div class="row">
-        @Html.LabelFor(m => m.DateOfAuction)
-        @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
-        @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker", @class="form-control"})
-        @Html.ValidationMessageFor(m => m.DateOfAuction)
-    </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ItemTitle)
+            @Html.TextBoxFor(m => m.ItemTitle, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ItemTitle)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.DateOfAuction)
+            @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
+            @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker", @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.DateOfAuction)
+        </div>
+        <br/>
+        <div class="row">
+            @Html.Submit(new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
 
-    @Html.Submit()
-}
+
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")

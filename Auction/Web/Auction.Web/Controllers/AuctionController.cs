@@ -1,13 +1,12 @@
 ﻿namespace Auction.Web.Controllers
 {
+    using Auction.Models;
+    using Data.Repositories;
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Auction.Models;
-    using Data.Repositories;
-    using Models;
-    using AutoMapper.QueryableExtensions;
 
     public class AuctionController : BaseController
     {
@@ -22,6 +21,7 @@
             this.dataUser = users;
         }
 
+        //[Authorize(Roles="Admin")]
         // GET: Auction
         public ActionResult CreateAuction()
         {

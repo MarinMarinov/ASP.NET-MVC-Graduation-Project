@@ -1,6 +1,7 @@
 ﻿namespace Auction.Web.Models
 {
     using System;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using Auction.Models;
     using AutoMapper;
@@ -12,9 +13,13 @@
         public string Name { get; set; }
 
         [Required]
+        [DisplayName("Item Title")]
+        public string ItemTitle { get; set; }
+
+        [Required]
+        [DisplayName("Auction Date and Time")]
         public DateTime DateOfAuction { get; set; }
         
-        [Required]
-        public string ItemTitle { get; set; }
+        
     }
 }
