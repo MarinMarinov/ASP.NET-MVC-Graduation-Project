@@ -7,6 +7,8 @@
     using System.Data.Entity;
     using System.Reflection;
     using System.Web.Mvc;
+    using Auction.Models;
+    using Data.Repositories;
 
     public static class AutofacConfig
     {
@@ -41,6 +43,8 @@
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.Register(x => new AuctionDbContext()).As<DbContext>().InstancePerRequest();
+
+            //builder.Register(x => new EfGenericRepository<Auction>()).As
 
             builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
 
