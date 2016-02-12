@@ -19,7 +19,6 @@
 
         public string LastName { get; set; }
 
-
         public virtual ICollection<Auction> Auctions
         {
             get { return this.auctions; }

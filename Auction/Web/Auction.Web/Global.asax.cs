@@ -11,6 +11,7 @@ namespace Auction.Web
     {
         protected void Application_Start()
         {
+            AutofacConfig.RegisterAutofac();
             ViewEnginesConfiguration.RegisterViewEngines();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

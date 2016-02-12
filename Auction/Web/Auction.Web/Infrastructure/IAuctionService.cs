@@ -2,6 +2,6 @@
 {
     public interface IAuctionService
     {
-         
+        void Work();
     }
 }

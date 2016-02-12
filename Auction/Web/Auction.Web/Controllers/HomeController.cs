@@ -6,13 +6,15 @@ namespace Auction.Web.Controllers
 
     public class HomeController : BaseController
     {
+        private IAuctionService service;
         public HomeController(IAuctionService addService)
         {
-
+            this.service = addService;
         }
 
         public ActionResult Index()
         {
+            this.service.Work(); // to test the Autofac dependency container
             return View();
         }
 
