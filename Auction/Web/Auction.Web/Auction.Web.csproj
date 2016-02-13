@@ -48,8 +48,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
@@ -180,7 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -201,8 +200,6 @@
     <Compile Include="Infrastructure\AuctionService.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\IAuctionService.cs" />
-    <Compile Include="Infrastructure\Mappings\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\Mappings\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CreateAuctionModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -292,6 +289,10 @@
     <ProjectReference Include="..\..\Data\Auction.Models\Auction.Models.csproj">
       <Project>{7A3ED687-0E0B-41E8-ADEE-1E2A97B3ECC3}</Project>
       <Name>Auction.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auction.Infrastructure\Auction.Infrastructure.csproj">
+      <Project>{8f64f727-c166-4e16-b18d-982e16e07cf5}</Project>
+      <Name>Auction.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

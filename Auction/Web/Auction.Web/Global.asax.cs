@@ -7,6 +7,8 @@ namespace Auction.Web
 {
     using System.Reflection;
 
+    using Auction.Infrastructure.Mapping;
+
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
@@ -18,7 +20,11 @@ namespace Auction.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbConfig.Initialize();
-            AutoMapperConfig.RegisterMappings(Assembly.Load("Auction.Web"));
+
+            var autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+
+            //AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }

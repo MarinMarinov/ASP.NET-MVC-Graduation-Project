@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-
     public abstract class BaseModel<TKey> : IBaseModel<TKey>
     {
         [Key]

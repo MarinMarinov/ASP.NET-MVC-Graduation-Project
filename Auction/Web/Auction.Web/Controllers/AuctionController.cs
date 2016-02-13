@@ -7,6 +7,11 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using Auction.Infrastructure.Mapping;
+
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;  
+
     public class AuctionController : BaseController
     {
         private IDbRepository<Auction, int> dataAuction;
@@ -42,15 +47,19 @@
                 var items = new List<Item> {item};
                 if (item == null)
                 {
-                    TempData["Success"] = "There is no such Item";
+                    this.TempData["Success"] = "There is no such Item";
 
-                    return View("CreateAuction", auction);
+                    return this.View("CreateAuction", auction);
                 }
                 //var currentUser = this.DbContext.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name );
                 var currentUser = this.dataUser.All().FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
                 //var bidders = this.DbContext.Users.OrderBy(u => u.UserName).Take(3).ToList();
                 var bidders = this.dataUser.All().OrderBy(u => u.UserName).Take(3).ToList();
+
+                //var newAuction = Mapper.Map<Auction>(auction);
+                //this.dataAuction.Add(newAuction);
+
 
                 this.dataAuction.Add(new Auction
                 {
@@ -61,11 +70,12 @@
                     Bidders = bidders
                 });
 
+
                 this.dataAuction.Save();
 
-                TempData["Success"] = "You have successfully created Auction";
+                this.TempData["Success"] = "You have successfully created Auction";
 
-                return RedirectToAction("CreateAuction");
+                return this.RedirectToAction("CreateAuction");
             }
 
             return View("CreateAuction", auction);

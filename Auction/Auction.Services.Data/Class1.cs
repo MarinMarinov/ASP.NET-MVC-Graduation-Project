@@ -1,12 +1,12 @@
-﻿using System;
+﻿sing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auction.Web.Infrastructure.Mappings
+namespace Auction.Services.Data
 {
-    public interface IMapFrom<TModel>
+    public class Class1
     {
     }
 }
