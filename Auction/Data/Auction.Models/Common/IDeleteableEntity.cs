@@ -1,4 +1,4 @@
-﻿namespace Auction.Common.Models
+﻿namespace Auction.Models.Common
 {
     using System;
 

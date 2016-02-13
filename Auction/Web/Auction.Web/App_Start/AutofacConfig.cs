@@ -4,7 +4,7 @@
     using System.Reflection;
     using System.Web.Mvc;
 
-    using Auction.Common.Repositories;
+    using Auction.Data.Repositories;
 
     using Autofac;
     using Autofac.Integration.Mvc;
@@ -43,9 +43,9 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.Register(x => new AuctionDbContext()).As<DbContext>().InstancePerRequest();
+            builder.Register(x => new AuctionDbContext()).As<IAuctionDbContext>().InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
+            builder.RegisterGeneric(typeof(DbRepository<,>)).As(typeof(IDbRepository<,>)).InstancePerRequest();
 
             builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
         }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using global::Auction.Common.Models;
+    using global::Auction.Models.Common;
 
     public class Auction : BaseModel<int>
     {
@@ -20,8 +20,6 @@
         //public int Id { get; set; }
 
         public string Name { get; set; }
-
-        public DateTime DateOfCreation { get; set; }
 
         public DateTime DateOfAuction { get; set; }
 

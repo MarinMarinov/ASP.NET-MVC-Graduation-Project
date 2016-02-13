@@ -5,19 +5,19 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using Auction.Data.Repositories;
     using Auction.Models;
 
-    using Common.Repositories;
 
     using Models;
 
     public class AuctionController : BaseController
     {
-        private IDbRepository<Auction> dataAuction;
-        private IDbRepository<Item> dataItem;
+        private IDbRepository<Auction, int> dataAuction;
+        private IDbRepository<Item, int> dataItem;
         private IDbRepository<User, string> dataUser;
 
-        public AuctionController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User, string> users)
+        public AuctionController(IDbRepository<Auction, int> auctions, IDbRepository<Item, int> items, IDbRepository<User, string> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
@@ -58,7 +58,6 @@
                 {
                     Name = auction.Name,
                     Items = items,
-                    DateOfCreation = DateTime.UtcNow,
                     DateOfAuction = auction.DateOfAuction,
                     Creator = currentUser,
                     Bidders = bidders

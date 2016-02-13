@@ -56,13 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BaseModel{TKey}.cs" />
-    <Compile Include="Models\IAuditInfo.cs" />
-    <Compile Include="Models\IBaseModel{TKey}.cs" />
-    <Compile Include="Models\IDeleteableEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DbRepository{T}.cs" />
-    <Compile Include="Repositories\IDbRepository{T}.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

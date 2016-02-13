@@ -1,10 +1,10 @@
-﻿namespace Auction.Common.Models
+﻿namespace Auction.Models.Common
 {
     using System;
 
     public interface IAuditInfo
     {
-        DateTime CreatedOn { get; set; }
+        DateTime? CreatedOn { get; set; }
 
         DateTime? ModifiedOn { get; set; }
     }

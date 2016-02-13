@@ -31,7 +31,7 @@
                 LastName = "Goshov",
                 PhoneNumber = "+3591234567",
                 SecurityStamp = Guid.NewGuid().ToString(),
-                PasswordHash = this.hasher.HashPassword("1")
+                PasswordHash = this.hasher.HashPassword("1"),
             };
 
             User gosho = new User
@@ -42,7 +42,7 @@
                 LastName = "Toshov",
                 PhoneNumber = "+3591234568",
                 SecurityStamp = Guid.NewGuid().ToString(),
-                PasswordHash = this.hasher.HashPassword("1")
+                PasswordHash = this.hasher.HashPassword("1"),
             };
 
             User tosho = new User
@@ -53,7 +53,7 @@
                 LastName = "Ivanov",
                 PhoneNumber = "+3591234569",
                 SecurityStamp = Guid.NewGuid().ToString(),
-                PasswordHash = this.hasher.HashPassword("1")
+                PasswordHash = this.hasher.HashPassword("1"),
             };
 
             this.Users.Add(pesho);
@@ -85,7 +85,6 @@
                 var auction = new Auction
                 {
                     Name = "Auction " + i,
-                    DateOfCreation = DateTime.UtcNow,
                     DateOfAuction = DateTime.UtcNow.AddHours(24 + (24 * i)),
                     Active = false,
                     Items = items,

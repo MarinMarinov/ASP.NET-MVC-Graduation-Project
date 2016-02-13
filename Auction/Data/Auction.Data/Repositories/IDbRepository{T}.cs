@@ -1,15 +1,15 @@
-﻿namespace Auction.Common.Repositories
+﻿namespace Auction.Data.Repositories
 {
     using System.Linq;
-    using Auction.Common.Models;
+    using Auction.Models.Common;
 
-    public interface IDbRepository<T> : IDbRepository<T, int>
+    /*public interface IDbRepository<T> : IDbRepository<T, int>
         where T : IBaseModel<int>
     {
-    }
+    }*/
 
     public interface IDbRepository<T, in TKey>
-        where T : IBaseModel<TKey>
+        where T : class, IBaseModel<TKey>
     {
         IQueryable<T> All();
 

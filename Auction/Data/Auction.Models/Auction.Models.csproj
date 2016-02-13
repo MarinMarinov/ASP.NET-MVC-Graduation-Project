@@ -59,18 +59,16 @@
     <Compile Include="Auction.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemType.cs" />
+    <Compile Include="Common\BaseModel{TKey}.cs" />
+    <Compile Include="Common\IAuditInfo.cs" />
+    <Compile Include="Common\IBaseModel{TKey}.cs" />
+    <Compile Include="Common\IDeleteableEntity.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Auction.Common\Auction.Common.csproj">
-      <Project>{ce8db756-50e4-4f80-b51b-e346cfcfe619}</Project>
-      <Name>Auction.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

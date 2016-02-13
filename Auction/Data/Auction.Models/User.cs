@@ -1,6 +1,5 @@
 ﻿namespace Auction.Models
 {
-    using global::Auction.Common.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -9,6 +8,8 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using global::Auction.Models.Common;
+
     public class User : IdentityUser, IBaseModel<string>
     {
         private ICollection<Auction> auctions;
@@ -16,13 +17,14 @@
         public User()
         {
             this.auctions = new HashSet<Auction>();
+            this.CreatedOn = DateTime.UtcNow;
         }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 

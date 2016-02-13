@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Auction.Data
+﻿namespace Auction.Data
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -15,6 +9,8 @@ namespace Auction.Data
         IDbSet<Item> Items { get; set; }
 
         IDbSet<Auction> Auctions { get; set; }
+
+        IDbSet<User> Users { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

@@ -286,10 +286,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Auction.Common\Auction.Common.csproj">
-      <Project>{ce8db756-50e4-4f80-b51b-e346cfcfe619}</Project>
-      <Name>Auction.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\Auction.Data\Auction.Data.csproj">
       <Project>{17565a4d-03c5-4726-be7c-d19ba48f0a58}</Project>
       <Name>Auction.Data</Name>

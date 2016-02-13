@@ -1,20 +1,20 @@
 ﻿namespace Auction.Web.Controllers
 {
-    using Auction.Models;
-    using Models;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+    using Auction.Data.Repositories;
+    using Auction.Models;
 
-    using Auction.Common.Repositories;
+    using Models;
 
     public class UsersController : BaseController
     {
-        private IDbRepository<Auction> dataAuction;
-        private IDbRepository<Item> dataItem;
+        private IDbRepository<Auction, int> dataAuction;
+        private IDbRepository<Item, int> dataItem;
         private IDbRepository<User, string> dataUser;
 
-        public UsersController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User, string> users)
+        public UsersController(IDbRepository<Auction, int> auctions, IDbRepository<Item, int> items, IDbRepository<User, string> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
@@ -57,8 +57,11 @@
                 return this.Content("User not found");
             }
 
-            string userInfo = string.Format("Username: {0}, Id: {1}, Phone number: {2}", user.UserName, user.Id,
-               user.PhoneNumber);
+            string userInfo = string.Format(
+                "Username: {0}, Id: {1}, Phone number: {2}",
+                user.UserName,
+                user.Id,
+                user.PhoneNumber);
 
             return this.Content(userInfo);
         }
@@ -75,7 +78,7 @@
         }
 
         [Authorize]
-        //[OutputCache(Duration = 15 * 60)] // cache the result
+        //  [OutputCache(Duration = 15 * 60)] // cache the result
         public ActionResult AllUsers()
         {
             var allUsers = this.dataUser.All()
