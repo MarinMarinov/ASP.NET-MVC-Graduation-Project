@@ -1,8 +1,9 @@
 ﻿namespace Auction.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using global::Auction.Common.Models;
 
-    public class Item
+    public class Item : BaseModel<int>
     {
         public int Id { get; set; }
 

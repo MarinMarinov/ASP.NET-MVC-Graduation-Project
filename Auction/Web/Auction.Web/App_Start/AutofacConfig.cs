@@ -1,14 +1,15 @@
 ﻿namespace Auction.Web
 {
+    using System.Data.Entity;
+    using System.Reflection;
+    using System.Web.Mvc;
+
+    using Auction.Common.Repositories;
+
     using Autofac;
     using Autofac.Integration.Mvc;
     using Data;
     using Infrastructure;
-    using System.Data.Entity;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using Auction.Models;
-    using Data.Repositories;
 
     public static class AutofacConfig
     {
@@ -44,10 +45,9 @@
         {
             builder.Register(x => new AuctionDbContext()).As<DbContext>().InstancePerRequest();
 
-            //builder.Register(x => new EfGenericRepository<Auction>()).As
+            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
             builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
-
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿namespace Auction.Models
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
+    using global::Auction.Common.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class User : IdentityUser
     {
