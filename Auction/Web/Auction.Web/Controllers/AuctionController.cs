@@ -2,29 +2,29 @@
 {
     using Auction.Data.Repositories;
     using Auction.Models;
+    using Auction.Services.Data;
     using Models;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
-    using Auction.Infrastructure.Mapping;
-
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;  
 
     public class AuctionController : BaseController
     {
         private IDbRepository<Auction, int> dataAuction;
         private IDbRepository<Item, int> dataItem;
         private IDbRepository<User, string> dataUser;
+        private IAuctionService service;
 
         public AuctionController(IDbRepository<Auction, int> auctions,
             IDbRepository<Item, int> items,
-            IDbRepository<User, string> users)
+            IDbRepository<User, string> users,
+            IAuctionService service)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
             this.dataUser = users;
+            this.service = service;
         }
 
         //[Authorize(Roles="Admin")]
@@ -79,6 +79,13 @@
             }
 
             return View("CreateAuction", auction);
+        }
+
+        public ActionResult ListAllAuctions()
+        {
+            var auctions = service.GetAllAuctions().Select(AuctionViewModel.FromAuction).ToList();
+
+            return View(auctions);
         }
     }
 }

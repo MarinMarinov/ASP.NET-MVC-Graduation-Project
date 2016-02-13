@@ -2,11 +2,14 @@
 
 namespace Auction.Web.Controllers
 {
+    using Auction.Services.Data;
+
     using Infrastructure;
 
     public class HomeController : BaseController
     {
         private IAuctionService service;
+
         public HomeController(IAuctionService addService)
         {
             this.service = addService;
@@ -14,7 +17,6 @@ namespace Auction.Web.Controllers
 
         public ActionResult Index()
         {
-            this.service.Work(); // to test the Autofac dependency container
             return View();
         }
 

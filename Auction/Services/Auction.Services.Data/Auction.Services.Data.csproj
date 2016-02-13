@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5CD167FB-AAAE-48EA-BF95-628C4F175959}</ProjectGuid>
+    <ProjectGuid>{12678BAC-4B0E-4F2F-B922-F348A4959E0B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Auction.Services.Data</RootNamespace>
@@ -39,8 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AuctionService.cs" />
+    <Compile Include="IAuctionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Auction.Data\Auction.Data.csproj">
+      <Project>{17565a4d-03c5-4726-be7c-d19ba48f0a58}</Project>
+      <Name>Auction.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Auction.Models\Auction.Models.csproj">
+      <Project>{7a3ed687-0e0b-41e8-adee-1e2a97b3ecc3}</Project>
+      <Name>Auction.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

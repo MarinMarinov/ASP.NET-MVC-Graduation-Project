@@ -5,6 +5,8 @@
     using System.Web.Mvc;
 
     using Auction.Data.Repositories;
+    using Auction.Models;
+    using Auction.Services.Data;
 
     using Autofac;
     using Autofac.Integration.Mvc;
@@ -47,7 +49,12 @@
 
             builder.RegisterGeneric(typeof(DbRepository<,>)).As(typeof(IDbRepository<,>)).InstancePerRequest();
 
-            builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
+            //builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
+
+            var servicesAssembly = Assembly.GetAssembly(typeof(IAuctionService));
+            builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
+
+
         }
     }
 }

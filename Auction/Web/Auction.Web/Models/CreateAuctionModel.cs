@@ -10,7 +10,7 @@
 
     using AutoMapper;
 
-    public class CreateAuctionModel : IMapTo<Auction>, IHaveCustomMappings
+    public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
     {
         [Required]
         public string Name { get; set; }
@@ -37,12 +37,13 @@
                         .ForMember(pr => pr.Author, opts => opts.MapFrom(pm => pm.Author.UserName));
                 }*/
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        /*public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Auction, CreateAuctionModel>()
                 .ForMember(
                     createModelProperty => createModelProperty.ItemTitle,
                     opts => opts.MapFrom(mod => mod.Items.FirstOrDefault(item => item.Title == this.ItemTitle)));
-        }
+        }*/
+
     }
 }
