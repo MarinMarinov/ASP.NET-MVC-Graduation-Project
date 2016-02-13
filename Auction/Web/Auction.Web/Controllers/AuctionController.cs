@@ -1,15 +1,11 @@
 ﻿namespace Auction.Web.Controllers
 {
-    using System;
+    using Auction.Data.Repositories;
+    using Auction.Models;
+    using Models;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
-    using Auction.Data.Repositories;
-    using Auction.Models;
-
-
-    using Models;
 
     public class AuctionController : BaseController
     {
@@ -17,7 +13,9 @@
         private IDbRepository<Item, int> dataItem;
         private IDbRepository<User, string> dataUser;
 
-        public AuctionController(IDbRepository<Auction, int> auctions, IDbRepository<Item, int> items, IDbRepository<User, string> users)
+        public AuctionController(IDbRepository<Auction, int> auctions,
+            IDbRepository<Item, int> items,
+            IDbRepository<User, string> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;

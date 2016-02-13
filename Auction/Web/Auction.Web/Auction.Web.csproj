@@ -276,7 +276,6 @@
     <Content Include="Views\Auction\CreateAuction.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

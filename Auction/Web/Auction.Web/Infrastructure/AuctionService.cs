@@ -1,8 +1,6 @@
-﻿
-namespace Auction.Web.Infrastructure
+﻿namespace Auction.Web.Infrastructure
 {
     using System.Diagnostics;
-
 
     public class AuctionService: IAuctionService
     {
