@@ -1,15 +1,15 @@
 ﻿namespace Auction.Models
 {
+    using global::Auction.Common.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using global::Auction.Common.Models;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    public class User : IdentityUser
+    public class User : IdentityUser, IBaseModel<string>
     {
         private ICollection<Auction> auctions;
 
@@ -21,6 +21,15 @@
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public virtual ICollection<Auction> Auctions
         {

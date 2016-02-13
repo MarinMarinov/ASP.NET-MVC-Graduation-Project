@@ -15,9 +15,9 @@
     {
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
-        private IDbRepository<User> dataUser;
+        private IDbRepository<User, string> dataUser;
 
-        public AuctionController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User> users)
+        public AuctionController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User, string> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
@@ -64,7 +64,7 @@
                     Bidders = bidders
                 });
 
-                this.dataAuction.SaveChanges();
+                this.dataAuction.Save();
 
                 TempData["Success"] = "You have successfully created Auction";
 

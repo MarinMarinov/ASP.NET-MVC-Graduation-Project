@@ -12,9 +12,9 @@
     {
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
-        private IDbRepository<User> dataUser;
+        private IDbRepository<User, string> dataUser;
 
-        public UsersController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User> users)
+        public UsersController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User, string> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
