@@ -1,16 +1,14 @@
 ﻿namespace Auction.Web.Controllers
 {
-    using System.IO;
+    using Auction.Models;
+    using Auction.Web.ViewModels.Account;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using Auction.Models;
-    using Auction.Web.ViewModels.Account;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin.Security;
 
     [Authorize]
     public class AccountController : BaseController
@@ -157,7 +155,7 @@
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    AvatarLink = "proba/proba/123"
+                    AvatarFileName = "AVATAR_01.jpg"
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

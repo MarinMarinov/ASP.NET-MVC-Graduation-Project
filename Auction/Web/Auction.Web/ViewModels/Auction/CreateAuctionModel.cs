@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using global::Auction.Infrastructure.Mapping;
-    using global::Auction.Models;
+    using Models;
 
     public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
     {

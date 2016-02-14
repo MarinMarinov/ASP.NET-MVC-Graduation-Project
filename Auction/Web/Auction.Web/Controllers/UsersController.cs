@@ -100,11 +100,8 @@
         [HttpPost]
         public ActionResult CurrentUserDetails(HttpPostedFileBase file)
         {
-            // absolute path: C:\Telerik\18.ASP.NET MVC\ASP.NET-MVC-Graduation-Project\Auction\Web\Auction.Infrastructure\Images\Avatars
-            //var path = Path.Combine(Server.MapPath("~/Auction.Infrastructure/Images/Avatars/"), file.FileName);
-            var path =
-                "C:\\Telerik\\18.ASP.NET MVC\\ASP.NET-MVC-Graduation-Project\\Auction\\Web\\Auction.Infrastructure\\Images\\Avatars\\"
-                + file.FileName;
+            var path = Path.Combine(Server.MapPath("~/Content/Images/Avatars/"), file.FileName);
+            
             var data = new byte[file.ContentLength];
             file.InputStream.Read(data, 0, file.ContentLength);
             using (var sw = new FileStream(path, FileMode.Create))
@@ -117,7 +114,7 @@
             var currentUser = this.dataUser.All()
                 .FirstOrDefault(u => u.UserName == currentUserName);
 
-            currentUser.AvatarLink = path;
+            currentUser.AvatarFileName = file.FileName;
             this.dataUser.Save();
 
             this.CurrentUser =
@@ -128,6 +125,26 @@
 
 
             return View(this.CurrentUser);
+        }
+
+        public FileResult GetImage(string filename)
+        {
+            var currentUserName = this.User.Identity.Name;
+
+            this.CurrentUser =
+                this.dataUser.All()
+                    .Where(u => u.UserName == currentUserName)
+                    .Select(UserViewModel.FromUser)
+                    .FirstOrDefault();
+
+            var path = Path.Combine(Server.MapPath("~/Content/Images/Avatars/"), filename);
+
+            return File(path, "image/jpeg");
+
+            /*byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+            string fileName = System.IO.Path.GetFileName(path);
+            string extension = System.IO.Path.GetExtension(path);
+            return File(fileBytes, extension, fileName);*/
         }
 
     }

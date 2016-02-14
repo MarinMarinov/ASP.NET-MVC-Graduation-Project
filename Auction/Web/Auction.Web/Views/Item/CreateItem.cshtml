@@ -1,0 +1,60 @@
+﻿@using Auction.Models
+@model global::Auction.Web.ViewModels.Item.CreateItemViewModel
+@{
+    ViewBag.Title = "CreateItem";
+}
+
+<h2>Create Item</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="row">
+        @TempData["Success"]
+    </div>
+}
+
+<div class="container">
+    @using (Html.BeginForm("CreateItem", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Author)
+            @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Author)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Type)
+            @Html.DropDownListFor(m => m.Type, Enum.GetNames(typeof(ItemType)).Select(e => new SelectListItem { Text = e }))
+            @Html.ValidationMessageFor(m => m.Type)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Author)
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="col-md-10">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" class="btn btn-success" accept="image/*"/>
+                    <br/>
+                    @Html.Submit(new { @class = "btn btn-danger" })
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            @*@Html.Submit(new { @class = "btn btn-danger" })*@
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

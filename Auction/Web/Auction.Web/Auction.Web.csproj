@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
+    <Compile Include="ViewModels\Item\CreateItemViewModel.cs" />
     <Compile Include="ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="ViewModels\User\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,6 +216,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Images\Avatars\AVATAR_01.jpg" />
+    <Content Include="Content\Images\Avatars\AVATAR_02.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
@@ -272,10 +276,10 @@
     <Content Include="Views\Users\_UsersSearchResults.cshtml" />
     <Content Include="Views\Auction\CreateAuction.cshtml" />
     <Content Include="Views\Auction\ListAllAuctions.cshtml" />
+    <Content Include="Views\Item\CreateItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Files\" />
-    <Folder Include="ViewModels\Item\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

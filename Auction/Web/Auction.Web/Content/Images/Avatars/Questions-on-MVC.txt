@@ -1,0 +1,60 @@
+1. Why in Glimps data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true
+
+3. By default, all Controllers to have EMPTY constructor
+4. Ivaylo - Video MVC Fundamentals 2:43 - ViewEnginesConfiguration.RegisterViewEngines(Gluposti naTarkaleta);
+5. AJAX Demo, I can't see the content length of the Request on F12
+6. $http service doesn't add (X-Requested-With' :'XMLHttpRequest') header to the request:
+answer: https://github.com/angular/angular.js/issues/11008
+
+7. AJAX Unobtrusive demo Niki!!! Where is the link to Unobtrusive?
+
+8. ATTENTION When adding IDbSet<Person> if we make it VIRTUAL after that we can inherit it and override it, to make it suitable for mocking
+
+9. jQuery intellisense -  Install-Package jQuery-vsdoc doesnt work
+
+- Всички зявки ли имат боди? GET зявка има ли боди? POST освен през боди как иначе може да предава данни, query-string?
+
+10. Да питам Симо за релациите между Auction и Item. За One-to-One и One-to-Many
+10.1. Where are Bidders in the DataBase
+11. Validation проблем с датите от Datepicker-а на jQuery
+
+
+11.5 Install na Ninject i 
+
+Error activating DbConnection
+No matching bindings are available, and the type is not self-bindable.
+Activation path:
+ 4) Injection of dependency DbConnection into parameter existingConnection of constructor of type DbContext
+ 3) Injection of dependency DbContext into parameter context of constructor of type EfGenericRepository{Auction}
+ 2) Injection of dependency IRepository{Auction} into parameter auctions of constructor of type UsersController
+ 1) Request for UsersController
+
+Suggestions:
+ 1) Ensure that you have defined a binding for DbConnection.
+ 2) If the binding was defined in a module, ensure that the module has been loaded into the kernel.
+ 3) Ensure you have not accidentally created more than one kernel.
+ 4) If you are using constructor arguments, ensure that the parameter name matches the constructors parameter name.
+ 5) If you are using automatic module loading, ensure the search path and filters are correct.
+ 
+12. След конфигурирането на Ninject ми дава грешка при AJAX заявката на AllUsers - jQuery is not defined! - jQuery TRQBWA DA SE ZAREJDA GORE!!!
+
+13. И сега при SaveChanges гърми педерастчето:
+
+
+public virtual void Add(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.DbSet.Add(entity); // Ето тук An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+            }
+        }
+
+		
+ВНИМАНИЕ -  Да Интродюсна Bidders таблица
+
+14. Проблем с добавяне на класове в Html.Helpers като @Html.EditorFor(m => m.Title)

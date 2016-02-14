@@ -1,5 +1,6 @@
 ﻿namespace Auction.Models
 {
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -7,7 +8,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Common;
 
     public class User : IdentityUser, IBaseModel<string>
     {
@@ -24,7 +24,8 @@
 
         public string LastName { get; set; }
 
-        public string AvatarLink { get; set; }
+        // TODO: validate only picture formats
+        public string AvatarFileName { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 

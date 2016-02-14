@@ -10,15 +10,25 @@
 <p>Username: @Model.FirstName</p>
 <p>Username: @Model.LastName</p>
 <p>Phione number: @Model.PhoneNumber</p>
-<img src="@Model.AvatarLink" width="248" height="248" alt="Avatar"/>
 
-<h2>Upload Avatar</h2>
+
+@if (Model.AvatarFileName != null)
+{
+    <img src="@Url.Action("GetImage", "Users", new { fileName = Model.AvatarFileName })" width="248" height="248" alt="Avatar" />
+}
+else
+{
+    <span>No avatar uploaded</span>
+}
+
+
+<h3>Change Avatar</h3>
 
 <div class="form-group">
-    @Html.LabelFor(m => m.AvatarLink, new { @class = "col-md-2 control-label" })
     <div class="col-md-10">
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file"/>
+            <input type="file" name="file" class="btn btn-success" accept="image/*" />
+            <br/>
             @Html.Submit(new { @class = "btn btn-danger" })
         </form>
     </div>

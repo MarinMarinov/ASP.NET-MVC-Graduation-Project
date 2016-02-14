@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
 
-    using global::Auction.Models;
+    using Models;
 
     public class UserViewModel
     {
@@ -17,7 +17,7 @@
                     UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    AvatarLink = user.AvatarLink,
+                    AvatarFileName = user.AvatarFileName,
                     PhoneNumber = user.PhoneNumber
                 };
             }
@@ -31,7 +31,7 @@
 
         public string LastName { get; set; }
 
-        public string AvatarLink { get; set; }
+        public string AvatarFileName { get; set; }
 
         public string PhoneNumber { get; set; }
     }
