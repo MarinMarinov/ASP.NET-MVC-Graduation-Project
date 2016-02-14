@@ -199,6 +199,7 @@
     </Compile>
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="ViewModels\Account\AccountViewModels.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
     <Compile Include="ViewModels\Manage\ManageViewModels.cs" />
@@ -273,6 +274,7 @@
     <Content Include="Views\Auction\ListAllAuctions.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Files\" />
     <Folder Include="ViewModels\Item\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

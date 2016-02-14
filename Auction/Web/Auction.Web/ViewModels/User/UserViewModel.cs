@@ -15,6 +15,9 @@
                 {
                     Id = user.Id,
                     UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    AvatarLink = user.AvatarLink,
                     PhoneNumber = user.PhoneNumber
                 };
             }
@@ -23,6 +26,12 @@
         public string Id { get; set; }
 
         public string UserName { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string AvatarLink { get; set; }
 
         public string PhoneNumber { get; set; }
     }

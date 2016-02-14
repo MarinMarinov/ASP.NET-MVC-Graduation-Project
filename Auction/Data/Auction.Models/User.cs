@@ -19,9 +19,12 @@
             this.CreatedOn = DateTime.UtcNow;
         }
 
+        // TODO: Server side validations!!!
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string AvatarLink { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 

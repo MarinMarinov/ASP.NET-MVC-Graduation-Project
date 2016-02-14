@@ -1,20 +1,11 @@
-﻿using System.Web.Mvc;
-
-namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Controllers
 {
+    using System.Web.Mvc;
     using Auction.Web.ViewModels.User;
-
-    using Data;
 
     public abstract class BaseController : Controller
     {
-        private AuctionDbContext db;
-
-        public BaseController()
-        {
-            this.DbContext = new AuctionDbContext();
-            //GetUser();
-        }
+       
 
         /*private ActionResult GetUser()
         {
@@ -35,10 +26,6 @@ namespace Auction.Web.Controllers
 
         public UserViewModel CurrentUser { get; set; }
 
-        public AuctionDbContext DbContext
-        {
-            get { return this.db; }
-            set { this.db = value; }
-        }
+       
     }
 }

@@ -7,4 +7,21 @@
 <h2>Your Details</h2>
 <p>ID: @Model.Id</p>
 <p>Username: @Model.UserName</p>
+<p>Username: @Model.FirstName</p>
+<p>Username: @Model.LastName</p>
 <p>Phione number: @Model.PhoneNumber</p>
+<img src="@Model.AvatarLink" width="248" height="248" alt="Avatar"/>
+
+<h2>Upload Avatar</h2>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.AvatarLink, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            @Html.Submit(new { @class = "btn btn-danger" })
+        </form>
+    </div>
+</div>
+
+

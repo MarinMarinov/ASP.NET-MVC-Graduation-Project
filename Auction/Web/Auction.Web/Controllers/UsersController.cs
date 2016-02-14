@@ -1,7 +1,9 @@
 ﻿namespace Auction.Web.Controllers
 {
+    using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using Auction.Data.Repositories;
     using Auction.Models;
@@ -20,6 +22,7 @@
             this.dataUser = users;
         }
 
+        [HttpGet]
         [Authorize]
         public ActionResult CurrentUserDetails()
         {
@@ -87,10 +90,44 @@
 
         public JsonResult AllUsersAsJson()
         {
-            var users = this.DbContext.Users.OrderBy(n => n.UserName)
+            var users = this.dataUser.All().OrderBy(n => n.UserName)
                 .Select(UserViewModel.FromUser).ToList();
 
             return this.Json(users, JsonRequestBehavior.AllowGet);
+        }
+
+        
+        [HttpPost]
+        public ActionResult CurrentUserDetails(HttpPostedFileBase file)
+        {
+            // absolute path: C:\Telerik\18.ASP.NET MVC\ASP.NET-MVC-Graduation-Project\Auction\Web\Auction.Infrastructure\Images\Avatars
+            //var path = Path.Combine(Server.MapPath("~/Auction.Infrastructure/Images/Avatars/"), file.FileName);
+            var path =
+                "C:\\Telerik\\18.ASP.NET MVC\\ASP.NET-MVC-Graduation-Project\\Auction\\Web\\Auction.Infrastructure\\Images\\Avatars\\"
+                + file.FileName;
+            var data = new byte[file.ContentLength];
+            file.InputStream.Read(data, 0, file.ContentLength);
+            using (var sw = new FileStream(path, FileMode.Create))
+            {
+                sw.Write(data, 0, data.Length);
+            }
+
+            var currentUserName = this.User.Identity.Name;
+
+            var currentUser = this.dataUser.All()
+                .FirstOrDefault(u => u.UserName == currentUserName);
+
+            currentUser.AvatarLink = path;
+            this.dataUser.Save();
+
+            this.CurrentUser =
+                this.dataUser.All()
+                    .Where(u => u.UserName == currentUserName)
+                    .Select(UserViewModel.FromUser)
+                    .FirstOrDefault();
+
+
+            return View(this.CurrentUser);
         }
 
     }
