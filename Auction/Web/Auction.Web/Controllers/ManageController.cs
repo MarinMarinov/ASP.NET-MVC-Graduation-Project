@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Auction.Web.Models;
 
 namespace Auction.Web.Controllers
 {
+    using Auction.Web.ViewModels.Manage;
+
     [Authorize]
     public class ManageController : BaseController
     {

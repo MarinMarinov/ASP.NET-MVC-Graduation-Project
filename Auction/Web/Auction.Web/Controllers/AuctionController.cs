@@ -3,11 +3,12 @@
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Services.Data;
-    using Models;
+
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
+    using Auction.Web.ViewModels.Auction;
 
     public class AuctionController : BaseController
     {

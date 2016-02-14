@@ -7,8 +7,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
-    using global::Auction.Models.Common;
+    using Common;
 
     public class User : IdentityUser, IBaseModel<string>
     {

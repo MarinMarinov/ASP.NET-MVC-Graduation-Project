@@ -1,8 +1,9 @@
-﻿namespace Auction.Web.Models
+﻿namespace Auction.Web.ViewModels.Auction
 {
-    using Auction.Models;
     using System;
     using System.Linq.Expressions;
+
+    using global::Auction.Models;
 
     public class AuctionViewModel
     {

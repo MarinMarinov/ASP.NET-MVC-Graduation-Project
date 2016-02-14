@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    using global::Auction.Models.Common;
+    using Models.Common;
 
     public class Auction : BaseModel<int>
     {

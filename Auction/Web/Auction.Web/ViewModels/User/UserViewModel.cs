@@ -1,9 +1,9 @@
-﻿using System;
-
-namespace Auction.Web.Models
+﻿namespace Auction.Web.ViewModels.User
 {
+    using System;
     using System.Linq.Expressions;
-    using Auction.Models;
+
+    using global::Auction.Models;
 
     public class UserViewModel
     {

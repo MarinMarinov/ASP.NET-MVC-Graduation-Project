@@ -1,7 +1,7 @@
 ﻿namespace Auction.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using global::Auction.Models.Common;
+    using Common;
 
     public class Item : BaseModel<int>
     {

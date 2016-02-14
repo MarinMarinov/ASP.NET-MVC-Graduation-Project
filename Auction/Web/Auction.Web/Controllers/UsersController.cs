@@ -5,8 +5,7 @@
     using System.Web.Mvc;
     using Auction.Data.Repositories;
     using Auction.Models;
-
-    using Models;
+    using Auction.Web.ViewModels.User;
 
     public class UsersController : BaseController
     {

@@ -3,9 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-
     using Auction.Models.Common;
-
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
 

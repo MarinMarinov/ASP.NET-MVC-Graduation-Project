@@ -2,8 +2,9 @@
 
 namespace Auction.Web.Controllers
 {
+    using Auction.Web.ViewModels.User;
+
     using Data;
-    using Models;
 
     public abstract class BaseController : Controller
     {

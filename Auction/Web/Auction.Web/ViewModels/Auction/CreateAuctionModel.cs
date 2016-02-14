@@ -1,14 +1,11 @@
-﻿namespace Auction.Web.Models
+﻿namespace Auction.Web.ViewModels.Auction
 {
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
 
-    using Auction.Infrastructure.Mapping;
-    using Auction.Models;
-
-    using AutoMapper;
+    using global::Auction.Infrastructure.Mapping;
+    using global::Auction.Models;
 
     public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
     {
