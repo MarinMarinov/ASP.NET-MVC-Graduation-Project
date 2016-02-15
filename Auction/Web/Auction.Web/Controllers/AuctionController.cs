@@ -42,7 +42,6 @@
         {
             if (ModelState.IsValid)
             {
-                //var item = this.DbContext.Items.FirstOrDefault(i => i.Title == auction.ItemTitle);
                 var item = this.dataItem.All().FirstOrDefault(i => i.Title == auction.ItemTitle);
 
                 var items = new List<Item> {item};
@@ -52,10 +51,8 @@
 
                     return this.View("CreateAuction", auction);
                 }
-                //var currentUser = this.DbContext.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name );
                 var currentUser = this.dataUser.All().FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-                //var bidders = this.DbContext.Users.OrderBy(u => u.UserName).Take(3).ToList();
                 var bidders = this.dataUser.All().OrderBy(u => u.UserName).Take(3).ToList();
 
                 //var newAuction = Mapper.Map<Auction>(auction);

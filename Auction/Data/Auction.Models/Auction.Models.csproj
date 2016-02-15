@@ -63,7 +63,7 @@
     <Compile Include="Common\IAuditInfo.cs" />
     <Compile Include="Common\IBaseModel{TKey}.cs" />
     <Compile Include="Common\IDeleteableEntity.cs" />
-    <Compile Include="Picture.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

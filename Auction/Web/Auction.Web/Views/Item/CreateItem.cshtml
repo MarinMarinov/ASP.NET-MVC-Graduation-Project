@@ -13,7 +13,7 @@
 }
 
 <div class="container">
-    @using (Html.BeginForm("CreateItem", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("CreateItem", "Item", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -38,18 +38,15 @@
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Author)
         </div>
-        <br/>
+        <br />
         <div class="form-group">
             <div class="col-md-10">
-                <form method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" class="btn btn-success" accept="image/*"/>
-                    <br/>
-                    @Html.Submit(new { @class = "btn btn-danger" })
-                </form>
+                <input type="file" name="files" class="btn btn-success" accept="image/*" multiple="multiple"/>
+                <br />
             </div>
         </div>
         <div class="row">
-            @*@Html.Submit(new { @class = "btn btn-danger" })*@
+            @Html.Submit(new { @class = "btn btn-danger" })
         </div>
     }
 </div>

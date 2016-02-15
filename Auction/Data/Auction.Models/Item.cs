@@ -6,11 +6,11 @@
 
     public class Item : BaseModel<int>
     {
-        private ICollection<Picture> pictures;
+        private ICollection<Image> images;
 
         public Item()
         {
-            this.pictures = new HashSet<Picture>();
+            this.images = new HashSet<Image>();
         }
 
         [Required]
@@ -29,10 +29,10 @@
 
         public virtual Auction Auction { get; set; }
 
-        public virtual ICollection<Picture> Pictures
+        public virtual ICollection<Image> Images
         {
-            get { return this.pictures; }
-            set { this.pictures = value; }
+            get { return this.images; }
+            set { this.images = value; }
         }
     }
 }
