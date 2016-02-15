@@ -1,12 +1,7 @@
 ﻿namespace Auction.Web.ViewModels.Item
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq.Expressions;
-
-    using global::Auction.Web.ViewModels.User;
-
     using Models;
 
     public class CreateItemViewModel

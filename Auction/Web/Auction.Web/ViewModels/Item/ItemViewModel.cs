@@ -1,9 +1,8 @@
 ﻿namespace Auction.Web.ViewModels.Item
 {
     using System;
-    using global::Auction.Infrastructure.Mapping;
+    using Infrastructure.Mapping;
     using global::Auction.Models;
-
 
     public class ItemViewModel : IMapFrom<Item>
     {

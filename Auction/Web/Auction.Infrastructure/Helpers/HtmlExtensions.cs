@@ -1,4 +1,4 @@
-﻿namespace Auction.Web.Infrastructure.Helpers
+﻿namespace Auction.Infrastructure.Helpers
 {
     using System.Collections.Generic;
     using System.Web.Mvc;

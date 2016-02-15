@@ -3,8 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-
-    using global::Auction.Infrastructure.Mapping;
+    using Infrastructure.Mapping;
     using Models;
 
     public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
