@@ -71,6 +71,10 @@
       <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -204,6 +208,7 @@
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
     <Compile Include="ViewModels\Item\CreateItemViewModel.cs" />
+    <Compile Include="ViewModels\Item\ItemViewModel.cs" />
     <Compile Include="ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="ViewModels\User\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +217,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Gridmvc.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -220,8 +226,12 @@
     <Content Include="Content\Images\Avatars\AVATAR_02.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Grid.mvc.readme" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <None Include="Scripts\jquery-2.0.3-vsdoc.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
@@ -277,6 +287,10 @@
     <Content Include="Views\Auction\CreateAuction.cshtml" />
     <Content Include="Views\Auction\ListAllAuctions.cshtml" />
     <Content Include="Views\Item\CreateItem.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Shared\_LayoutGridMvc.cshtml" />
+    <Content Include="Views\Item\ListAllItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Files\" />

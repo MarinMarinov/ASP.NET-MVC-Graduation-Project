@@ -9,9 +9,11 @@ namespace Auction.Web.Controllers
     using System.IO;
 
     using Auction.Data.Repositories;
+    using Auction.Infrastructure.Mapping;
     using Auction.Models;
     using Auction.Services.Data;
     using Auction.Web.ViewModels.Item;
+    using Auction.Web.ViewModels.User;
 
     public class ItemController : Controller
     {
@@ -30,6 +32,18 @@ namespace Auction.Web.Controllers
             this.dataItem = items;
             this.dataUser = users;
             this.dataImage = images;
+        }
+
+        [HttpGet]
+        public ActionResult ListAllItems()
+        {
+            IQueryable<ItemViewModel> items = this.dataItem.All().OrderBy(x => x.Id).To<ItemViewModel>();
+            return this.View(items);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return Content("Edit motherfucker");
         }
 
         [HttpGet]

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Live Auction</title>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @RenderSection("styles", required: false)
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,6 +33,7 @@
                     <li>@Html.ActionLink("All Users", "AllUsers", "Users")</li>
                     <li>@Html.ActionLink("Create Auction", "CreateAuction", "Auction")</li>
                     <li>@Html.ActionLink("Create Item", "CreateItem", "Item")</li>
+                    <li>@Html.ActionLink("All Items", "ListAllItems", "Item")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

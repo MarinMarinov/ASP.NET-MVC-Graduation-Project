@@ -26,6 +26,12 @@ namespace Auction.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
+                     "~/Scripts/gridmvc.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/gridmvc").Include(
+                        "~/Content/Gridmvc.css"));
+
             // Set EnableOptimizations to false for debugging
             BundleTable.EnableOptimizations = false;
         }
