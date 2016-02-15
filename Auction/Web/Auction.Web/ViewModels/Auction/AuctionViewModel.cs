@@ -2,8 +2,7 @@
 {
     using System;
     using System.Linq.Expressions;
-
-    using global::Auction.Models;
+    using Models;
 
     public class AuctionViewModel
     {

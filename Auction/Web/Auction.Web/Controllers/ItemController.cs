@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.IO;
-
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
     using Auction.Data.Repositories;
     using Auction.Infrastructure.Mapping;
     using Auction.Models;
     using Auction.Services.Data;
     using Auction.Web.ViewModels.Item;
-    using Auction.Web.ViewModels.User;
 
     public class ItemController : Controller
     {

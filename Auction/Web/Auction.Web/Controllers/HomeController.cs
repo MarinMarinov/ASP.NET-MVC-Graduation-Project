@@ -1,10 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Controllers
 {
+    using System.Web.Mvc;
     using Auction.Services.Data;
-
-    using Infrastructure;
 
     public class HomeController : BaseController
     {
