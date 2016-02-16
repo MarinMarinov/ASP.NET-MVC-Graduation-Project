@@ -87,6 +87,8 @@
                     Name = "Auction " + i,
                     DateOfAuction = DateTime.UtcNow.AddHours(24 + (24 * i)),
                     Active = false,
+                    InitialPrice = 10000 + 1000*i,
+                    BidStep = 500,
                     Items = items,
                     Creator = this.Users[randUser]
                 };

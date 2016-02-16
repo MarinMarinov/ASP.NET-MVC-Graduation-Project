@@ -14,6 +14,8 @@
                     Name = auction.Name,
                     DateOfAuction = auction.DateOfAuction,
                     Active = auction.Active,
+                    InitialPrice = auction.InitialPrice,
+                    BidStep = auction.BidStep,
                     Creator = auction.Creator.UserName
                 };
             }
@@ -24,6 +26,10 @@
         public DateTime DateOfAuction { get; set; }
 
         public bool Active { get; set; }
+
+        public int InitialPrice { get; set; }
+
+        public int BidStep { get; set; }
 
         public string Creator { get; set; }
     }

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "SetActiveAuction";
+}
+
+<h2>Set Active Auction</h2>
+
+@if (TempData["Wrong"] != null)
+{
+    <div class="row">
+        @TempData["Wrong"]
+    </div>
+}
+
+<div class="container">
+    @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row">
+            @Html.TextBox("auctionName", null, new { type = "text", @class = "form-control" })
+            @Html.ValidationMessage("auctionName")
+        </div>
+        @Html.Submit()
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

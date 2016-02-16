@@ -1,4 +1,5 @@
-﻿@model Auction.Web.ViewModels.Auction.CreateAuctionModel
+﻿@using Auction.Infrastructure.Helpers
+@model Auction.Web.ViewModels.Auction.CreateAuctionModel
 
 <h2>Create Auction</h2>
 @if (TempData["Success"] != null)
@@ -25,12 +26,22 @@
             @Html.ValidationMessageFor(m => m.ItemTitle)
         </div>
         <div class="row">
+            @Html.LabelFor(m => m.InitialPrice)
+            @Html.TextBoxFor(m => m.InitialPrice, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.InitialPrice)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.BidStep)
+            @Html.TextBoxFor(m => m.BidStep, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BidStep)
+        </div>
+        <div class="row">
             @Html.LabelFor(m => m.DateOfAuction)
             @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
-            @Html.TextBoxFor(m => m.DateOfAuction, new {id = "datepicker", @class = "form-control"})
+            @Html.TextBoxFor(m => m.DateOfAuction, new { id = "datepicker", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.DateOfAuction)
         </div>
-        <br/>
+        <br />
         <div class="row">
             @Html.Submit(new { @class = "btn btn-danger" })
         </div>
@@ -43,7 +54,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).val();
         });
     </script>
 }

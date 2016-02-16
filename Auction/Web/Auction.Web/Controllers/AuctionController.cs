@@ -3,12 +3,10 @@
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Services.Data;
-
+    using Auction.Web.ViewModels.Auction;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
-    using Auction.Web.ViewModels.Auction;
 
     public class AuctionController : BaseController
     {
@@ -84,6 +82,46 @@
             var auctions = service.GetAllAuctions().Select(AuctionViewModel.FromAuction).ToList();
 
             return View(auctions);
+        }
+
+        [HttpGet]
+        public ActionResult SetActiveAuction()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetActiveAuction(string auctionName)
+        {
+            var auction = this.dataAuction.All().FirstOrDefault(a => a.Name == auctionName);
+
+            if (auction == null)
+            {
+                this.TempData["Wrong"] = "There is no auction with that name";
+
+                return this.View("SetActiveAuction");
+            }
+
+            auction.Active = true;
+
+            this.dataAuction.Save();
+
+            var auctionView = new AuctionViewModel 
+            { 
+                Name = auction.Name, 
+                DateOfAuction=auction.DateOfAuction,
+                Active = auction.Active,
+                InitialPrice = auction.InitialPrice,
+                BidStep = auction.BidStep,
+                Creator = auction.Creator.UserName
+            };
+
+            return RedirectToAction("ActiveAuction", "Auction", auctionView);
+        }
+
+        public ActionResult ActiveAuction(AuctionViewModel auctionView)
+        {
+            return View(auctionView);
         }
     }
 }

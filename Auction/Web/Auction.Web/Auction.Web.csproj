@@ -290,6 +290,8 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Shared\_LayoutGridMvc.cshtml" />
     <Content Include="Views\Item\ListAllItems.cshtml" />
+    <Content Include="Views\Auction\ActiveAuction.cshtml" />
+    <Content Include="Views\Auction\SetActiveAuction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Files\" />

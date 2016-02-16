@@ -1,9 +1,9 @@
 ﻿namespace Auction.Models
 {
+    using Models.Common;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Models.Common;
 
     public class Auction : BaseModel<int>
     {
@@ -23,6 +23,10 @@
         public DateTime DateOfAuction { get; set; }
 
         public bool Active { get; set; }
+
+        public int InitialPrice { get; set; }
+
+        public int BidStep { get; set; } 
 
         public string CreatorId { get; set; }
 

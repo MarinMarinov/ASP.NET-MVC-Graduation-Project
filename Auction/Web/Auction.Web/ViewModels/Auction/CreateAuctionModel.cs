@@ -1,10 +1,10 @@
 ﻿namespace Auction.Web.ViewModels.Auction
 {
+    using Infrastructure.Mapping;
+    using Models;
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using Infrastructure.Mapping;
-    using Models;
 
     public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
     {
@@ -14,6 +14,14 @@
         [Required]
         [DisplayName("Item Title")]
         public string ItemTitle { get; set; }
+
+        [Required]
+        [DisplayName("Initial Price")]
+        public int InitialPrice { get; set; }
+
+        [Required]
+        [DisplayName("Bid step")]
+        public int BidStep { get; set; } 
 
         [Required]
         [DisplayName("Auction Date and Time")]
