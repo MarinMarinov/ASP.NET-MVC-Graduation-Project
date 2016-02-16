@@ -9,6 +9,7 @@ namespace Auction.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR(); // TODO according to readme.txt
         }
     }
 }
