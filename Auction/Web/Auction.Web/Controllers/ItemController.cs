@@ -33,6 +33,7 @@
         [HttpGet]
         public ActionResult ListAllItems()
         {
+            throw new System.Exception();
             IQueryable<ItemViewModel> items = this.dataItem.All().OrderBy(x => x.Id).To<ItemViewModel>();
             return this.View(items);
         }
