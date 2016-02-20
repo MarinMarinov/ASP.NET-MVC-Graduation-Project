@@ -13,16 +13,16 @@
 
     public class ItemController : Controller
     {
-        private IDbRepository<Auction, int> dataAuction;
-        private IDbRepository<Item, int> dataItem;
-        private IDbRepository<User, string> dataUser;
-        private IDbRepository<Image, int> dataImage;
+        private IDbRepository<Auction> dataAuction;
+        private IDbRepository<Item> dataItem;
+        private IDbRepository<User> dataUser;
+        private IDbRepository<Image> dataImage;
 
-        public ItemController(IDbRepository<Auction, int> auctions,
-            IDbRepository<Item, int> items,
-            IDbRepository<User, string> users,
+        public ItemController(IDbRepository<Auction> auctions,
+            IDbRepository<Item> items,
+            IDbRepository<User> users,
             IAuctionService service,
-            IDbRepository<Image, int> images)
+            IDbRepository<Image> images)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
@@ -33,7 +33,6 @@
         [HttpGet]
         public ActionResult ListAllItems()
         {
-            throw new System.Exception();
             IQueryable<ItemViewModel> items = this.dataItem.All().OrderBy(x => x.Id).To<ItemViewModel>();
             return this.View(items);
         }
@@ -75,7 +74,8 @@
 
             if (ModelState.IsValid)
             {
-                var item = new Item {
+                var item = new Item
+                {
                     Title = model.Title,
                     Type = model.Type,
                     Author = model.Author,

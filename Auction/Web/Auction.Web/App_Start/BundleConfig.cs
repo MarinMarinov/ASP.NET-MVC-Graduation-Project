@@ -25,7 +25,7 @@ namespace Auction.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/Cerulean.css"
+                      "~/Content/Spacelab.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(

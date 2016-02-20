@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Auction.Web.Hubs
+﻿namespace Auction.Web.Hubs
 {
     using Microsoft.AspNet.SignalR;
 

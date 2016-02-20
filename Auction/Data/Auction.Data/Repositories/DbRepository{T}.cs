@@ -1,14 +1,13 @@
 ﻿namespace Auction.Data.Repositories
 {
+    using Auction.Data;
+    using Auction.Models.Common;
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using Auction.Data;
-    using Auction.Models.Common;
 
-    // TODO: Why BaseModel<int> instead BaseModel<TKey>?
-    public class DbRepository<T, TKey> : IDbRepository<T, TKey>
-        where T : class, IBaseModel<TKey>
+    public class DbRepository<T> : IDbRepository<T>
+        where T : class, IBaseModel
     {
         public DbRepository(IAuctionDbContext context)
         {
@@ -36,11 +35,6 @@
             return this.DbSet;
         }
 
-        /*public T GetById(T id)
-        {
-            return this.All().FirstOrDefault(x => x.Id == id);
-        }*/
-
         public void Add(T entity)
         {
             this.DbSet.Add(entity);
@@ -63,10 +57,21 @@
         }
 
 
-        public T GetById(TKey id)
+        public T GetById(object id)
         {
-            return this.All().FirstOrDefault(x => x.Id.Equals(id));
+            var entity = this.GetByIdWithDeleted(id);
+            if (entity.IsDeleted)
+            {
+                return null;
+            }
 
+            return entity;
+        }
+
+
+        public T GetByIdWithDeleted(object id)
+        {
+            return this.DbSet.Find(id);
         }
     }
 }

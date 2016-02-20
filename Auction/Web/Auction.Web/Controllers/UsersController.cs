@@ -11,11 +11,11 @@
 
     public class UsersController : BaseController
     {
-        private IDbRepository<Auction, int> dataAuction;
-        private IDbRepository<Item, int> dataItem;
-        private IDbRepository<User, string> dataUser;
+        private IDbRepository<Auction> dataAuction;
+        private IDbRepository<Item> dataItem;
+        private IDbRepository<User> dataUser;
 
-        public UsersController(IDbRepository<Auction, int> auctions, IDbRepository<Item, int> items, IDbRepository<User, string> users)
+        public UsersController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User> users)
         {
             this.dataAuction = auctions;
             this.dataItem = items;

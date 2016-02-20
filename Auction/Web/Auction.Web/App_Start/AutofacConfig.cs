@@ -47,7 +47,7 @@
         {
             builder.Register(x => new AuctionDbContext()).As<IAuctionDbContext>().InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(DbRepository<,>)).As(typeof(IDbRepository<,>)).InstancePerRequest();
+            builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
             //builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
 

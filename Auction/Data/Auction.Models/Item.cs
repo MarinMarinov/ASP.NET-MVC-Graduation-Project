@@ -1,10 +1,10 @@
 ﻿namespace Auction.Models
 {
+    using Common;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class Item : BaseModel<int>
+    public class Item : BaseModel
     {
         private ICollection<Image> images;
 
@@ -12,6 +12,8 @@
         {
             this.images = new HashSet<Image>();
         }
+
+        public int Id { get; set; }
 
         [Required]
         public string Title { get; set; }

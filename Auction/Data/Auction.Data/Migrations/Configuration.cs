@@ -14,13 +14,27 @@ namespace Auction.Data.Migrations
 
         protected override void Seed(AuctionDbContext context)
         {
-            if(context.Auctions.Any())
+            var seeder = new SeedData();
+
+            if (!context.Roles.Any())
             {
-                return;
+                seeder.SeedAdmin(context);
             }
 
-            var seed = new SeedData();
-            seed.db.SaveChanges();
+            if (!context.Users.Any())
+            {
+                seeder.SeedAdmin(context);
+            }
+
+            if (!context.Items.Any())
+            {
+                seeder.SeedAdmin(context);
+            }
+
+            if (context.Auctions.Any())
+            {
+                seeder.SeedAuctions(context);
+            }
         }
     }
 }

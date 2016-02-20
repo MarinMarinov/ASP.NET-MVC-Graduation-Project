@@ -9,7 +9,7 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    public class User : IdentityUser, IBaseModel<string>
+    public class User : IdentityUser, IBaseModel
     {
         private ICollection<Auction> auctions;
 
@@ -27,7 +27,7 @@
         // TODO: validate only picture formats
         public string AvatarFileName { get; set; }
 
-        public DateTime? CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 

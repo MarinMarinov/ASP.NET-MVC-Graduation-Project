@@ -7,13 +7,13 @@
 
     public class AuctionService : IAuctionService
     {
-        private IDbRepository<Auction, int> auctionRepo;
+        private IDbRepository<Auction> auctionRepo;
 
         /*public AuctionService()
         {
         }*/
 
-        public AuctionService(IDbRepository<Auction, int> auctionRepo)
+        public AuctionService(IDbRepository<Auction> auctionRepo)
         {
             this.auctionRepo = auctionRepo;
         }

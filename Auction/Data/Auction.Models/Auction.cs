@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Auction : BaseModel<int>
+    public class Auction : BaseModel
     {
         private ICollection<User> bidders;
         private ICollection<Item> items;
@@ -16,7 +16,7 @@
             this.items = new HashSet<Item>();
         }
 
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

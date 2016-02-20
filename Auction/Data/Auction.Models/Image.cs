@@ -2,8 +2,10 @@
 {
     using Common;
 
-    public class Image : BaseModel<int>
+    public class Image : BaseModel
     {
+        public int Id { get; set; }
+
         public string FileName { get; set; }
 
         public string Extension { get; set; }

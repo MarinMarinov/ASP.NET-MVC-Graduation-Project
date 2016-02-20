@@ -1,21 +1,18 @@
 ﻿namespace Auction.Data.Repositories
 {
-    using System.Linq;
     using Auction.Models.Common;
+    using System.Linq;
 
-    /*public interface IDbRepository<T> : IDbRepository<T, int>
-        where T : IBaseModel<int>
-    {
-    }*/
-
-    public interface IDbRepository<T, in TKey>
-        where T : class, IBaseModel<TKey>
+    public interface IDbRepository<T>
+        where T : class, IBaseModel
     {
         IQueryable<T> All();
 
         IQueryable<T> AllWithDeleted();
 
-        T GetById(TKey id);
+        T GetById(object id);
+
+        T GetByIdWithDeleted(object id);
 
         void Add(T entity);
 
