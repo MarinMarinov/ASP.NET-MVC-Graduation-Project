@@ -20,15 +20,6 @@
 <p>Initial price: @Model.InitialPrice</p>
 <p>Bid step: @Model.BidStep</p>
 
-@*@foreach (var bidder in Model.Bidders)
-{
-    <p>Bidder: @bidder.FirstName @bidder.LastName</p>
-    <ul id="discussion" class="list-group">
-        @Html.Action("LoadChatHistory")
-    </ul>
-}*@
-
-
 
 <div class="container">
     <h1 class="text-left"><span class="label label-default">Messages</span></h1>
@@ -38,15 +29,44 @@
     }))
     {
         <div class="form-group col-md-12" style="background-color: #e9e9e9">
-            @Html.LabelFor(m => m.ReceiverId , new { @class = "label-control" })
+            @Html.LabelFor(m => m.ReceiverId, new { @class = "label-control" })
             @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
+         
             @Html.EditorFor(m => m.Value, null, new { name = "value", @class = "form-control" })
-            @Html.EditorFor(m => m.Id, null, new { name = "value", @class = "form-control" })
+            @Html.EditorFor(m => m.InitialPrice, null, new { name = "initialPrice", @class = "form-control" })
+            @Html.EditorFor(m => m.Id, null, new { name = "id", @class = "form-control" })
 
-            <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
+            @if (this.User.IsInRole("Admin"))
+            {
+                @Html.LabelFor(m => m.WinnerId, new { @class = "label-control" })
+                @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "winnerId" })
+            }
+
+                <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
+
         </div>
         <div class="clearfix"></div>
     }
+    @*@if (this.User.IsInRole("Admin"))
+    {
+        using (Ajax.BeginForm("SendMessageToTheWinner", "Bid", new { area = "" }, new AjaxOptions
+        {
+            HttpMethod = "GET"
+        }))
+            {
+                <div class="form-group col-md-12" style="background-color: #e9e9e9">
+                    @Html.LabelFor(m => m.ReceiverId, new { @class = "label-control" })
+                    @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
+                    @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "winnerId" })
+                    @Html.EditorFor(m => m.Value, null, new { name = "value", @class = "form-control" })
+                    @Html.EditorFor(m => m.Id, null, new { name = "id", @class = "form-control" })
+
+                    <input type="submit" id="sendMessageToTheWinner" value="Send" class="btn btn-default" />
+
+                </div>
+                <div class="clearfix"></div>
+            }
+    }*@
 
     <div id="bidding-area" class="text text-danger"><h3>Bidding</h3></div>
     <ul id="discussion" class="list-group">
@@ -60,7 +80,7 @@
 }
 
 <script>
-   
+
     /*$(document).ready(function () {
         hideMe();
     });
@@ -81,10 +101,19 @@
         var chat = $.connection.auctionRoom;
         chat.logging = true;
         // Create a function that the hub can call to broadcast messages.
-        chat.client.broadcastMessage = function (senderUsername, value, sentOn) {
+        chat.client.broadcastMessage = function (sentOn, bidderName, value, newPrice, winnerUsername) {
             // Html encode display name and message.
-            var encodedName = $('<div />').text(senderUsername).html();
-            var encodedValue = $('<div />').text(value).html();
+            var encodedName = $('<div />').text(bidderName).html();
+            var encodedValue = '';
+            var encodedWinnerTag = '';
+            if (value !== 0)
+            {
+                encodedValue = $('<div />').text(value).html();
+            };
+            if (winnerUsername !== '') {
+                encodedWinnerTag = '<p><strong>The WINNER is: ' + winnerUsername + '</strong></p>';
+            };
+           
             var encodedSentOn = $('<div />').text(sentOn).html();
             // Add the message to the page.
             $('#discussion').prepend(
@@ -93,6 +122,7 @@
                     '<p><strong>' + encodedSentOn + '</strong></p>' +
                     '<p><strong>' + encodedName + '</strong></p>' +
                     '<p>' + encodedValue + '</p>' +
+                    encodedWinnerTag +
                     '</div>' +
                     '</li>');
         };
@@ -104,9 +134,12 @@
                 // Call the Send method on the hub.
                 var receiverId = $('#receiverId').val();
                 var value = $('#Value').val();
+                var initialPrice = $('#InitialPrice').val();
+                var newPrice = initialPrice + value;
                 var auctionId = $('#Id').val();
+                var winnerId = $('#winnerId').val();
 
-                chat.server.send(receiverId, auctionId, value);
+                chat.server.send(receiverId, auctionId, value, newPrice, winnerId);
                 // Clear text box and reset focus for next comment.
                 $('#message').val('').focus();
             });

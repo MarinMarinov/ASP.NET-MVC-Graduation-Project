@@ -21,6 +21,8 @@ namespace Auction.Web.ViewModels.Auction
 
         public int BidStep { get; set; }
 
+        public string WinnerId { get; set; }
+
         public string ReceiverId { get; set; }
 
         public ICollection<Item> Items { get; set; }

@@ -33,6 +33,10 @@
         [ForeignKey("CreatorId")]
         public virtual User Creator { get; set; }*/
 
+        public string WinnerId { get; set; }
+
+        public virtual User Winner { get; set; }
+
         public virtual ICollection<User> Bidders
         {
             get { return this.bidders; }

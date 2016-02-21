@@ -98,9 +98,11 @@ namespace Auction.Web.Controllers
                     .Where(m => m.BidderId == userId || m.Bidders.Any(u => u.Id == userId))
                     .Select(b => new BidDetailsViewModel{
                         Value = b.Value,
+                        NewPrice = b.NewPrice,
                         CreatedOn = b.CreatedOn,
                         Bidder = b.Bidder,
-                        Bidders = b.Bidders
+                        Bidders = b.Bidders,
+                        Winner = b.Winner
                     })
                     .OrderByDescending(b => b.CreatedOn)
                     .ToList();

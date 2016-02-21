@@ -20,6 +20,14 @@
 
         public virtual Auction Auction { get; set; }
 
+        public int? NewPrice { get; set; }
+
+        public string WinnerId { get; set; }
+
+        public virtual User Winner { get; set; }
+
+        public string WinnerUsername { get; set; }
+
         public string BidderId { get; set; }
 
         public virtual User Bidder { get; set; }

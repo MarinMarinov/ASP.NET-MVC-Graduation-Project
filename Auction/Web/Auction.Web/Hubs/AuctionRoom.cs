@@ -16,21 +16,21 @@
             this.bids = bidService;
         }
 
-        public void Send(string receiverId, int auctionId, int value)
+        public void Send(string receiverId, int auctionId, int value, int newPrice, string winnerId)
         {
-            var senderId = this.Context.User.Identity.GetUserId();
-            var senderName = this.Context.User.Identity.Name;
+            var bidderId = this.Context.User.Identity.GetUserId();
+            var bidderName = this.Context.User.Identity.Name;
 
             if (!this.IsValidInput(receiverId, value))
             {
                 return;
             }
 
-            var bid = this.bids.Create(value, senderId, auctionId, new List<string> { receiverId });
+            var bid = this.bids.Create(value, newPrice, bidderId, winnerId, auctionId, new List<string> { receiverId });
 
             if(receiverId == "All")
             {
-                Clients.All.broadcastMessage(senderName, bid.Value, bid.CreatedOn);
+                Clients.All.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.NewPrice, bid.WinnerUsername);
             }
             else
             {
@@ -40,7 +40,7 @@
 
                     if (receiverClient != null)
                     {
-                        receiverClient.broadcastMessage(senderName, bid.Value, bid.CreatedOn);
+                        receiverClient.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.NewPrice, bid.WinnerUsername);
                     }
                 }
                 else
@@ -68,7 +68,7 @@
                 return false;
             }
 
-            if (value < 1)
+            if (value < 0)
             {
                 return false;
             }

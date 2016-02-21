@@ -11,6 +11,10 @@ namespace Auction.Web.ViewModels.Bid
     {
         public int Value { get; set; }
 
+        public int? NewPrice { get; set; }
+
+        public User Winner { get; set; }
+
         public User Bidder { get; set; }
 
         public DateTime CreatedOn { get; set; }

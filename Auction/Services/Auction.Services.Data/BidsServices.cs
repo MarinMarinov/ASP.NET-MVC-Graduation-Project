@@ -24,13 +24,16 @@
             this.auctions = auctions;
         }
 
-        public Bid Create(int value, string bidderId, int auctionId, IList<string> receiversIds)
+        public Bid Create(int value, int newPrice, string bidderId, string winnerId, int auctionId, IList<string> receiversIds)
         {
             var bid = new Bid
             {
                 Value = value,
+                NewPrice = newPrice,
                 BidderId = bidderId,
-                AuctionId = auctionId
+                WinnerId = winnerId,
+                WinnerUsername = this.users.GetById(winnerId).ToString(),
+                AuctionId = auctionId,
             };
 
             if (receiversIds[0] == "All")

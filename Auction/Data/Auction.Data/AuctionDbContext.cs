@@ -33,6 +33,18 @@
             return base.SaveChanges();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Auction>()
+                .HasMany<User>(a => a.Bidders)
+                .WithMany(u => u.Auctions);
+
+            modelBuilder.Entity<Auction>()
+                .HasOptional<User>(a => a.Winner);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         private void ApplyAuditInfoRules()
         {
             // Approach via @julielerman: http://bit.ly/123661P
