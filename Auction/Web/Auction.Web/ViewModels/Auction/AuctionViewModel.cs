@@ -16,7 +16,7 @@
                     Active = auction.Active,
                     InitialPrice = auction.InitialPrice,
                     BidStep = auction.BidStep,
-                    Creator = auction.Creator.UserName
+                    //Creator = auction.Creator.UserName
                 };
             }
         }
@@ -31,6 +31,6 @@
 
         public int BidStep { get; set; }
 
-        public string Creator { get; set; }
+        //public string Creator { get; set; }
     }
 }

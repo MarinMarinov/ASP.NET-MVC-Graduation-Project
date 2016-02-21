@@ -49,7 +49,10 @@
 
             builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
+
             //builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
+
+            //builder.Register(x => new BidsServices()).As<IBidsServices>().InstancePerRequest();
 
             var servicesAssembly = Assembly.GetAssembly(typeof(IAuctionService));
             builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();

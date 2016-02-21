@@ -18,20 +18,20 @@ namespace Auction.Data.Migrations
 
             if (!context.Roles.Any())
             {
-                seeder.SeedAdmin(context);
+                seeder.SeedAdminRole(context);
             }
 
             if (!context.Users.Any())
             {
-                seeder.SeedAdmin(context);
+                seeder.SeedUsers(context);
             }
 
             if (!context.Items.Any())
             {
-                seeder.SeedAdmin(context);
+                seeder.SeedItems(context);
             }
 
-            if (context.Auctions.Any())
+            if (!context.Auctions.Any())
             {
                 seeder.SeedAuctions(context);
             }

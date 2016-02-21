@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BidController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -215,8 +216,12 @@
     <Compile Include="Hubs\AuctionRoom.cs" />
     <Compile Include="ViewModels\Account\AccountViewModels.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Auction\ActiveAuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
+    <Compile Include="ViewModels\Auction\JoinToActiveAuctionViewModel.cs" />
+    <Compile Include="ViewModels\Bid\BidCreateModel.cs" />
+    <Compile Include="ViewModels\Bid\BidDetailsViewModel.cs" />
     <Compile Include="ViewModels\Item\CreateItemViewModel.cs" />
     <Compile Include="ViewModels\Item\ItemViewModel.cs" />
     <Compile Include="ViewModels\Manage\ManageViewModels.cs" />
@@ -305,14 +310,17 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Shared\_LayoutGridMvc.cshtml" />
     <Content Include="Views\Item\ListAllItems.cshtml" />
-    <Content Include="Views\Auction\ActiveAuction.cshtml" />
+    <Content Include="Views\Auction\EditActiveAuction.cshtml" />
     <Content Include="Views\Auction\SetActiveAuction.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Auction\NewActiveAuction.cshtml" />
+    <Content Include="Views\Bid\JoinToAuction.cshtml" />
+    <Content Include="Views\Bid\Bid.cshtml" />
+    <Content Include="Views\Shared\_ChatHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Files\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

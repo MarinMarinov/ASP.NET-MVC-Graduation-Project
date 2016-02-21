@@ -1,0 +1,16 @@
+﻿@model ICollection<Auction.Web.ViewModels.Bid.BidDetailsViewModel>
+
+@foreach (var message in Model)
+{
+    var receivers = String.Join(", ", message.Bidders.Select(u => u.UserName));
+    <li class="list-group-item">
+        <div class="well well-lg">
+            <p><strong>@message.CreatedOn</strong>
+            </p>
+            <p><strong>from @message.Bidder.UserName to @receivers</strong>
+            </p>
+            <p><strong>@message.Value</strong>
+            </p>
+        </div>
+    </li>
+}

@@ -25,6 +25,8 @@
 
         public IDbSet<Image> Images { get; set; }
 
+        public IDbSet<Bid> Bids { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
@@ -41,8 +43,7 @@
                         e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
                 var entity = (IAuditInfo)entry.Entity;
-                //if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
-                if (entry.State == EntityState.Added && entity.CreatedOn == null)
+                if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
                     entity.CreatedOn = DateTime.UtcNow;
                 }

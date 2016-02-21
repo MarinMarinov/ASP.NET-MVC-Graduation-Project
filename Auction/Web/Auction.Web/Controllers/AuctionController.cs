@@ -62,8 +62,10 @@
                     Name = auction.Name,
                     Items = items,
                     DateOfAuction = auction.DateOfAuction,
-                    Creator = currentUser,
-                    Bidders = bidders
+                    //Creator = currentUser,
+                    Bidders = bidders,
+                    InitialPrice = auction.InitialPrice,
+                    BidStep = auction.BidStep
                 });
 
 
@@ -113,13 +115,14 @@
                 Active = auction.Active,
                 InitialPrice = auction.InitialPrice,
                 BidStep = auction.BidStep,
-                Creator = auction.Creator.UserName
+                //Creator = auction.Creator.UserName
             };
 
-            return RedirectToAction("ActiveAuction", "Auction", auctionView);
+            return RedirectToAction("EditActiveAuction", "Auction", auctionView);
         }
 
-        public ActionResult ActiveAuction(AuctionViewModel auctionView)
+        // [Authorize(Role="Admin)]
+        public ActionResult EditActiveAuction(AuctionViewModel auctionView)
         {
             return View(auctionView);
         }

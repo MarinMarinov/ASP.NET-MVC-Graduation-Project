@@ -1,0 +1,101 @@
+﻿@model Auction.Web.ViewModels.Auction.ActiveAuctionViewModel
+@{
+    ViewBag.Title = "Bid";
+}
+
+<h2>Bid</h2>
+
+<p>Item Title: @Model.Name</p>
+
+@foreach (var item in Model.Items)
+{
+    <p>Item Title: @item.Title</p>
+
+    foreach (var image in item.Images)
+    {
+        <p>Item Title: @image.FileName</p>
+    }
+}
+
+<p>Initial price: @Model.InitialPrice</p>
+<p>Bid step: @Model.BidStep</p>
+
+@foreach (var bidder in Model.Bidders)
+{
+    <p>Bidder: @bidder.FirstName @bidder.LastName</p>
+    @*<input type="hidden" id="displayname" />*@
+    <ul id="discussion" class="list-group">
+        @Html.Action("LoadChatHistory")
+    </ul>
+}
+
+<div class="container">
+    <h1 class="text-left"><span class="label label-default">Messages</span></h1>
+    @using (Ajax.BeginForm("SendMessage", "Bid", new { area = "" }, new AjaxOptions
+    {
+        HttpMethod = "GET"
+    }))
+    {
+        <div class="form-group col-md-12" style="background-color: #e9e9e9">
+            @Html.LabelFor(m => m.ReceiverId , new { @class = "label-control" })
+            @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
+            @Html.EditorFor(m => m.Value, null, new { name = "value", @class = "form-control" })
+            @Html.EditorFor(m => m.Id, null, new { name = "value", @class = "form-control" })
+
+            <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
+        </div>
+        <div class="clearfix"></div>
+    }
+   
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    /*$(document).ready(function () {
+        $('.alert').slideDown(1000);
+        $('.alert').fadeOut(2000);
+    });*/
+
+    // Messenger
+    $(function () {
+        // Declare a proxy to reference the hub.
+        var chat = $.connection.auctionRoom;
+        // Create a function that the hub can call to broadcast messages.
+        chat.client.broadcastMessage = function (senderUsername, value, sentOn) {
+            // Html encode display name and message.
+            debugger;
+            var encodedName = $('<div />').text(senderUsername).html();
+            var encodedValue = $('<div />').text(value).html();
+            var encodedSentOn = $('<div />').text(sentOn).html();
+            // Add the message to the page.
+            $('#discussion').prepend(
+                '<li class="list-group-item">' +
+                    '<div class="well well-lg">' +
+                    '<p><strong>' + encodedSentOn + '</strong></p>' +
+                    '<p><strong>' + encodedName + '</strong></p>' +
+                    '<p>' + encodedValue + '</p>' +
+                    '</div>' +
+                    '</li>');
+        };
+
+        $('#message').focus();
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            $('#sendmessage').click(function () {
+                // Call the Send method on the hub.
+                var receiverId = $('#receiverId').val();
+                var value = $('#Value').val();
+                var auctionId = $('#Id').val();
+
+                chat.server.send(receiverId, auctionId, value);
+                // Clear text box and reset focus for next comment.
+                $('#message').val('').focus();
+            });
+        });
+    });
+</script>
+
+

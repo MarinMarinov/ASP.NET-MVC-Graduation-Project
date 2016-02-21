@@ -28,10 +28,10 @@
 
         public int BidStep { get; set; } 
 
-        public string CreatorId { get; set; }
+        /*public string CreatorId { get; set; }
 
         [ForeignKey("CreatorId")]
-        public virtual User Creator { get; set; }
+        public virtual User Creator { get; set; }*/
 
         public virtual ICollection<User> Bidders
         {

@@ -9,10 +9,6 @@
     {
         private IDbRepository<Auction> auctionRepo;
 
-        /*public AuctionService()
-        {
-        }*/
-
         public AuctionService(IDbRepository<Auction> auctionRepo)
         {
             this.auctionRepo = auctionRepo;

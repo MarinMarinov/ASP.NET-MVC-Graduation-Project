@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Auction.Web.ViewModels.Auction.JoinToActiveAuctionViewModel>
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Join To Auction</h2>
+
+<ul class="list-group">
+    @foreach (var auction in Model)
+    {
+        <li class="list-group list-group-item">
+            <p>Name: @auction.Name </p>
+
+            @foreach (var item in auction.Items)
+            {
+                <p>Item Title: @item.Title</p>
+                foreach (var image in item.Images)
+                {
+                    <p>Item Title: @image.FileName</p>
+                }
+            }
+            
+            <p>Date: @auction.DateOfAuction</p>
+            <p>Is active: @auction.Active</p>
+            <p>Initial price: @auction.InitialPrice</p>
+            <p>Bid step: @auction.BidStep</p>
+            
+            @Html.ActionLink("Join To Auction", "JoinToAuctionId", "Bid", new { auctionId = auction.Id }, null)
+            @Html.ActionLink("Back to List", "Index", "Home")
+        </li>
+    } 
+</ul>
+
+

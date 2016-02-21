@@ -5,8 +5,8 @@
     using Microsoft.AspNet.Identity;
     using Models;
     using System.Data.Entity.Migrations;
+    using System.Linq;
     using Data;
-
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public class SeedData
@@ -21,7 +21,7 @@
 
         private List<User> Users = new List<User>();
 
-        public void SeedAdmin(AuctionDbContext context)
+        public void SeedAdminRole(AuctionDbContext context)
         {
             var store = new RoleStore<IdentityRole>(context);
             var manager = new RoleManager<IdentityRole>(store);
@@ -71,8 +71,12 @@
             this.Users.Add(pesho);
             this.Users.Add(gosho);
             this.Users.Add(admin);
-            manager.AddToRole(admin.Id, "Admin");
             context.Users.AddOrUpdate(this.Users.ToArray());
+            context.SaveChanges();
+
+            var adminId = context.Users.FirstOrDefault(u => u.UserName == "admin@mail.bg").Id;
+            manager.AddToRole(adminId, "Admin");
+            context.SaveChanges();
         }
 
         public void SeedItems(AuctionDbContext context)
@@ -94,6 +98,7 @@
             }
 
             context.Items.AddOrUpdate(this.Items.ToArray());
+            context.SaveChanges();
         }
 
         public void SeedAuctions(AuctionDbContext context)
@@ -102,6 +107,7 @@
             {
                 var randUser = this.random.Next(0, 3);
                 var items = new List<Item> { this.Items[i] };
+                var bidders = this.Users;
 
                 var auction = new Auction
                 {
@@ -111,12 +117,14 @@
                     InitialPrice = 10000 + 1000 * i,
                     BidStep = 500,
                     Items = items,
-                    Creator = this.Users[randUser]
+                    //Creator = this.Users[randUser],
+                    Bidders = bidders
                 };
                 this.Auctions.Add(auction);
             }
 
             context.Auctions.AddOrUpdate(this.Auctions.ToArray());
+            context.SaveChanges();
         }
     }
 }
