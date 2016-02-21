@@ -5,6 +5,6 @@
 
     public interface IBidsServices
     {
-        Bid Create(int value, string bidderId, int auctionId, ICollection<string> receiversIds);
+        Bid Create(int value, string bidderId, int auctionId, IList<string> receiversIds);
     }
 }

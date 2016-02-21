@@ -26,7 +26,7 @@ namespace Auction.Web
 
             GlobalHost.DependencyResolver.Register(
                typeof(AuctionRoom),
-               () => new AuctionRoom(new BidsServices(new DbRepository<Bid>(db), new DbRepository<User>(db))));
+               () => new AuctionRoom(new BidsServices(new DbRepository<Bid>(db), new DbRepository<User>(db), new DbRepository<Auction>(db))));
 
             app.MapSignalR(); // TODO according to readme.txt
         }

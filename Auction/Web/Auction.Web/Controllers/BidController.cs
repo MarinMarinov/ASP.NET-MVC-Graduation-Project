@@ -78,6 +78,7 @@ namespace Auction.Web.Controllers
                     Value = u.Id
                 })
                 .ToList();
+            bidders.Add(new SelectListItem { Text = "All", Value = "All" });
             ViewBag.Bidders = bidders;
 
             return View("Bid", auctionModel);

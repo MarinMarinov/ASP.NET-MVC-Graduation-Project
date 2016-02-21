@@ -10,18 +10,21 @@
     {
         private IDbRepository<Bid> bids;
         private IDbRepository<User> users;
+        private IDbRepository<Auction> auctions;
 
-        public BidsServices(){
+        public BidsServices()
+        {
 
         }
 
-        public BidsServices(IDbRepository<Bid> bids, IDbRepository<User> users)
+        public BidsServices(IDbRepository<Bid> bids, IDbRepository<User> users, IDbRepository<Auction> auctions)
         {
             this.bids = bids;
             this.users = users;
+            this.auctions = auctions;
         }
 
-        public Bid Create(int value, string bidderId, int auctionId, ICollection<string> receiversIds)
+        public Bid Create(int value, string bidderId, int auctionId, IList<string> receiversIds)
         {
             var bid = new Bid
             {
@@ -30,10 +33,17 @@
                 AuctionId = auctionId
             };
 
-            foreach (var userId in receiversIds)
+            if (receiversIds[0] == "All")
             {
-                var receiver = this.users.GetById(userId);
-                bid.Bidders.Add(receiver);
+                bid.Bidders = auctions.GetById(auctionId).Bidders.ToList();
+            }
+            else
+            {
+                foreach (var userId in receiversIds)
+                {
+                    var receiver = this.users.GetById(userId);
+                    bid.Bidders.Add(receiver);
+                }
             }
 
             this.bids.Add(bid);

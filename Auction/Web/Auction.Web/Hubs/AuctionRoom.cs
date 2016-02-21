@@ -1,10 +1,10 @@
 ﻿namespace Auction.Web.Hubs
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Auction.Services.Data;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.SignalR;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class AuctionRoom : Hub
     {
@@ -28,18 +28,25 @@
 
             var bid = this.bids.Create(value, senderId, auctionId, new List<string> { receiverId });
 
-            if (usersDictionary.ContainsKey(receiverId))
+            if(receiverId == "All")
             {
-                var receiverClient = Clients.Client(usersDictionary[receiverId]);
-
-                if (receiverClient != null)
-                {
-                    receiverClient.broadcastMessage(senderName, bid.Value, bid.CreatedOn);
-                }
+                Clients.All.broadcastMessage(senderName, bid.Value, bid.CreatedOn);
             }
             else
             {
-                this.Clients.Client(this.Context.ConnectionId).broadcastMessage("Server", "User is not connected");
+                if (usersDictionary.ContainsKey(receiverId))
+                {
+                    var receiverClient = Clients.Client(usersDictionary[receiverId]);
+
+                    if (receiverClient != null)
+                    {
+                        receiverClient.broadcastMessage(senderName, bid.Value, bid.CreatedOn);
+                    }
+                }
+                else
+                {
+                    this.Clients.Client(this.Context.ConnectionId).broadcastMessage("Server", "User is not connected");
+                }
             }
         }
 

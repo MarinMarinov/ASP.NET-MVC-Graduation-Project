@@ -20,14 +20,15 @@
 <p>Initial price: @Model.InitialPrice</p>
 <p>Bid step: @Model.BidStep</p>
 
-@foreach (var bidder in Model.Bidders)
+@*@foreach (var bidder in Model.Bidders)
 {
     <p>Bidder: @bidder.FirstName @bidder.LastName</p>
-    @*<input type="hidden" id="displayname" />*@
     <ul id="discussion" class="list-group">
         @Html.Action("LoadChatHistory")
     </ul>
-}
+}*@
+
+
 
 <div class="container">
     <h1 class="text-left"><span class="label label-default">Messages</span></h1>
@@ -46,7 +47,12 @@
         </div>
         <div class="clearfix"></div>
     }
-   
+
+    <div id="bidding-area" class="text text-danger"><h3>Bidding</h3></div>
+    <ul id="discussion" class="list-group">
+        @Html.Action("LoadChatHistory")
+    </ul>
+
 </div>
 
 @section Scripts{
@@ -54,25 +60,35 @@
 }
 
 <script>
+   
     /*$(document).ready(function () {
-        $('.alert').slideDown(1000);
-        $('.alert').fadeOut(2000);
-    });*/
+        hideMe();
+    });
+
+    function showMe() {
+        $('#bidding-area').fadeIn(700);
+        hideMe();
+    }
+
+    function hideMe() {
+        $('#bidding-area').fadeOut(700);
+        showMe();
+    }*/
 
     // Messenger
     $(function () {
         // Declare a proxy to reference the hub.
         var chat = $.connection.auctionRoom;
+        chat.logging = true;
         // Create a function that the hub can call to broadcast messages.
         chat.client.broadcastMessage = function (senderUsername, value, sentOn) {
             // Html encode display name and message.
-            debugger;
             var encodedName = $('<div />').text(senderUsername).html();
             var encodedValue = $('<div />').text(value).html();
             var encodedSentOn = $('<div />').text(sentOn).html();
             // Add the message to the page.
             $('#discussion').prepend(
-                '<li class="list-group-item">' +
+               '<li class="list-group-item">' +
                     '<div class="well well-lg">' +
                     '<p><strong>' + encodedSentOn + '</strong></p>' +
                     '<p><strong>' + encodedName + '</strong></p>' +
