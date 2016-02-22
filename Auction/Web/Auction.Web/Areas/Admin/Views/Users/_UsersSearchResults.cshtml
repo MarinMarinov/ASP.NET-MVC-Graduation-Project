@@ -6,13 +6,13 @@
     <strong>Name: @user.UserName</strong>
     <br/>
     string userDetailsId = "user-details-" + user.Id;
-    
+
     @Ajax.ActionLink("See user details", "UserDetailsById", "Users", new { id = user.Id },
-    new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = userDetailsId
-    })
+        new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = userDetailsId
+            })
     <br/>
     
     <div id="@userDetailsId"></div>

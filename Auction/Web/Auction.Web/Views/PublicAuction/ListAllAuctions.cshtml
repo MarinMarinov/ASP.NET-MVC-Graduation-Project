@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Auction.Web.ViewModels.Auction.AuctionViewModel>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+@if (TempData["Deactivated"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Deactivated"]
+    </div>
+}
+@Html.Grid(Model).Columns(columns =>
+{
+
+    columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(30)
+            .RenderValueAs(d =>
+                @<b>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = d.Id })*@
+                </b>);
+
+    columns.Add(i => i.Name).Titled("Name").SetWidth(150);
+
+    columns.Add(i => i.DateOfAuction).Titled("Date of auction").SetWidth(150);
+
+    columns.Add(i => i.Active).Titled("Active").SetWidth(150);
+    columns.Add(i => i.InitialPrice).Titled("Initial price").SetWidth(150);
+    columns.Add(i => i.BidStep).Titled("Bid step").SetWidth(150);
+
+
+}).WithPaging(5).Sortable().Filterable().WithMultipleFilters()

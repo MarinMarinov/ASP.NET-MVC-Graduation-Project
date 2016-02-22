@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Live Auction</title>
 
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -37,18 +36,28 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("User Details", "CurrentUserDetails", "Users")</li>
-                            <li>@Html.ActionLink("All Users", "AllUsers", "Users")</li>
+                            <li>@Html.ActionLink("User Details", "CurrentUserDetails", "Users", new { area = "Admin" }, new { })</li>
+                            <li>@Html.ActionLink("All Users", "AllUsers", "Users", new { area = "Admin" }, new { })</li>
                         </ul>
                     </li>
-                    
-                    <li>@Html.ActionLink("Create Auction", "CreateAuction", "Auction")</li>
-                    <li>@Html.ActionLink("Create Item", "CreateItem", "Item")</li>
+
+                    <li>@Html.ActionLink("All Auctions", "ListAllAuctions", "PublicAuction")</li>
                     <li>@Html.ActionLink("All Items", "ListAllItems", "Item")</li>
-                    <li>@Html.ActionLink("Activate Auction", "SetActiveAuction", "Auction")</li>
                     <li>@Html.ActionLink("Join To Active Auction", "JoinToAuction", "Bid")</li>
+
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Area<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Create Auction", "CreateAuction", "Auction", new { area = "Admin" }, new { })</li>
+                                <li>@Html.ActionLink("Create Item", "CreateItem", "Item", new { area = "Admin" }, new { })</li>
+                                <li>@Html.ActionLink("Activate Auction", "SetActiveAuction", "Auction", new { area = "Admin" }, new { })</li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

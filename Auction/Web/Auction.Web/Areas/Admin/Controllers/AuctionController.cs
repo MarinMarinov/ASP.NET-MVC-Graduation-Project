@@ -1,12 +1,14 @@
-﻿namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Areas.Admin.Controllers
 {
-    using Auction.Data.Repositories;
-    using Auction.Models;
-    using Auction.Services.Data;
-    using Auction.Web.ViewModels.Auction;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+
+    using Auction.Data.Repositories;
+    using Auction.Models;
+    using Auction.Services.Data;
+    using Auction.Web.Controllers;
+    using Auction.Web.ViewModels.Auction;
 
     public class AuctionController : BaseController
     {
@@ -30,7 +32,7 @@
         // GET: Auction
         public ActionResult CreateAuction()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -38,7 +40,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreateAuction(CreateAuctionModel auction)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var item = this.dataItem.All().FirstOrDefault(i => i.Title == auction.ItemTitle);
 
@@ -76,20 +78,15 @@
                 return this.RedirectToAction("CreateAuction");
             }
 
-            return View("CreateAuction", auction);
+            return this.View("CreateAuction", auction);
         }
 
-        public ActionResult ListAllAuctions()
-        {
-            var auctions = service.GetAllAuctions().Select(AuctionViewModel.FromAuction).ToList();
 
-            return View(auctions);
-        }
 
         [HttpGet]
         public ActionResult SetActiveAuction()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -118,13 +115,13 @@
                 //Creator = auction.Creator.UserName
             };
 
-            return RedirectToAction("EditActiveAuction", "Auction", auctionView);
+            return this.RedirectToAction("EditActiveAuction", "Auction", auctionView);
         }
 
         // [Authorize(Role="Admin)]
         public ActionResult EditActiveAuction(AuctionViewModel auctionView)
         {
-            return View(auctionView);
+            return this.View(auctionView);
         }
     }
 }

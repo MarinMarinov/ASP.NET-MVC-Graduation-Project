@@ -1,12 +1,14 @@
-﻿namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Areas.Admin.Controllers
 {
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Auction.Data.Repositories;
     using Auction.Models;
+    using Auction.Web.Controllers;
     using Auction.Web.ViewModels.User;
 
     public class UsersController : BaseController
@@ -33,7 +35,7 @@
                 .Select(UserViewModel.FromUser)
                 .FirstOrDefault();
 
-            return View(this.CurrentUser);
+            return this.View(this.CurrentUser);
         }
 
         [Authorize]
@@ -41,9 +43,9 @@
         {
 
 
-            if (!Request.IsAjaxRequest())
+            if (!this.Request.IsAjaxRequest())
             {
-                Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                this.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 return this.Content("This action can be invoke only by AJAX call");
             }
 
@@ -55,7 +57,7 @@
 
             if (user == null)
             {
-                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                this.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return this.Content("User not found");
             }
 
@@ -85,7 +87,7 @@
         {
             var allUsers = this.dataUser.All()
                 .Select(UserViewModel.FromUser).OrderBy(u => u.UserName).ToList();
-            return View(allUsers);
+            return this.View(allUsers);
         }
 
         public JsonResult AllUsersAsJson()
@@ -100,7 +102,7 @@
         [HttpPost]
         public ActionResult CurrentUserDetails(HttpPostedFileBase file)
         {
-            var path = Path.Combine(Server.MapPath("~/Content/Images/Avatars/"), file.FileName);
+            var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), file.FileName);
             
             var data = new byte[file.ContentLength];
             file.InputStream.Read(data, 0, file.ContentLength);
@@ -124,7 +126,7 @@
                     .FirstOrDefault();
 
 
-            return View(this.CurrentUser);
+            return this.View(this.CurrentUser);
         }
 
         public FileResult GetImage(string filename)
@@ -137,9 +139,9 @@
                     .Select(UserViewModel.FromUser)
                     .FirstOrDefault();
 
-            var path = Path.Combine(Server.MapPath("~/Content/Images/Avatars/"), filename);
+            var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), filename);
 
-            return File(path, "image/jpeg");
+            return this.File(path, "image/jpeg");
 
             /*byte[] fileBytes = System.IO.File.ReadAllBytes(path);
             string fileName = System.IO.Path.GetFileName(path);

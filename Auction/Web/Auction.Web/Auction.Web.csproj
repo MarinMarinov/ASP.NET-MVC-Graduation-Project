@@ -200,16 +200,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AuctionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BidController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
+    <Compile Include="Controllers\PublicAuctionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,6 +246,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Grid.mvc.readme" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Auction\CreateAuction.cshtml" />
+    <Content Include="Areas\Admin\Views\Auction\EditActiveAuction.cshtml" />
+    <Content Include="Areas\Admin\Views\Auction\SetActiveAuction.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <None Include="Scripts\jquery-2.0.3-vsdoc.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -272,7 +278,7 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -298,27 +304,26 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Users\CurrentUserDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\CurrentUserDetails.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\Users\AllUsers.cshtml" />
-    <Content Include="Views\Users\_UserDetails.cshtml" />
-    <Content Include="Views\Users\_UsersSearchResults.cshtml" />
-    <Content Include="Views\Auction\CreateAuction.cshtml" />
-    <Content Include="Views\Auction\ListAllAuctions.cshtml" />
-    <Content Include="Views\Item\CreateItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\AllUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_UserDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_UsersSearchResults.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\CreateItem.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Shared\_LayoutGridMvc.cshtml" />
     <Content Include="Views\Item\ListAllItems.cshtml" />
-    <Content Include="Views\Auction\EditActiveAuction.cshtml" />
-    <Content Include="Views\Auction\SetActiveAuction.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Bid\JoinToAuction.cshtml" />
     <Content Include="Views\Bid\Bid.cshtml" />
     <Content Include="Views\Shared\_ChatHistory.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\PublicAuction\ListAllAuctions.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Files\" />
   </ItemGroup>
   <ItemGroup>

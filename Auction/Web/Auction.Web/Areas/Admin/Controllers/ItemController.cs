@@ -1,4 +1,4 @@
-﻿namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Areas.Admin.Controllers
 {
     using System.Collections.Generic;
     using System.IO;
@@ -39,13 +39,13 @@
 
         public ActionResult Edit(int id)
         {
-            return Content("Edit motherfucker");
+            return this.Content("Edit motherfucker");
         }
 
         [HttpGet]
         public ActionResult CreateItem()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -72,7 +72,7 @@
                 }
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var item = new Item
                 {
@@ -86,10 +86,10 @@
                 this.dataItem.Add(item);
                 this.dataItem.Save();
 
-                return this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home", new { area = string.Empty});
             }
 
-            return View(model);
+            return this.View(model);
         }
     }
 }

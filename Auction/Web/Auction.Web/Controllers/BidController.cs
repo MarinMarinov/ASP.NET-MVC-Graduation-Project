@@ -3,14 +3,12 @@ using System.Web.Mvc;
 
 namespace Auction.Web.Controllers
 {
-    using System.Collections.Generic;
-
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Web.ViewModels.Auction;
     using Auction.Web.ViewModels.Bid;
-
     using Microsoft.AspNet.Identity;
+    using System.Collections.Generic;
 
     public class BidController : Controller
     {
@@ -130,7 +128,7 @@ namespace Auction.Web.Controllers
 
             TempData["Deactivated"] = string.Format("The auction {0} was deactivated", auction.Name);
 
-            return this.RedirectToAction("ListAllAuctions", "Auction");
+            return this.RedirectToAction("ListAllAuctions", "PublicAuction");
         }
     }
 }
