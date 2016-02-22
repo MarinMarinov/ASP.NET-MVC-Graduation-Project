@@ -13,20 +13,25 @@
     columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .SetWidth(30)
+            .SetWidth(200)
             .RenderValueAs(d =>
                 @<b>
-                    @Html.ActionLink("Edit", "Edit", new { id = d.Id })
-                </b>);
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", "Item", new { id = d.Id, area = "Admin" }, new { @class = "btn btn-warning" })
+
+                    }
+                @Html.ActionLink("Details", "ItemDetails", "PublicItem", new { id = d.Id }, new { @class = "btn btn-info" })
+            </b>);
 
     columns.Add(i => i.Title).Titled("Title").SetWidth(150);
-    
+
     columns.Add(i => i.Type).Titled("Type").SetWidth(150);
 
     columns.Add(i => i.Author).Titled("Author").SetWidth(150);
     columns.Add(i => i.Description).Titled("Description").SetWidth(150);
     columns.Add(i => i.CreatedOn).Titled("Created on").SetWidth(150);
-  
+
 
 }).WithPaging(5).Sortable().Filterable().WithMultipleFilters()
 

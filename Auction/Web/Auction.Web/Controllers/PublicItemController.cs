@@ -38,7 +38,7 @@
         [HttpGet]
         public ActionResult ItemDetails(int id)
         {
-            return Content("Details");
+            return this.View();
         }
     }
 }
