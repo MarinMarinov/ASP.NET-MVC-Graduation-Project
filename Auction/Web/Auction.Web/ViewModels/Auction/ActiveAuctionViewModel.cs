@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Auction.Web.ViewModels.Auction
 {
@@ -18,6 +15,8 @@ namespace Auction.Web.ViewModels.Auction
         public bool Active { get; set; }
 
         public int InitialPrice { get; set; }
+
+        public int CurrentPrice { get; set; }
 
         public int BidStep { get; set; }
 

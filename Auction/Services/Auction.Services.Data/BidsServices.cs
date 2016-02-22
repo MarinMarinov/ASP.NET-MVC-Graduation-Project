@@ -24,15 +24,27 @@
             this.auctions = auctions;
         }
 
-        public Bid Create(int value, int newPrice, string bidderId, string winnerId, int auctionId, IList<string> receiversIds)
+        public bool CheckIfAuctionIsActive(int auctionId)
         {
+            return this.auctions.GetById(auctionId).Active;
+        }
+
+        public Bid Create(int value, int currentPrice, string bidderId, string winnerId, int auctionId, IList<string> receiversIds)
+        {
+            string winnerUsername = string.Empty;
+
+            if(!string.IsNullOrEmpty(winnerId))
+            {
+                winnerUsername = this.users.GetById(winnerId).UserName.ToString();
+            }
+
             var bid = new Bid
             {
                 Value = value,
-                NewPrice = newPrice,
+                CurrentPrice = currentPrice,
                 BidderId = bidderId,
                 WinnerId = winnerId,
-                WinnerUsername = this.users.GetById(winnerId).ToString(),
+                WinnerUsername = winnerUsername,
                 AuctionId = auctionId,
             };
 

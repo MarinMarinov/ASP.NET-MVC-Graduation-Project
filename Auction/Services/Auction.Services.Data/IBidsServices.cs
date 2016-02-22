@@ -5,6 +5,8 @@
 
     public interface IBidsServices
     {
+        bool CheckIfAuctionIsActive(int auctionId);
+
         Bid Create(int value, int newPrice, string bidderId, string winnerId, int auctionId, IList<string> receiversIds);
     }
 }

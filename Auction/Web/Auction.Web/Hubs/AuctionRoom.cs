@@ -6,6 +6,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Auction.Models;
+
     public class AuctionRoom : Hub
     {
         private static Dictionary<string, string> usersDictionary = new Dictionary<string, string>();
@@ -16,7 +18,7 @@
             this.bids = bidService;
         }
 
-        public void Send(string receiverId, int auctionId, int value, int newPrice, string winnerId)
+        public void Send(string receiverId, int auctionId, int value, int currentPrice, string winnerId)
         {
             var bidderId = this.Context.User.Identity.GetUserId();
             var bidderName = this.Context.User.Identity.Name;
@@ -26,26 +28,34 @@
                 return;
             }
 
-            var bid = this.bids.Create(value, newPrice, bidderId, winnerId, auctionId, new List<string> { receiverId });
-
-            if(receiverId == "All")
+            bool isActive = this.bids.CheckIfAuctionIsActive(auctionId);
+            if (!isActive)
             {
-                Clients.All.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.NewPrice, bid.WinnerUsername);
+                Clients.All.broadcastMessage("Server", "Auction is not active");
             }
             else
             {
-                if (usersDictionary.ContainsKey(receiverId))
-                {
-                    var receiverClient = Clients.Client(usersDictionary[receiverId]);
+                Bid bid = this.bids.Create(value, currentPrice, bidderId, winnerId, auctionId, new List<string> { receiverId });
 
-                    if (receiverClient != null)
-                    {
-                        receiverClient.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.NewPrice, bid.WinnerUsername);
-                    }
+                if (receiverId == "All")
+                {
+                    Clients.All.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.CurrentPrice, bid.WinnerUsername);
                 }
                 else
                 {
-                    this.Clients.Client(this.Context.ConnectionId).broadcastMessage("Server", "User is not connected");
+                    if (usersDictionary.ContainsKey(receiverId))
+                    {
+                        var receiverClient = Clients.Client(usersDictionary[receiverId]);
+
+                        if (receiverClient != null)
+                        {
+                            receiverClient.broadcastMessage(bid.CreatedOn, bidderName, bid.Value, bid.CurrentPrice, bid.WinnerUsername);
+                        }
+                    }
+                    else
+                    {
+                        this.Clients.Client(this.Context.ConnectionId).broadcastMessage("Server", "User is not connected");
+                    }
                 }
             }
         }

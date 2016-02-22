@@ -3,6 +3,8 @@ using System.Web.Mvc;
 
 namespace Auction.Web.Controllers
 {
+    using System.Collections.Generic;
+
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Web.ViewModels.Auction;
@@ -70,15 +72,17 @@ namespace Auction.Web.Controllers
                                 Items = auction.Items,
                                 Bidders = auction.Bidders
                             };
+            var bidders = new List<SelectListItem> { new SelectListItem { Text = "All", Value = "All" } };
 
-            var bidders = auction.Bidders
+            var allBidders = auction.Bidders
                 .Select(u => new SelectListItem
                 {
                     Text = u.UserName,
                     Value = u.Id
                 })
                 .ToList();
-            bidders.Add(new SelectListItem { Text = "All", Value = "All" });
+
+            bidders.AddRange(allBidders);
             ViewBag.Bidders = bidders;
 
             return View("Bid", auctionModel);
@@ -98,7 +102,7 @@ namespace Auction.Web.Controllers
                     .Where(m => m.BidderId == userId || m.Bidders.Any(u => u.Id == userId))
                     .Select(b => new BidDetailsViewModel{
                         Value = b.Value,
-                        NewPrice = b.NewPrice,
+                        CurrentPrice = b.CurrentPrice,
                         CreatedOn = b.CreatedOn,
                         Bidder = b.Bidder,
                         Bidders = b.Bidders,
@@ -108,6 +112,16 @@ namespace Auction.Web.Controllers
                     .ToList();
 
             return PartialView("_ChatHistory", bidds);
+        }
+
+        public ActionResult CloseAuction(bool query, int auctionId)
+        {
+            if (!query)
+            {
+                return RedirectToAction("SendMessage");
+            }
+
+
         }
 
     }

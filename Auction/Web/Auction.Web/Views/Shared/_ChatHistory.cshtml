@@ -2,7 +2,7 @@
 
 @foreach (var message in Model)
 {
-    if (message != null)
+    if (message.Bidder != null && message.Winner != null)
     {
         var receivers = String.Join(", ", message.Bidders.Select(u => u.UserName));
         <li class="list-group-item">
@@ -21,7 +21,7 @@
                     <strong>@message.Value</strong>
                 </p>
                 <p>
-                    <strong>@message.NewPrice</strong>
+                    <strong>@message.CurrentPrice</strong>
                 </p>
             </div>
         </li>

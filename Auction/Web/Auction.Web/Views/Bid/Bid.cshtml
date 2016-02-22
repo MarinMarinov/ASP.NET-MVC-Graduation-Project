@@ -29,44 +29,52 @@
     }))
     {
         <div class="form-group col-md-12" style="background-color: #e9e9e9">
-            @Html.LabelFor(m => m.ReceiverId, new { @class = "label-control" })
+            @Html.LabelFor(m => m.ReceiverId, new { @class = "control-label" })
             @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
-         
-            @Html.EditorFor(m => m.Value, null, new { name = "value", @class = "form-control" })
-            @Html.EditorFor(m => m.InitialPrice, null, new { name = "initialPrice", @class = "form-control" })
-            @Html.EditorFor(m => m.Id, null, new { name = "id", @class = "form-control" })
 
+            <br />
+            @Html.LabelFor(m => m.Value, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Value, null, new { name = "value", @class = "form-control", @type = "number" })
+
+            <br />
+            @Html.LabelFor(m => m.InitialPrice, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.InitialPrice, null, new { name = "initialPrice", @class = "form-control", @type = "number" })
+
+            <br />
+            @Html.LabelFor(m => m.CurrentPrice, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.CurrentPrice, null, new { name = "currentPrice", @class = "form-control", @type = "number" })
+
+            <br />
+            @Html.Label("Auction ID", new { id = "Id", name = "auctionId", @class = "control-label" })
+
+            <br />
             @if (this.User.IsInRole("Admin"))
             {
-                @Html.LabelFor(m => m.WinnerId, new { @class = "label-control" })
-                @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "winnerId" })
+                @Html.LabelFor(m => m.WinnerId, new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, "None", new { @class = "form-control", id = "winnerId" })
             }
 
-                <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
+            <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
 
         </div>
         <div class="clearfix"></div>
     }
-    @*@if (this.User.IsInRole("Admin"))
+    @if (this.User.IsInRole("Admin"))
     {
-        using (Ajax.BeginForm("SendMessageToTheWinner", "Bid", new { area = "" }, new AjaxOptions
+        using (Ajax.BeginForm("CLoseAuction", "Bid", new { area = "" }, new AjaxOptions
         {
-            HttpMethod = "GET"
+            HttpMethod = "POST"
         }))
-            {
-                <div class="form-group col-md-12" style="background-color: #e9e9e9">
-                    @Html.LabelFor(m => m.ReceiverId, new { @class = "label-control" })
-                    @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
-                    @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "winnerId" })
-                    @Html.EditorFor(m => m.Value, null, new { name = "value", @class = "form-control" })
-                    @Html.EditorFor(m => m.Id, null, new { name = "id", @class = "form-control" })
-
-                    <input type="submit" id="sendMessageToTheWinner" value="Send" class="btn btn-default" />
-
-                </div>
-                <div class="clearfix"></div>
-            }
-    }*@
+        {
+            <br />
+            @Html.LabelFor(m => m.Id, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Id, null, new { name = "auctionId", @class = "form-control" })
+        
+            <input type="checkbox" class="btn checkbox" name="query" />
+            @Html.Submit(new { @class = "btn btn-info" })
+        <div class="clearfix"></div>
+        }
+    }
 
     <div id="bidding-area" class="text text-danger"><h3>Bidding</h3></div>
     <ul id="discussion" class="list-group">
@@ -101,27 +109,31 @@
         var chat = $.connection.auctionRoom;
         chat.logging = true;
         // Create a function that the hub can call to broadcast messages.
-        chat.client.broadcastMessage = function (sentOn, bidderName, value, newPrice, winnerUsername) {
+        chat.client.broadcastMessage = function (sentOn, bidderName, value, currentPrice, winnerUsername) {
             // Html encode display name and message.
+            var encodedSentOn = $('<div />').text(sentOn).html();
             var encodedName = $('<div />').text(bidderName).html();
+
             var encodedValue = '';
-            var encodedWinnerTag = '';
-            if (value !== 0)
-            {
+            if (value !== 0) {
                 encodedValue = $('<div />').text(value).html();
             };
+
+            var encodedCurrentPrice = $('<div />').text(currentPrice).html();
+
+            var encodedWinnerTag = '';
             if (winnerUsername !== '') {
                 encodedWinnerTag = '<p><strong>The WINNER is: ' + winnerUsername + '</strong></p>';
             };
-           
-            var encodedSentOn = $('<div />').text(sentOn).html();
+
             // Add the message to the page.
             $('#discussion').prepend(
                '<li class="list-group-item">' +
                     '<div class="well well-lg">' +
                     '<p><strong>' + encodedSentOn + '</strong></p>' +
                     '<p><strong>' + encodedName + '</strong></p>' +
-                    '<p>' + encodedValue + '</p>' +
+                    '<p><strong>' + encodedValue + '</strong></p>' +
+                    '<p><strong>Current price: ' + encodedCurrentPrice + '</strong></p>' +
                     encodedWinnerTag +
                     '</div>' +
                     '</li>');
@@ -133,13 +145,25 @@
             $('#sendmessage').click(function () {
                 // Call the Send method on the hub.
                 var receiverId = $('#receiverId').val();
-                var value = $('#Value').val();
-                var initialPrice = $('#InitialPrice').val();
-                var newPrice = initialPrice + value;
+                var value = parseInt($('#Value').val());
+                var initialPrice = parseInt($('#InitialPrice').val());
+
+                // TODO Current price setting !!!!
+                var currentPrice;
+                if ($('#CurrentPrice').val() === '0') {
+                    currentPrice = parseInt(initialPrice + value);
+                }
+                else {
+                    var price = parseInt($('#CurrentPrice').val());
+                    currentPrice = parseInt(price + value);
+                }
+
+                $('#CurrentPrice').val(currentPrice);
+
                 var auctionId = $('#Id').val();
                 var winnerId = $('#winnerId').val();
 
-                chat.server.send(receiverId, auctionId, value, newPrice, winnerId);
+                chat.server.send(receiverId, auctionId, value, currentPrice, winnerId);
                 // Clear text box and reset focus for next comment.
                 $('#message').val('').focus();
             });

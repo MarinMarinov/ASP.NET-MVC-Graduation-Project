@@ -20,7 +20,7 @@
 
         public virtual Auction Auction { get; set; }
 
-        public int? NewPrice { get; set; }
+        public int? CurrentPrice { get; set; }
 
         public string WinnerId { get; set; }
 

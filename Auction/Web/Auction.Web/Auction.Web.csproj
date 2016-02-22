@@ -314,7 +314,6 @@
     <Content Include="Views\Auction\SetActiveAuction.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
-    <Content Include="Views\Auction\NewActiveAuction.cshtml" />
     <Content Include="Views\Bid\JoinToAuction.cshtml" />
     <Content Include="Views\Bid\Bid.cshtml" />
     <Content Include="Views\Shared\_ChatHistory.cshtml" />
