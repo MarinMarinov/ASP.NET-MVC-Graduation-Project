@@ -1,11 +1,11 @@
 ﻿@model IQueryable<Auction.Web.ViewModels.Item.ItemViewModel>
 
 @{
-    ViewBag.Title = "ListAllItems";
+    ViewBag.Title = "All Items";
     Layout = "~/Views/Shared/_LayoutGridMvc.cshtml";
 }
 
-<h2>Liast All Items</h2>
+<h2>@ViewBag.Title</h2>
 
 @Html.Grid(Model).Columns(columns =>
 {
@@ -29,7 +29,9 @@
     columns.Add(i => i.Type).Titled("Type").SetWidth(150);
 
     columns.Add(i => i.Author).Titled("Author").SetWidth(150);
-    columns.Add(i => i.Description).Titled("Description").SetWidth(150);
+
+    columns.Add(i => i.Images.Count).Titled("Number of Images").SetWidth(150);
+    
     columns.Add(i => i.CreatedOn).Titled("Created on").SetWidth(150);
 
 

@@ -1,5 +1,6 @@
 ﻿namespace Auction.Web.Controllers
 {
+    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -38,7 +39,17 @@
         [HttpGet]
         public ActionResult ItemDetails(int id)
         {
-            return this.View();
+            var item = this.dataItem.GetById(id);
+            var viewModel = this.Mapper.Map<ItemViewModel>(item);
+
+            return this.View(viewModel);
+        }
+
+        public FileResult GetImage(int id)
+        {
+            var image = this.dataImage.GetById(id);
+
+            return new FileContentResult(image.ImageArray, image.ContentType);
         }
     }
 }

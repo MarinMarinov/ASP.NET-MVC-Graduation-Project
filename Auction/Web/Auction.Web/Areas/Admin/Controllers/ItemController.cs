@@ -2,11 +2,9 @@
 {
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
     using Auction.Data.Repositories;
-    using Auction.Infrastructure.Mapping;
     using Auction.Models;
     using Auction.Services.Data;
     using Auction.Web.Controllers;

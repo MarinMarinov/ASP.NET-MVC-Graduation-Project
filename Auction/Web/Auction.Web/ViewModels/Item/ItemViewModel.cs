@@ -1,6 +1,8 @@
 ﻿namespace Auction.Web.ViewModels.Item
 {
     using System;
+    using System.Collections.Generic;
+
     using Infrastructure.Mapping;
     using global::Auction.Models;
 
@@ -18,6 +20,6 @@
 
         public DateTime? CreatedOn { get; set; }
 
-        //public ICollection<Image> Images { get; set; }
+        public ICollection<Image> Images { get; set; }
     }
 }
