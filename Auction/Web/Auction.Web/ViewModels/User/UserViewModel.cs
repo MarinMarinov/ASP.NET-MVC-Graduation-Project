@@ -2,9 +2,12 @@
 {
     using System;
     using System.Linq.Expressions;
+
+    using global::Auction.Infrastructure.Mapping;
+
     using Models;
 
-    public class UserViewModel
+    public class UserViewModel : IMapFrom<User>
     {
         public static Expression<Func<User, UserViewModel>> FromUser
         {

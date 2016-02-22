@@ -9,9 +9,10 @@
     using Auction.Infrastructure.Mapping;
     using Auction.Models;
     using Auction.Services.Data;
+    using Auction.Web.Controllers;
     using Auction.Web.ViewModels.Item;
 
-    public class ItemController : Controller
+    public class ItemController : BaseController
     {
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
@@ -28,13 +29,6 @@
             this.dataItem = items;
             this.dataUser = users;
             this.dataImage = images;
-        }
-
-        [HttpGet]
-        public ActionResult ListAllItems()
-        {
-            IQueryable<ItemViewModel> items = this.dataItem.All().OrderBy(x => x.Id).To<ItemViewModel>();
-            return this.View(items);
         }
 
         public ActionResult Edit(int id)

@@ -1,31 +1,20 @@
 ﻿namespace Auction.Web.Controllers
 {
+    using Auction.Services.Web;
+    using AutoMapper;
+    using Infrastructure.Mapping;
     using System.Web.Mvc;
-    using Auction.Web.ViewModels.User;
 
     public abstract class BaseController : Controller
     {
-       
+        public ICacheService Cache { get; set; }
 
-        /*private ActionResult GetUser()
+        protected IMapper Mapper
         {
-            if (this.User != null)
+            get
             {
-                var currentUserName = this.User.Identity.Name;
-
-                this.CurrentUser =
-                    this.db.Users.FirstOrDefault(u => u.UserName == currentUserName);
-
-                return RedirectToAction("UserDetails", "User");
+                return AutoMapperConfig.Configuration.CreateMapper();
             }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-        }*/
-
-        public UserViewModel CurrentUser { get; set; }
-
-       
+        }
     }
 }

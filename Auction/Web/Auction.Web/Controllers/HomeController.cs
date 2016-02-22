@@ -1,7 +1,7 @@
 ﻿namespace Auction.Web.Controllers
 {
-    using System.Web.Mvc;
     using Auction.Services.Data;
+    using System.Web.Mvc;
 
     public class HomeController : BaseController
     {
@@ -23,11 +23,6 @@
         }
 
         public ActionResult Contact()
-        {
-            return View();
-        }
-
-        public ActionResult Test()
         {
             return View();
         }

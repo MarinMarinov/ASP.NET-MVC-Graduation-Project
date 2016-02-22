@@ -5,11 +5,11 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Web.Controllers;
     using Auction.Web.ViewModels.User;
+    using Microsoft.AspNet.Identity;
 
     public class UsersController : BaseController
     {
@@ -28,14 +28,12 @@
         [Authorize]
         public ActionResult CurrentUserDetails()
         {
-            var currentUserName = this.User.Identity.Name;
+            var currentUserId = this.User.Identity.GetUserId();
 
-            this.CurrentUser = this.dataUser.All()
-                .Where(u => u.UserName == currentUserName)
-                .Select(UserViewModel.FromUser)
-                .FirstOrDefault();
+            var currentUser = this.dataUser.GetById(currentUserId);
+            var viewModel = this.Mapper.Map<UserViewModel>(currentUser);
 
-            return this.View(this.CurrentUser);
+            return this.View(viewModel);
         }
 
         [Authorize]
@@ -111,43 +109,24 @@
                 sw.Write(data, 0, data.Length);
             }
 
-            var currentUserName = this.User.Identity.Name;
-
-            var currentUser = this.dataUser.All()
-                .FirstOrDefault(u => u.UserName == currentUserName);
+            var currentUserId = this.User.Identity.GetUserId();
+            var currentUser = this.dataUser.GetById(currentUserId);
 
             currentUser.AvatarFileName = file.FileName;
             this.dataUser.Save();
 
-            this.CurrentUser =
-                this.dataUser.All()
-                    .Where(u => u.UserName == currentUserName)
-                    .Select(UserViewModel.FromUser)
-                    .FirstOrDefault();
+
+            var viewModel = this.Mapper.Map<UserViewModel>(currentUser);
 
 
-            return this.View(this.CurrentUser);
+            return this.View(viewModel);
         }
 
         public FileResult GetImage(string filename)
         {
-            var currentUserName = this.User.Identity.Name;
-
-            this.CurrentUser =
-                this.dataUser.All()
-                    .Where(u => u.UserName == currentUserName)
-                    .Select(UserViewModel.FromUser)
-                    .FirstOrDefault();
-
             var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), filename);
 
             return this.File(path, "image/jpeg");
-
-            /*byte[] fileBytes = System.IO.File.ReadAllBytes(path);
-            string fileName = System.IO.Path.GetFileName(path);
-            string extension = System.IO.Path.GetExtension(path);
-            return File(fileBytes, extension, fileName);*/
         }
-
     }
 }

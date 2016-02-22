@@ -212,6 +212,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
     <Compile Include="Controllers\PublicAuctionController.cs" />
+    <Compile Include="Controllers\PublicItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,7 +314,7 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Shared\_LayoutGridMvc.cshtml" />
-    <Content Include="Views\Item\ListAllItems.cshtml" />
+    <Content Include="Views\PublicItem\ListAllItems.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Bid\JoinToAuction.cshtml" />
@@ -321,6 +322,7 @@
     <Content Include="Views\Shared\_ChatHistory.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\PublicAuction\ListAllAuctions.cshtml" />
+    <Content Include="Views\PublicItem\ItemDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
@@ -344,6 +346,10 @@
     <ProjectReference Include="..\..\Services\Auction.Services.Data\Auction.Services.Data.csproj">
       <Project>{12678BAC-4B0E-4F2F-B922-F348A4959E0B}</Project>
       <Name>Auction.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Auction.Services.Web\Auction.Services.Web.csproj">
+      <Project>{0DEB0422-6973-42C7-8658-1617C4944701}</Project>
+      <Name>Auction.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Auction.Infrastructure\Auction.Infrastructure.csproj">
       <Project>{8f64f727-c166-4e16-b18d-982e16e07cf5}</Project>

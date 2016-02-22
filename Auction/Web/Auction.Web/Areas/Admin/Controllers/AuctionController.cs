@@ -51,7 +51,6 @@
 
                     return this.View("CreateAuction", auction);
                 }
-                var currentUser = this.dataUser.All().FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
                 var bidders = this.dataUser.All().OrderBy(u => u.UserName).Take(3).ToList();
 
@@ -64,7 +63,6 @@
                     Name = auction.Name,
                     Items = items,
                     DateOfAuction = auction.DateOfAuction,
-                    //Creator = currentUser,
                     Bidders = bidders,
                     InitialPrice = auction.InitialPrice,
                     BidStep = auction.BidStep

@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    public class ErrorController : Controller
+    public class ErrorController : BaseController
     {
         public ActionResult NotFound()
         {

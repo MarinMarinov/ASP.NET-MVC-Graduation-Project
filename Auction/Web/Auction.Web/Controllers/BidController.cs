@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-
-namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Controllers
 {
     using Auction.Data.Repositories;
     using Auction.Models;
@@ -9,8 +6,10 @@ namespace Auction.Web.Controllers
     using Auction.Web.ViewModels.Bid;
     using Microsoft.AspNet.Identity;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
-    public class BidController : Controller
+    public class BidController : BaseController
     {
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Bid> dataBid;
