@@ -30,7 +30,7 @@
     {
         <div class="form-group col-md-12" style="background-color: #e9e9e9">
             @Html.LabelFor(m => m.ReceiverId, new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "receiverId" })
+            @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, new { @class = "form-control", id = "ReceiverId" })
 
             <br />
             @Html.LabelFor(m => m.Value, new { @class = "control-label" })
@@ -45,13 +45,14 @@
             @Html.TextBoxFor(m => m.CurrentPrice, null, new { name = "currentPrice", @class = "form-control", @type = "number" })
 
             <br />
-            @Html.Label("Auction ID", new { id = "Id", name = "auctionId", @class = "control-label" })
+            @Html.LabelFor(m => m.Id, new { id = "auctionId", name = "auctionId", @class = "control-label", value=this.Model.Id })
+            @Html.TextBoxFor(m => m.Id, null, new { name = "currentPrice", @class = "form-control", @type = "number" })
 
             <br />
             @if (this.User.IsInRole("Admin"))
             {
                 @Html.LabelFor(m => m.WinnerId, new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, "None", new { @class = "form-control", id = "winnerId" })
+                @Html.DropDownListFor(m => m.Bidders, ViewBag.Bidders as IEnumerable<SelectListItem>, "None", new { @class = "form-control", id = "WinnerId" })
             }
 
             <input type="submit" id="sendmessage" value="Send" class="btn btn-default" />
@@ -61,19 +62,9 @@
     }
     @if (this.User.IsInRole("Admin"))
     {
-        using (Ajax.BeginForm("CLoseAuction", "Bid", new { area = "" }, new AjaxOptions
-        {
-            HttpMethod = "POST"
-        }))
-        {
-            <br />
-            @Html.LabelFor(m => m.Id, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Id, null, new { name = "auctionId", @class = "form-control" })
-        
-            <input type="checkbox" class="btn checkbox" name="query" />
-            @Html.Submit(new { @class = "btn btn-info" })
+        @Html.ActionLink("Close Auction", "CloseAuction", "Bid", new { isActive = true, auctionId = this.Model.Id }, null)
+        @Html.Submit(new { @class = "btn btn-danger" })
         <div class="clearfix"></div>
-        }
     }
 
     <div id="bidding-area" class="text text-danger"><h3>Bidding</h3></div>
@@ -144,7 +135,7 @@
         $.connection.hub.start().done(function () {
             $('#sendmessage').click(function () {
                 // Call the Send method on the hub.
-                var receiverId = $('#receiverId').val();
+                var receiverId = $('#ReceiverId').val();
                 var value = parseInt($('#Value').val());
                 var initialPrice = parseInt($('#InitialPrice').val());
 
@@ -161,7 +152,7 @@
                 $('#CurrentPrice').val(currentPrice);
 
                 var auctionId = $('#Id').val();
-                var winnerId = $('#winnerId').val();
+                var winnerId = $('#WinnerId').val();
 
                 chat.server.send(receiverId, auctionId, value, currentPrice, winnerId);
                 // Clear text box and reset focus for next comment.

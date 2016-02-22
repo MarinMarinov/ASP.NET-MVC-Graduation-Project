@@ -114,15 +114,23 @@ namespace Auction.Web.Controllers
             return PartialView("_ChatHistory", bidds);
         }
 
-        public ActionResult CloseAuction(bool query, int auctionId)
+        [HttpGet]
+        public ActionResult CloseAuction(bool isActive, int auctionId)
         {
-            if (!query)
+            if (!isActive)
             {
                 return RedirectToAction("SendMessage");
             }
 
+            var auction = this.dataAuction.GetById(auctionId);
 
+            auction.Active = false;
+
+            this.dataAuction.Save();
+
+            TempData["Deactivated"] = string.Format("The auction {0} was deactivated", auction.Name);
+
+            return this.RedirectToAction("ListAllAuctions", "Auction");
         }
-
     }
 }

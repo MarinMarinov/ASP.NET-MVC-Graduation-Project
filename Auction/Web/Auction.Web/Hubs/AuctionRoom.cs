@@ -28,6 +28,7 @@
                 return;
             }
 
+            // TODO Fix ACTIVE property settlement of Auction! Maybe the DB Context is different
             bool isActive = this.bids.CheckIfAuctionIsActive(auctionId);
             if (!isActive)
             {
@@ -35,6 +36,10 @@
             }
             else
             {
+                if (winnerId == string.Empty)
+                {
+                    winnerId = null;
+                }
                 Bid bid = this.bids.Create(value, currentPrice, bidderId, winnerId, auctionId, new List<string> { receiverId });
 
                 if (receiverId == "All")

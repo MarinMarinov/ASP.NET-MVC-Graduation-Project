@@ -6,6 +6,13 @@
 
 <h2>View</h2>
 
+@if (TempData["Deactivated"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Deactivated"]
+    </div>
+}
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
