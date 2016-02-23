@@ -18,8 +18,8 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
-textarea {
+select
+{
     max-width: 280px;
 }
 
@@ -28,3 +28,11 @@ textarea {
         margin-top: 10px;
         padding: 0;
     }
+
+.validation-error {
+        color:Red;
+        font-weight: bold;
+    }
+.description {
+    width: 100em;
+}

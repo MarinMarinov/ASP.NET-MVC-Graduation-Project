@@ -23,6 +23,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var item = this.dataItem.GetById(id);
@@ -32,12 +33,15 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateItem()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateItem(CreateItemViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             foreach (var file in files)
@@ -75,7 +79,9 @@
                 this.dataItem.Add(item);
                 this.dataItem.Save();
 
-                return this.RedirectToAction("Index", "Home", new { area = string.Empty});
+                TempData["Success"] = "You have successfully created new Item";
+
+                return this.RedirectToAction("ListAllItems", "PublicItem", new { area = string.Empty});
             }
 
             return this.View(model);
@@ -89,6 +95,8 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             foreach (var file in files)
@@ -124,7 +132,7 @@
 
                 this.dataItem.Save();
 
-                this.TempData["Updated"] = "You have successfully updated the item!";
+                this.TempData["Success"] = "You have successfully updated the item!";
 
                 return this.RedirectToAction("ListAllItems", "PublicItem", new { area = string.Empty });
             }
@@ -132,13 +140,14 @@
             return this.View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var item = this.dataItem.GetById(id); // TODO Fix the HardDelete with Images!!!
             this.dataItem.Delete(item);
             this.dataItem.Save();
 
-            this.TempData["Deleted"] = "You have successfully deleted the item!";
+            this.TempData["Success"] = "You have successfully deleted the item!";
 
             return this.RedirectToAction("ListAllItems", "PublicItem", new { area = string.Empty });
         }

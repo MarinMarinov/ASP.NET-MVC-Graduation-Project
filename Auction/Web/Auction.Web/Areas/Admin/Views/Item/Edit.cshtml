@@ -1,8 +1,4 @@
-﻿@using System.Web.Mvc.Ajax
-@using Auction.Infrastructure.Helpers
-@using Auction.Models
-
-@model global::Auction.Web.ViewModels.Item.ItemViewModel
+﻿@model global::Auction.Web.ViewModels.Item.ItemViewModel
 @{
     ViewBag.Title = "Edit Item";
 }
@@ -46,7 +42,7 @@
         <div class="row">
             <div class="col col-md-12">
                 @Html.LabelFor(m => m.Description)
-                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @cols = 100, @rows = 5 })
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control description", rows = 5 })
                 @Html.ValidationMessageFor(m => m.Description)
             </div>
         </div>

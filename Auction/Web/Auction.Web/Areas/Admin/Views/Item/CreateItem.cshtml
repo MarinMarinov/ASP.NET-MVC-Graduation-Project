@@ -1,7 +1,4 @@
-﻿@using Auction.Infrastructure.Helpers
-@using Auction.Models
-
-@model global::Auction.Web.ViewModels.Item.CreateItemViewModel
+﻿@model global::Auction.Web.ViewModels.Item.CreateItemViewModel
 @{
     ViewBag.Title = "CreateItem";
 }
@@ -37,15 +34,13 @@
         </div>
         <div class="row">
             @Html.LabelFor(m => m.Description)
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Author)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control description", rows=5})
+            @Html.ValidationMessageFor(m => m.Description)
         </div>
         <br />
         <div class="form-group">
-            <div class="col-md-10">
-                <input type="file" name="files" class="btn btn-success" accept="image/*" multiple="multiple"/>
+                <input type="file" name="files" class="btn btn-success" accept="image/*" multiple="multiple" />
                 <br />
-            </div>
         </div>
         <div class="row">
             @Html.Submit(new { @class = "btn btn-danger" })

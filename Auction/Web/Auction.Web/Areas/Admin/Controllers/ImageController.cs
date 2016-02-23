@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Auction.Web.Areas.Admin.Controllers
+﻿namespace Auction.Web.Areas.Admin.Controllers
 {
+    using System.Web.Mvc;
     using Auction.Data.Repositories;
     using Auction.Models;
-    using Auction.Services.Data;
+    using Auction.Web.Controllers;
 
-    public class ImageController : Controller
+    public class ImageController : BaseController
     {
         private IDbRepository<Image> dataImage;
 
@@ -21,6 +16,8 @@ namespace Auction.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Admin")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteImage(int imageId, int itemId)
         {
             var image = this.dataImage.GetById(imageId);
