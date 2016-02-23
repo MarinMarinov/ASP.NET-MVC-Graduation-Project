@@ -6,26 +6,19 @@
     using System.Web.Mvc;
     using Auction.Data.Repositories;
     using Auction.Models;
-    using Auction.Services.Data;
     using Auction.Web.Controllers;
     using Auction.Web.ViewModels.Item;
 
     public class ItemController : BaseController
     {
-        private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
-        private IDbRepository<User> dataUser;
         private IDbRepository<Image> dataImage;
 
-        public ItemController(IDbRepository<Auction> auctions,
+        public ItemController(
             IDbRepository<Item> items,
-            IDbRepository<User> users,
-            IAuctionService service,
             IDbRepository<Image> images)
         {
-            this.dataAuction = auctions;
             this.dataItem = items;
-            this.dataUser = users;
             this.dataImage = images;
         }
 
@@ -141,8 +134,8 @@
 
         public ActionResult Delete(int id)
         {
-            var item = this.dataItem.GetById(id); // TODO Fix the Delete with Images!!!
-            this.dataItem.HardDelete(item);
+            var item = this.dataItem.GetById(id); // TODO Fix the HardDelete with Images!!!
+            this.dataItem.Delete(item);
             this.dataItem.Save();
 
             this.TempData["Deleted"] = "You have successfully deleted the item!";
