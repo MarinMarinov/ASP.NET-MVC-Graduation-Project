@@ -23,16 +23,6 @@
             this.dataImage.HardDelete(image);
             this.dataImage.Save();
 
-            /*if (Request.IsAjaxRequest())
-            {
-                //return this.Json(new { id = image.Id });
-                return Content("It IS AJAX!");
-            }
-            else
-            {
-                return this.Json(new { id = image.Id });
-            }*/
-
             TempData["Success"] = "You have successfully deleted the image";
 
             return this.RedirectToAction("Edit", "Item", new {id = itemId}); // TODO must return Id

@@ -2,9 +2,10 @@
 
 namespace Auction.Web.ViewModels.Auction
 {
+    using global::Auction.Infrastructure.Mapping;
     using global::Auction.Models;
 
-    public class ActiveAuctionViewModel
+    public class ActiveAuctionViewModel : IMapFrom<Auction>
     {
         public int Id { get; set; }
 

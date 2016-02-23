@@ -31,8 +31,6 @@ namespace Auction.Web.Controllers
 
         public ActionResult ListAllAuctions()
         {
-            //var auctions = this.service.GetAllAuctions().Select(AuctionViewModel.FromAuction).ToList();
-
             var auctions = this.service.GetAllAuctions().To<AuctionViewModel>();
 
             return this.View(auctions);

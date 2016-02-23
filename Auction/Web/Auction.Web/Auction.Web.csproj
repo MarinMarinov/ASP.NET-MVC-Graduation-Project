@@ -221,6 +221,7 @@
     <Compile Include="ViewModels\Account\AccountViewModels.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Auction\ActiveAuctionViewModel.cs" />
+    <Compile Include="ViewModels\Auction\AuctionListViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
     <Compile Include="ViewModels\Auction\JoinToActiveAuctionViewModel.cs" />
