@@ -16,10 +16,8 @@ namespace Auction.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery.unobtrusive-ajax")
                 .Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui")
+                .Include("~/Scripts/jquery-ui-1.11.4.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -30,6 +28,10 @@ namespace Auction.Web
                       "~/Content/site.css",
                       "~/Content/Spacelab.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/jquery-ui")
+                .Include("~/Content/jquery-ui.structure.css",
+                        "~/Content/jquery-ui.theme.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
                      "~/Scripts/gridmvc.min.js"));

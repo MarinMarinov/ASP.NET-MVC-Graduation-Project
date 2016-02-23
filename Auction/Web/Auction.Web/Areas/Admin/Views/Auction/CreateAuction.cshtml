@@ -1,13 +1,12 @@
-﻿@using System.Web.Mvc
-@using System.Web.Mvc.Html
-@using System.Web.Optimization
-@using Auction.Infrastructure.Helpers
-@model Auction.Web.ViewModels.Auction.CreateAuctionModel
+﻿@model global::Auction.Web.ViewModels.Auction.CreateAuctionModel
 
+@section styles{
+    @Styles.Render("~/Content/jquery-ui")
+}
 <h2>Create Auction</h2>
 @if (TempData["Success"] != null)
 {
-    <div class="row">
+    <div class="row alert alert-success">
         @TempData["Success"]
     </div>
 }
@@ -40,8 +39,8 @@
         </div>
         <div class="row">
             @Html.LabelFor(m => m.DateOfAuction)
-            @*@Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now, id = "datepicker"})*@
-            @Html.TextBoxFor(m => m.DateOfAuction, new { id = "datepicker", @class = "form-control" })
+            @Html.TextBoxFor(m => m.DateOfAuction, new {@Value = DateTime.Now.Date , @class = "form-control", id = "datepicker"})
+            @*@Html.TextBoxFor(m => m.DateOfAuction, new { id = "datepicker", @class = "form-control" })*@
             @Html.ValidationMessageFor(m => m.DateOfAuction)
         </div>
         <br />
@@ -51,9 +50,8 @@
     }
 </div>
 
-
-
 @section scripts{
+    @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {

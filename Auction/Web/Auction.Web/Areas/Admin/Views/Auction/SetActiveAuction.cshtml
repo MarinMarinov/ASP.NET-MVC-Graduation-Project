@@ -1,7 +1,5 @@
-﻿@using System.Web.Mvc
-@using System.Web.Mvc.Html
-@using System.Web.Optimization
-@using Auction.Infrastructure.Helpers
+﻿@model global::Auction.Web.ViewModels.Auction.SetActiveAuctionModel
+
 @{
     ViewBag.Title = "SetActiveAuction";
 }
@@ -10,23 +8,168 @@
 
 @if (TempData["Wrong"] != null)
 {
-    <div class="row">
+    <div class="row alert alert-danger">
         @TempData["Wrong"]
     </div>
 }
 
 <div class="container">
-    @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
 
-        <div class="row">
-            @Html.TextBox("auctionName", null, new { type = "text", @class = "form-control" })
-            @Html.ValidationMessage("auctionName")
+    <div class="row">
+        <div class="col">
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Pictures</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.PictureAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new {@class = "btn btn-danger"})
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Cars</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.CarAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Coins</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.CoinAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-        @Html.Submit()
-    }
+        <div class="col">
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Post stamps</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.StampAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Statues</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.StatueAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Vases</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="col">
+                                @Html.Label("Pictures", new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Id, ViewBag.VaseAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                            </div>
+                            <br />
+                            @Html.Submit(new { @class = "btn btn-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Others</h3>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="col">
+                            @Html.Label("Pictures", new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Id, ViewBag.OtherAuctions as IEnumerable<SelectListItem>, new { @class = "form-control", id = "auctionId" })
+                        </div>
+                        <br />
+                        @Html.Submit(new { @class = "btn btn-danger" })
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
 </div>
 
 @section scripts{

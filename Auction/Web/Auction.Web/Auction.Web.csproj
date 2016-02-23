@@ -224,6 +224,7 @@
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
     <Compile Include="ViewModels\Auction\JoinToActiveAuctionViewModel.cs" />
+    <Compile Include="ViewModels\Auction\SetActiveAuctionModel.cs" />
     <Compile Include="ViewModels\Bid\BidCreateModel.cs" />
     <Compile Include="ViewModels\Bid\BidDetailsViewModel.cs" />
     <Compile Include="ViewModels\Item\CreateItemViewModel.cs" />
@@ -238,6 +239,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Cerulean.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Spacelab.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -263,6 +266,7 @@
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

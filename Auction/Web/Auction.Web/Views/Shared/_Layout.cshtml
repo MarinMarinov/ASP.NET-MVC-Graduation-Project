@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - Live Auction</title>
 
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
     <script src="~/signalr/hubs" type="text/javascript"></script>
@@ -71,7 +70,7 @@
         </footer>
     </div>
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    @*<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

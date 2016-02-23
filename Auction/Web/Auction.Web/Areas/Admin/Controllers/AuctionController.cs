@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Services.Data;
@@ -15,28 +14,27 @@
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
         private IDbRepository<User> dataUser;
-        private IAuctionService service;
+        private IAuctionService auctionService;
 
         public AuctionController(IDbRepository<Auction> auctions,
             IDbRepository<Item> items,
             IDbRepository<User> users,
-            IAuctionService service)
+            IAuctionService auctionService)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
             this.dataUser = users;
-            this.service = service;
+            this.auctionService = auctionService;
         }
 
-        //[Authorize(Roles="Admin")]
-        // GET: Auction
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateAuction()
         {
             return this.View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult CreateAuction(CreateAuctionModel auction)
         {
@@ -44,7 +42,7 @@
             {
                 var item = this.dataItem.All().FirstOrDefault(i => i.Title == auction.ItemTitle);
 
-                var items = new List<Item> {item};
+                var items = new List<Item> { item };
                 if (item == null)
                 {
                     this.TempData["Success"] = "There is no such Item";
@@ -78,23 +76,46 @@
 
             return this.View("CreateAuction", auction);
         }
-
-
-
+        
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult SetActiveAuction()
         {
-            return this.View();
+            var pictureAuctions = this.auctionService.GroupByTypes(ItemType.Picture).ToList();
+            ViewBag.PictureAuctions = pictureAuctions;
+
+            var carAuctions = this.auctionService.GroupByTypes(ItemType.Car).ToList();
+            ViewBag.CarAuctions = carAuctions;
+
+            var coinAuctions = this.auctionService.GroupByTypes(ItemType.Coin).ToList();
+            ViewBag.CoinAuctions = coinAuctions;
+
+            var stampAuctions = this.auctionService.GroupByTypes(ItemType.PostageStamp).ToList();
+            ViewBag.StampAuctions = stampAuctions;
+
+            var statueAuctions = this.auctionService.GroupByTypes(ItemType.Statue).ToList();
+            ViewBag.StatueAuctions = statueAuctions;
+
+            var vaseAuctions = this.auctionService.GroupByTypes(ItemType.Vase).ToList();
+            ViewBag.VaseAuctions = vaseAuctions;
+
+            var otherAuctions = this.auctionService.GroupByTypes(ItemType.Other).ToList();
+            ViewBag.OtherAuctions = otherAuctions;
+
+            var model = new SetActiveAuctionModel();
+
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult SetActiveAuction(string auctionName)
+        [Authorize(Roles = "Admin")]
+        public ActionResult SetActiveAuction(int id)
         {
-            var auction = this.dataAuction.All().FirstOrDefault(a => a.Name == auctionName);
+            var auction = this.dataAuction.GetById(id);
 
             if (auction == null)
             {
-                this.TempData["Wrong"] = "There is no auction with that name";
+                this.TempData["Wrong"] = "There is no auction with that name and ID";
 
                 return this.View("SetActiveAuction");
             }
@@ -103,20 +124,19 @@
 
             this.dataAuction.Save();
 
-            var auctionView = new AuctionViewModel 
-            { 
-                Name = auction.Name, 
-                DateOfAuction=auction.DateOfAuction,
+            var auctionView = new AuctionViewModel
+            {
+                Name = auction.Name,
+                DateOfAuction = auction.DateOfAuction,
                 Active = auction.Active,
                 InitialPrice = auction.InitialPrice,
                 BidStep = auction.BidStep,
-                //Creator = auction.Creator.UserName
             };
 
             return this.RedirectToAction("EditActiveAuction", "Auction", auctionView);
         }
 
-        // [Authorize(Role="Admin)]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditActiveAuction(AuctionViewModel auctionView)
         {
             return this.View(auctionView);
