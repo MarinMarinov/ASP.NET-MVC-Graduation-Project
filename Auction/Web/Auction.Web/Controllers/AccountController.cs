@@ -155,6 +155,7 @@
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
                     AvatarFileName = "AVATAR_01.jpg"
                 };
 
@@ -169,7 +170,7 @@
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("CurrentUserDetails", "Users");
+                    return RedirectToAction("CurrentUserDetails", "Users", new {area = "Admin"});
                 }
                 AddErrors(result);
             }
@@ -398,7 +399,7 @@
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new {area=""});
         }
 
         //

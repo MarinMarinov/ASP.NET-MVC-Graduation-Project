@@ -1,5 +1,5 @@
 ﻿@using Auction.Infrastructure.Helpers
-@model IEnumerable<Auction.Web.ViewModels.User.UserViewModel>
+@model IEnumerable<global::Auction.Web.ViewModels.User.UserViewModel>
 
 @{
     ViewBag.Title = "AllUsers";
@@ -11,19 +11,6 @@
 }
 
 <div class="container">
-    <h2>All Users</h2>
-    <ol id="users"></ol>
-    <script>
-        jQuery(function () {
-            jQuery.getJSON("AllUsersAsJson", "", function (data) {
-                jQuery(data).each(function (index, user) {
-                    var newUser = $("<li class='user' style='display:none'>" + user.UserName + "</li>");
-                    $("#users").append(newUser);
-                    newUser.show(500);
-                });
-            });
-        });
-    </script>
 
     <h2>Search for Users:</h2>
 
@@ -36,7 +23,6 @@
     }, new { id = "searchForm" }))
     {
         <input type="text" class="search-query form-control" placeholder="Search" name="query" oninput="changed()" />
-        @Html.Submit(new { @class = "btn btn-info" });
     }
     <script>
         function changed() {

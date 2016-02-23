@@ -26,12 +26,66 @@
 
         [HttpGet]
         [Authorize]
+        public ActionResult UserDetails(string id)
+        {
+            var user = this.dataUser.GetById(id);
+
+            if(user == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var viewModel = this.Mapper.Map<UserViewModel>(user);
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        [Authorize]
         public ActionResult CurrentUserDetails()
         {
             var currentUserId = this.User.Identity.GetUserId();
 
             var currentUser = this.dataUser.GetById(currentUserId);
             var viewModel = this.Mapper.Map<UserViewModel>(currentUser);
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CurrentUserDetails(UserViewModel model, HttpPostedFileBase file)
+        {
+            var viewModel = model;
+
+            if (ModelState.IsValid)
+            {
+                var currentUserId = this.User.Identity.GetUserId();
+                var currentUser = this.dataUser.GetById(currentUserId);
+
+                if (file != null)
+                {
+                    var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), file.FileName);
+
+                    var data = new byte[file.ContentLength];
+                    file.InputStream.Read(data, 0, file.ContentLength);
+                    using (var sw = new FileStream(path, FileMode.Create))
+                    {
+                        sw.Write(data, 0, data.Length);
+                    }
+
+                    currentUser.AvatarFileName = file.FileName;
+                }
+
+                currentUser.UserName = model.UserName;
+                currentUser.FirstName = model.FirstName;
+                currentUser.LastName = model.LastName;
+                currentUser.PhoneNumber = model.PhoneNumber;
+                this.dataUser.Save();
+
+                viewModel = this.Mapper.Map<UserViewModel>(currentUser);
+
+                TempData["Success"] = "You have updated your details!";
+            }
 
             return this.View(viewModel);
         }
@@ -47,11 +101,7 @@
                 return this.Content("This action can be invoke only by AJAX call");
             }
 
-            var user =
-                this.dataUser.All()
-                .Where(u => u.Id == id)
-                .Select(UserViewModel.FromUser)
-                .FirstOrDefault();
+            var user = this.dataUser.GetById(id);
 
             if (user == null)
             {
@@ -60,9 +110,10 @@
             }
 
             string userInfo = string.Format(
-                "Username: {0}, Id: {1}, Phone number: {2}",
+                "<i>Username:</i> <b>{0}</b>, <i>First name:</i> <b>{1}</b>, <i>Last name:</i> <b>{2}</b> <i>Phone number:</i> <b>{3}</b>",
                 user.UserName,
-                user.Id,
+                user.FirstName,
+                user.LastName,
                 user.PhoneNumber);
 
             return this.Content(userInfo);
@@ -88,40 +139,6 @@
             return this.View(allUsers);
         }
 
-        public JsonResult AllUsersAsJson()
-        {
-            var users = this.dataUser.All().OrderBy(n => n.UserName)
-                .Select(UserViewModel.FromUser).ToList();
-
-            return this.Json(users, JsonRequestBehavior.AllowGet);
-        }
-
-        
-        [HttpPost]
-        public ActionResult CurrentUserDetails(HttpPostedFileBase file)
-        {
-            var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), file.FileName);
-            
-            var data = new byte[file.ContentLength];
-            file.InputStream.Read(data, 0, file.ContentLength);
-            using (var sw = new FileStream(path, FileMode.Create))
-            {
-                sw.Write(data, 0, data.Length);
-            }
-
-            var currentUserId = this.User.Identity.GetUserId();
-            var currentUser = this.dataUser.GetById(currentUserId);
-
-            currentUser.AvatarFileName = file.FileName;
-            this.dataUser.Save();
-
-
-            var viewModel = this.Mapper.Map<UserViewModel>(currentUser);
-
-
-            return this.View(viewModel);
-        }
-
         public FileResult GetImage(string filename)
         {
             var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), filename);
@@ -129,7 +146,7 @@
             return this.File(path, "image/jpeg");
         }
 
-        public FileResult GetAvatar(int userId)
+        public FileResult GetAvatar(string userId)
         {
             var user = this.dataUser.GetById(userId);
             var filename = user.AvatarFileName;

@@ -1,0 +1,59 @@
+﻿@model global::Auction.Web.ViewModels.User.UserViewModel
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+<div class="container">
+    <h2>ViewBag.Title</h2>
+        <div class="row">
+            <div class="col col-md-3">
+                @Html.LabelFor(m => m.UserName)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @Model.UserName
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3">
+                @Html.LabelFor(m => m.FirstName)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @Model.FirstName
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3">
+                @Html.LabelFor(m => m.LastName)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @Model.LastName
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3">
+                @Html.LabelFor(m => m.PhoneNumber)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @Model.PhoneNumber
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        @if (Model.AvatarFileName != null)
+        {
+            <img src="@Url.Action("GetImage", "Users", new { fileName = Model.AvatarFileName })" width="248" height="248" alt="Avatar" />
+        }
+        else
+        {
+            <span>No avatar uploaded</span>
+        }
+</div>
+

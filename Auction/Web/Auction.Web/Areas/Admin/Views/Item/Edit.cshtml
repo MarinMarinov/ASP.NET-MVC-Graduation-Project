@@ -55,7 +55,7 @@
                         <div class="well well-sm text-center" id="image-@image.Id">
                             <img src="@Url.Action("GetImage", "Item", new { id = image.Id })" width="250" height="250" alt="Item image" />
 
-                            @* @using (Ajax.BeginForm("DeleteImage", "Image", new { area = "Admin", id = image.Id }, new AjaxOptions
+                           @*  @using (Ajax.BeginForm("DeleteImage", "Image", new { area = "Admin", id = image.Id }, new AjaxOptions
                             {
                                 HttpMethod = "POST",
                                 OnFailure = "deleteImage",

@@ -1,6 +1,7 @@
 ﻿namespace Auction.Web.ViewModels.User
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq.Expressions;
 
     using global::Auction.Infrastructure.Mapping;
@@ -27,14 +28,18 @@
 
         public string Id { get; set; }
 
+        [Required]
         public string UserName { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         public string AvatarFileName { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Auction.Web.ViewModels.User.UserViewModel>
+﻿@model IEnumerable<global::Auction.Web.ViewModels.User.UserViewModel>
 
 @foreach (var user in Model)
 {
@@ -7,13 +7,14 @@
     <br/>
     string userDetailsId = "user-details-" + user.Id;
 
-    @Ajax.ActionLink("See user details", "UserDetailsById", "Users", new { id = user.Id },
+    @Ajax.ActionLink("User details preview", "UserDetailsById", "Users", new { id = user.Id },
         new AjaxOptions
             {
                 InsertionMode = InsertionMode.Replace,
                 UpdateTargetId = userDetailsId
             })
     <br/>
+    @Html.ActionLink("User info", "UserDetails", "Users", new {id = user.Id, area = "Admin"}, new {})
     
     <div id="@userDetailsId"></div>
 }

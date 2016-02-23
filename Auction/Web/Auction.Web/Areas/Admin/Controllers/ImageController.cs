@@ -17,7 +17,6 @@
 
         [HttpGet]
         [Authorize(Roles ="Admin")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteImage(int imageId, int itemId)
         {
             var image = this.dataImage.GetById(imageId);
