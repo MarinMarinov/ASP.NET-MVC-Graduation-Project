@@ -1,0 +1,73 @@
+﻿@model global::Auction.Web.ViewModels.Auction.CreateAuctionModel
+
+@{
+    ViewBag.Title = "Edit Auction";
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+@section styles{
+    @Styles.Render("~/Content/jquery-ui")
+}
+
+<div class="container">
+
+
+    @if (TempData["Failure"] != null)
+    {
+
+        <div class="row alert alert-danger">
+            @TempData["Failure"]
+        </div>
+    }
+    @using (Html.BeginForm("EditAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ItemTitle)
+            @Html.TextBoxFor(m => m.ItemTitle, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ItemTitle)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.InitialPrice)
+            @Html.TextBoxFor(m => m.InitialPrice, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.InitialPrice)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.BidStep)
+            @Html.TextBoxFor(m => m.BidStep, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BidStep)
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.DateOfAuction)
+            @Html.TextBoxFor(m => m.DateOfAuction, new { @Value = DateTime.Now.Date, @class = "form-control", id = "datepicker" })
+            @Html.ValidationMessageFor(m => m.DateOfAuction)
+        </div>
+
+        <div class="row">
+            <div class="col col-md-3">
+                @Html.Submit(new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+        $(document).ready(function () {
+            $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        });
+</script>
+}
+

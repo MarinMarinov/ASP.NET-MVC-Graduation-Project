@@ -6,7 +6,7 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateAuctionModel : IMapTo<Auction> //, IHaveCustomMappings
+    public class CreateAuctionModel : IMapFrom<Auction>, IMapTo<Auction> //, IHaveCustomMappings
     {
         [Required]
         public string Name { get; set; }

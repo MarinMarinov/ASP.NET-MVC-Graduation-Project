@@ -24,15 +24,10 @@
 
         public IQueryable<SelectListItem> GroupByTypes(ItemType itemType)
         {
-            if(itemType == ItemType.Picture)
-            {
-                var nula = this.itemRepo.All().Where(i => i.Type == 0);
-            }
-
 
             var edno =
                 this.itemRepo.All()
-                    .Where(i => i.Type == (ItemType)itemType && i.Auction.Id == i.Id)
+                    .Where(item => item.Type == itemType && item.Auction.Id == item.AuctionId && item.AuctionId != null)
                     .Select(i => i.Auction);
 
             var dve = edno.Select(a => new SelectListItem { Text = a.Name.ToString(), Value = a.Id.ToString() });
@@ -41,8 +36,6 @@
 
 
             return dve;
-
-
 
 
                 /*this.itemRepo.All()

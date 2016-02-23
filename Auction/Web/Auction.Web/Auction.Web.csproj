@@ -253,7 +253,7 @@
     <Content Include="Grid.mvc.readme" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Auction\CreateAuction.cshtml" />
-    <Content Include="Areas\Admin\Views\Auction\EditActiveAuction.cshtml" />
+    <Content Include="Areas\Admin\Views\Auction\EditAuction.cshtml" />
     <Content Include="Areas\Admin\Views\Auction\SetActiveAuction.cshtml" />
     <Content Include="Areas\Admin\Views\Item\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EmptyPartial.cshtml" />

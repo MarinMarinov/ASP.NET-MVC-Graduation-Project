@@ -60,7 +60,8 @@
         public T GetById(object id)
         {
             var entity = this.GetByIdWithDeleted(id);
-            if (entity.IsDeleted)
+
+            if (entity == null || entity.IsDeleted)
             {
                 return null;
             }
@@ -71,7 +72,9 @@
 
         public T GetByIdWithDeleted(object id)
         {
-            return this.DbSet.Find(id);
+            var result = this.DbSet.Find(id);
+
+            return result;
         }
     }
 }
