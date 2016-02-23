@@ -2,9 +2,12 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using global::Auction.Infrastructure.Mapping;
+
     using Models;
 
-    public class CreateItemViewModel
+    public class CreateItemViewModel : IMapFrom<Item>
     {
         public CreateItemViewModel()
         {

@@ -29,9 +29,13 @@
             this.dataImage = images;
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return this.Content("Edit motherfucker");
+            var item = this.dataItem.GetById(id);
+            var modelView = this.Mapper.Map<ItemViewModel>(item);
+
+            return this.View(modelView);
         }
 
         [HttpGet]
@@ -82,6 +86,68 @@
             }
 
             return this.View(model);
+        }
+
+        public FileResult GetImage(int id)
+        {
+            var image = this.dataImage.GetById(id);
+
+            return new FileContentResult(image.ImageArray, image.ContentType);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
+        {
+            foreach (var file in files)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var image = new Image
+                    {
+                        FileName = Path.GetFileName(file.FileName),
+                        Extension = Path.GetExtension(file.FileName),
+                        ContentType = file.ContentType,
+                        ContentLength = file.ContentLength,
+                    };
+
+                    using (var reader = new BinaryReader(file.InputStream))
+                    {
+                        image.ImageArray = reader.ReadBytes(file.ContentLength);
+                    }
+
+                    model.Images.Add(image);
+                }
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                var item = this.dataItem.GetById(model.Id);
+
+                item.Title = model.Title;
+                item.Type = model.Type;
+                item.Author = model.Author;
+                item.Description = model.Description;
+                item.Images = model.Images;
+
+                this.dataItem.Save();
+
+                this.TempData["Updated"] = "You have successfully updated the item!";
+
+                return this.RedirectToAction("ListAllItems", "PublicItem", new { area = string.Empty });
+            }
+
+            return this.View(model);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var item = this.dataItem.GetById(id); // TODO Fix the Delete with Images!!!
+            this.dataItem.HardDelete(item);
+            this.dataItem.Save();
+
+            this.TempData["Deleted"] = "You have successfully deleted the item!";
+
+            return this.RedirectToAction("ListAllItems", "PublicItem", new { area = string.Empty });
         }
     }
 }

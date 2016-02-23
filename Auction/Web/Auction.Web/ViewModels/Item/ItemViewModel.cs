@@ -8,6 +8,11 @@
 
     public class ItemViewModel : IMapFrom<Item>
     {
+        public ItemViewModel()
+        {
+            this.Images = new List<Image>();
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }

@@ -9,6 +9,7 @@
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
+        <li><img src="@Url.Action("GetAvatar", "Users", new { userId = this.User.Identity.GetUserId() })" width="80" alt="Avatar" /></li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

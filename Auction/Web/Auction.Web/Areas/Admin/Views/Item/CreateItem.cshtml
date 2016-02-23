@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             @Html.LabelFor(m => m.Type)
-            @Html.DropDownListFor(m => m.Type, Enum.GetNames(typeof(ItemType)).Select(e => new SelectListItem { Text = e }))
+            @Html.DropDownListFor(m => m.Type, Enum.GetNames(typeof(ItemType)).Select(e => new SelectListItem { Text = e }), new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Type)
         </div>
         <div class="row">

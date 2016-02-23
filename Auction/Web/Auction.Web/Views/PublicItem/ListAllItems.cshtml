@@ -7,6 +7,14 @@
 
 <h2>@ViewBag.Title</h2>
 
+@if (TempData["Updated"] != null || TempData["Deleted"] != null)
+{
+    <div class="row alert alert-success">
+        @TempData["Updated"]
+        @TempData["Deleted"]
+    </div>
+}
+
 @Html.Grid(Model).Columns(columns =>
 {
 
@@ -18,7 +26,9 @@
                 @<b>
                     @if (this.User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Edit", "Edit", "Item", new { id = d.Id, area = "Admin" }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Edit", "Edit", "Item", new { id= d.Id, area = "Admin" }, new { @class = "btn btn-warning" })
+                        <span></span>
+                        @Html.ActionLink("Delete", "Delete", "Item", new { id= d.Id, area = "Admin" }, new { @class = "btn btn-danger" })
 
                     }
                 @Html.ActionLink("Details", "ItemDetails", "PublicItem", new { id = d.Id }, new { @class = "btn btn-info" })

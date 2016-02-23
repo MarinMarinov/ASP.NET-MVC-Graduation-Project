@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuctionController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -251,6 +252,8 @@
     <Content Include="Areas\Admin\Views\Auction\CreateAuction.cshtml" />
     <Content Include="Areas\Admin\Views\Auction\EditActiveAuction.cshtml" />
     <Content Include="Areas\Admin\Views\Auction\SetActiveAuction.cshtml" />
+    <Content Include="Areas\Admin\Views\Item\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_EmptyPartial.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <None Include="Scripts\jquery-2.0.3-vsdoc.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -325,7 +328,7 @@
     <Content Include="Views\PublicItem\ItemDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Image\" />
     <Folder Include="Content\Files\" />
   </ItemGroup>
   <ItemGroup>

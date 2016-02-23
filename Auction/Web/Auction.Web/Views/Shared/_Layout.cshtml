@@ -10,7 +10,7 @@
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
     <script src="~/signalr/hubs" type="text/javascript"></script>
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/bundles/jquery.unobtrusive-ajax")
     @RenderSection("styles", required: false)
 
 </head>
@@ -30,9 +30,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Home<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new{})</li>
+                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { })</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { })</li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -43,9 +43,9 @@
                         </ul>
                     </li>
 
-                    <li>@Html.ActionLink("All Auctions", "ListAllAuctions", "PublicAuction")</li>
-                    <li>@Html.ActionLink("All Items", "ListAllItems", "PublicItem")</li>
-                    <li>@Html.ActionLink("Join To Active Auction", "JoinToAuction", "Bid")</li>
+                    <li>@Html.ActionLink("All Auctions", "ListAllAuctions", "PublicAuction", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("All Items", "ListAllItems", "PublicItem", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("Join To Active Auction", "JoinToAuction", "Bid", new { area = "" }, new { })</li>
 
                     @if (this.User.IsInRole("Admin"))
                     {

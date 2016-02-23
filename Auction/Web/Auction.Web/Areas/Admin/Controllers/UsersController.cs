@@ -128,5 +128,14 @@
 
             return this.File(path, "image/jpeg");
         }
+
+        public FileResult GetAvatar(int userId)
+        {
+            var user = this.dataUser.GetById(userId);
+            var filename = user.AvatarFileName;
+            var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), filename);
+
+            return this.File(path, "image/jpeg");
+        }
     }
 }
