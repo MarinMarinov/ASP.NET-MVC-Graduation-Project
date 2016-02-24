@@ -4,8 +4,10 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.SignalR;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    using Auction.Data;
     using Auction.Models;
 
     public class AuctionRoom : Hub
@@ -13,9 +15,12 @@
         private static Dictionary<string, string> usersDictionary = new Dictionary<string, string>();
         private IBidsServices bids;
 
+        private AuctionDbContext db;
+
         public AuctionRoom(IBidsServices bidService)
         {
             this.bids = bidService;
+            this.db = new AuctionDbContext();
         }
 
         public void Send(string receiverId, int auctionId, int value, int currentPrice, string winnerId)
@@ -29,7 +34,9 @@
             }
 
             // TODO Fix ACTIVE property settlement of Auction! Maybe the DB Context is different
-            bool isActive = this.bids.CheckIfAuctionIsActive(auctionId);
+            //bool isActive = this.bids.CheckIfAuctionIsActive(auctionId);
+            var auction = this.db.Auctions.FirstOrDefault(a => a.Id == auctionId);
+            bool isActive = auction.Active;
             if (!isActive)
             {
                 Clients.All.broadcastMessage("Server", "Auction is not active");
@@ -65,7 +72,6 @@
             }
         }
 
-        // TODO: From where? The knowledge base 
         public override Task OnConnected()
         {
             if (this.Context.User.Identity.IsAuthenticated)

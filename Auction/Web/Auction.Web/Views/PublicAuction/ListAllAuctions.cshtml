@@ -26,7 +26,7 @@
     columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .SetWidth(100)
+            .SetWidth(200)
             .RenderValueAs(d =>
             @<b>
                 @if (this.User.IsInRole("Admin"))
@@ -35,6 +35,7 @@
                     <span></span>
                     @Html.ActionLink("Delete", "Delete", "Auction", new { id = d.Id, area = "Admin" }, new { @class = "btn btn-danger" })
                 }
+                 @Html.ActionLink("See details", "AuctionDetails", "PublicAuction", new { id = d.Id, area="" }, new { @class = "btn btn-info" })
             </b>);
 
     columns.Add(i => i.Name).Titled("Name").SetWidth(150);

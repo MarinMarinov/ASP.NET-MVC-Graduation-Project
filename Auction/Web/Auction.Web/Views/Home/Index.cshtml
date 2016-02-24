@@ -7,16 +7,57 @@
     <h2>Upcoming Auctions</h2>
     <div class="row">
         <div class="col">
-           @foreach(var auction in Model.Auctions)
-           {
-               foreach(var item in auction.Items)
-               {
-                   <p>@item.Title</p>
-               }
-           }
-
+            @foreach (var auction in Model.Auctions)
+            {
+                <div class="col col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong class="active">@auction.Name</strong> @Html.ActionLink("See details", "AuctionDetails", "PublicAuction", new { id = auction.Id }, new { @class = "btn btn-info btn-sm" })</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p class="alert-success">
+                                @if (auction.Active)
+                                {
+                                    @:Status: Active
+                                }
+                                else
+                                {
+                                    @:Status: Not active
+                                }
+                            </p>
+                            <p class="text-info">Initial price: <b>@auction.InitialPrice $</b>
+                            </p>
+                            <p class="text-info">Bid step: <b>@auction.BidStep $</b>
+                            </p>
+                            <p class="text-danger">Date of auction: <b>@auction.DateOfAuction.ToShortDateString()</b>
+                            </p>
+                            <ul class="list-group">
+                                @foreach (var item in auction.Items)
+                                {
+                                    <li class="list-group-item" style="background-color: oldlace;">
+                                        <p class="text-info">Item title: @item.Title</p>
+                                        <p class="text-info">Author: @item.Author</p>
+                                        <p class="text-info">Type: @item.Type</p>
+                                        <div class="row">
+                                            @foreach (var image in item.Images)
+                                            {
+                                                <div class="col">
+                                                    <div class="col col-md-6 text-center">
+                                                        <img src="@Url.Action("GetImage", "Item", new { id = image.Id })" width="200" alt="Item image"/>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-
+    </div>
+    <div class="panel-footer text-center">
         <nav>
             <ul class="pagination">
                 <li>
@@ -28,13 +69,13 @@
                     }
                 </li>
                 @for (var i = 1; i < Model.TotalPages; i++)
+            {
+                var className = String.Empty;
+                if (Model.CurrentPage == i)
                 {
-                    var className = String.Empty;
-                    if (Model.CurrentPage == i)
-                    {
-                        className = "active";
-                    }
-                    <li class="@className"><a href="/Home/Index/@i">@i</a></li>
+                    className = "active";
+                }
+                <li class="@className"><a href="/Home/Index/@i">@i</a></li>
                 }
                 <li>
                     @if (Model.CurrentPage < Model.TotalPages)
@@ -46,7 +87,6 @@
                 </li>
             </ul>
         </nav>
-
-
     </div>
+    <div class="row"></div>
 </div>

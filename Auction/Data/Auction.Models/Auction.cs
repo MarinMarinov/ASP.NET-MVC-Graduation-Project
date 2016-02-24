@@ -3,7 +3,6 @@
     using Models.Common;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Auction : BaseModel
     {
@@ -27,11 +26,6 @@
         public int InitialPrice { get; set; }
 
         public int BidStep { get; set; } 
-
-        /*public string CreatorId { get; set; }
-
-        [ForeignKey("CreatorId")]
-        public virtual User Creator { get; set; }*/
 
         public string WinnerId { get; set; }
 

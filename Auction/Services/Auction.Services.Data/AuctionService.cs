@@ -21,6 +21,11 @@
             return this.auctionRepo.All().OrderBy(a => a.DateOfAuction);
         }
 
+        public Auction GetById(int id)
+        {
+            return this.auctionRepo.GetById(id);
+        }
+
         public IQueryable<SelectListItem> GroupByTypes(ItemType itemType)
         {
             var auctionsByTypeOfItems =

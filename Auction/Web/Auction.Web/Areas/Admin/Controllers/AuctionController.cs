@@ -110,9 +110,9 @@
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult SetActiveAuction(int id)
+        public ActionResult SetActiveAuction(SetActiveAuctionModel model)
         {
-            var auction = this.dataAuction.GetById(id);
+            var auction = this.dataAuction.GetById(model.Id);
 
             if (auction == null)
             {
@@ -125,16 +125,18 @@
 
             this.dataAuction.Save();
 
-            var auctionView = new AuctionViewModel
-            {
-                Name = auction.Name,
-                DateOfAuction = auction.DateOfAuction,
-                Active = auction.Active,
-                InitialPrice = auction.InitialPrice,
-                BidStep = auction.BidStep,
-            };
+            /*            var auctionView = new AuctionViewModel
+                        {
+                            Name = auction.Name,
+                            DateOfAuction = auction.DateOfAuction,
+                            Active = auction.Active,
+                            InitialPrice = auction.InitialPrice,
+                            BidStep = auction.BidStep,
+                        };*/
 
-            return this.RedirectToAction("ListAllAuctions", "PublicAuction", auctionView);
+            this.TempData["Success"] = "Auction was activated";
+
+            return this.RedirectToAction("ListAllAuctions", "PublicAuction", new { area = "" });
         }
 
         [HttpGet]

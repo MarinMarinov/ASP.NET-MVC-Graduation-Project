@@ -28,7 +28,7 @@ namespace Auction.Web
                typeof(AuctionRoom),
                () => new AuctionRoom(new BidsServices(new DbRepository<Bid>(db), new DbRepository<User>(db), new DbRepository<Auction>(db))));
 
-            app.MapSignalR(); // TODO according to readme.txt
+            app.MapSignalR(); // According to readme.txt
         }
     }
 }

@@ -221,6 +221,7 @@
     <Compile Include="ViewModels\Account\AccountViewModels.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Auction\ActiveAuctionViewModel.cs" />
+    <Compile Include="ViewModels\Auction\AuctionDetailsViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionListViewModel.cs" />
     <Compile Include="ViewModels\Auction\AuctionViewModel.cs" />
     <Compile Include="ViewModels\Auction\CreateAuctionModel.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\PublicAuction\ListAllAuctions.cshtml" />
     <Content Include="Views\PublicItem\ItemDetails.cshtml" />
+    <Content Include="Views\PublicAuction\AuctionDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Files\" />

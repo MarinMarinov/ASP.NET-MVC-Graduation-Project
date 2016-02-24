@@ -1,10 +1,13 @@
 ﻿namespace Auction.Services.Data
 {
     using System.Collections.Generic;
+    using System.Data.Entity;
 
     using Auction.Data.Repositories;
     using Auction.Models;
     using System.Linq;
+
+    using Auction.Data;
 
     public class BidsServices : IBidsServices
     {
@@ -24,16 +27,19 @@
             this.auctions = auctions;
         }
 
+        // TODO: Problems with the Database
         public bool CheckIfAuctionIsActive(int auctionId)
         {
-            return this.auctions.GetById(auctionId).Active;
+             var auction = this.auctions.GetById(auctionId);
+             var isActive = auction.Active;
+             return isActive;
         }
 
         public Bid Create(int value, int currentPrice, string bidderId, string winnerId, int auctionId, IList<string> receiversIds)
         {
             string winnerUsername = string.Empty;
 
-            if(!string.IsNullOrEmpty(winnerId))
+            if (!string.IsNullOrEmpty(winnerId))
             {
                 winnerUsername = this.users.GetById(winnerId).UserName.ToString();
             }

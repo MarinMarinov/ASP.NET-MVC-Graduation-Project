@@ -1,31 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Auction.Web.Controllers
+﻿namespace Auction.Web.Controllers
 {
-    using Auction.Data.Repositories;
-    using Auction.Models;
+    using System.Web.Mvc;
     using Auction.Services.Data;
     using Auction.Web.ViewModels.Auction;
     using Infrastructure.Mapping;
+
     public class PublicAuctionController : BaseController
     {
-                private IDbRepository<Auction> dataAuction;
-        private IDbRepository<Item> dataItem;
-        private IDbRepository<User> dataUser;
-        private IAuctionService service;
+        private readonly IAuctionService service;
 
-        public PublicAuctionController(IDbRepository<Auction> auctions,
-            IDbRepository<Item> items,
-            IDbRepository<User> users,
-            IAuctionService service)
+        public PublicAuctionController(IAuctionService service)
         {
-            this.dataAuction = auctions;
-            this.dataItem = items;
-            this.dataUser = users;
             this.service = service;
         }
 
@@ -36,6 +21,13 @@ namespace Auction.Web.Controllers
             return this.View(auctions);
         }
 
-      
+        [Authorize]
+        public ActionResult AuctionDetails(int id)
+        {
+            var auction = this.service.GetById(id);
+            var model = this.Mapper.Map<AuctionDetailsViewModel>(auction);
+
+            return View(model);
+        }
     }
 }

@@ -150,6 +150,10 @@
         {
             var user = this.dataUser.GetById(userId);
             var filename = user.AvatarFileName;
+            if(filename == null)
+            {
+                return null;
+            }
             var path = Path.Combine(this.Server.MapPath("~/Content/Images/Avatars/"), filename);
 
             return this.File(path, "image/jpeg");

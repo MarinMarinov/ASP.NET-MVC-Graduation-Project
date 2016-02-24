@@ -1,34 +1,39 @@
 ﻿@model IEnumerable<global::Auction.Web.ViewModels.Auction.JoinToActiveAuctionViewModel>
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Join to Active Auction";
 }
 
-<h2>Join To Auction</h2>
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        @foreach (var auction in Model)
+        {
+            <div class="col">
+                <div class="col col-md-3">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <p><h3 class="panel-title">@auction.Name </h3></p>
+                        </div>
+                        <div class="panel-body">
 
-<ul class="list-group">
-    @foreach (var auction in Model)
-    {
-        <li class="list-group list-group-item">
-            <p>Name: @auction.Name </p>
-
-            @foreach (var item in auction.Items)
-            {
-                <p>Item Title: @item.Title</p>
-                foreach (var image in item.Images)
+                            @foreach (var item in auction.Items)
                 {
-                    <p>Item Title: @image.FileName</p>
-                }
-            }
-            
-            <p>Date: @auction.DateOfAuction</p>
-            <p>Is active: @auction.Active</p>
-            <p>Initial price: @auction.InitialPrice</p>
-            <p>Bid step: @auction.BidStep</p>
-            
-            @Html.ActionLink("Join To Auction", "JoinToAuctionId", "Bid", new { auctionId = auction.Id }, null)
-            @Html.ActionLink("Back to List", "Index", "Home")
-        </li>
-    } 
-</ul>
+                                <p class="text-info">Item Title: @item.Title</p>
+                            }
+
+                            <p class="text-info">Date: @auction.DateOfAuction.ToShortDateString()</p>
+                            <p class="text-info">Is active: @auction.Active</p>
+                            <p class="text-info">Initial price: @auction.InitialPrice</p>
+                            <p class="text-info">Bid step: @auction.BidStep</p>
+
+                            @Html.ActionLink("Join To Auction", "JoinToAuctionId", "Bid", new { auctionId = auction.Id }, new { @class = "btn btn-danger btn-sm" })
+                            @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn btn-success btn-sm" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 

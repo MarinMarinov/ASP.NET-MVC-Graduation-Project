@@ -24,7 +24,7 @@
                             <h3 class="panel-title">Pictures</h3>
                         </div>
                         <div class="panel-body">
-                            @using (Html.BeginForm("SetActiveAuction", "Auction", FormMethod.Post, new { @class = "form-horizontal" }))
+                            @using (Html.BeginForm("SetActiveAuction", "Auction",  new {area = "Admin"}, FormMethod.Post, new { @class = "form-horizontal" }))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true)
