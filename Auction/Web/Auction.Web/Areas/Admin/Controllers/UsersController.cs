@@ -13,14 +13,10 @@
 
     public class UsersController : BaseController
     {
-        private IDbRepository<Auction> dataAuction;
-        private IDbRepository<Item> dataItem;
         private IDbRepository<User> dataUser;
 
-        public UsersController(IDbRepository<Auction> auctions, IDbRepository<Item> items, IDbRepository<User> users)
+        public UsersController(IDbRepository<User> users)
         {
-            this.dataAuction = auctions;
-            this.dataItem = items;
             this.dataUser = users;
         }
 
@@ -53,6 +49,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CurrentUserDetails(UserViewModel model, HttpPostedFileBase file)
         {
             var viewModel = model;
@@ -131,7 +128,7 @@
         }
 
         [Authorize]
-        //  [OutputCache(Duration = 15 * 60)] // cache the result
+        [OutputCache(Duration = 15 * 60)]
         public ActionResult AllUsers()
         {
             var allUsers = this.dataUser.All()

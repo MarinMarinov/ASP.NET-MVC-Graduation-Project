@@ -2,10 +2,8 @@
 {
     using System;
     using System.Linq;
-
     using Auction.Services.Data;
     using System.Web.Mvc;
-
     using Auction.Infrastructure.Mapping;
     using Auction.Web.ViewModels.Auction;
 
@@ -26,7 +24,7 @@
             var totalPages = (int)Math.Ceiling((double)totalItemsCount / (double)ItemsPerPage);
             var itemsToSkip = (page - 1) * ItemsPerPage;
 
-            /* var auctionsModels = this.Cache.Get(
+/*            var auctionsModels = this.Cache.Get(
                  "auctions",
                  () =>
                  this.auctions.GetAllAuctions().Skip(itemsToSkip).Take(ItemsPerPage).To<ActiveAuctionViewModel>().ToList(),

@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
     using Auction.Data;
     using Auction.Models;
 
@@ -14,7 +13,6 @@
     {
         private static Dictionary<string, string> usersDictionary = new Dictionary<string, string>();
         private IBidsServices bids;
-
         private AuctionDbContext db;
 
         public AuctionRoom(IBidsServices bidService)
@@ -35,8 +33,10 @@
 
             // TODO Fix ACTIVE property settlement of Auction! Maybe the DB Context is different
             //bool isActive = this.bids.CheckIfAuctionIsActive(auctionId);
+
             var auction = this.db.Auctions.FirstOrDefault(a => a.Id == auctionId);
             bool isActive = auction.Active;
+
             if (!isActive)
             {
                 Clients.All.broadcastMessage("Server", "Auction is not active");

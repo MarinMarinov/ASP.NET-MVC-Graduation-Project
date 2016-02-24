@@ -13,17 +13,14 @@
     {
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Item> dataItem;
-        private IDbRepository<User> dataUser;
         private IAuctionService auctionService;
 
         public AuctionController(IDbRepository<Auction> auctions,
             IDbRepository<Item> items,
-            IDbRepository<User> users,
             IAuctionService auctionService)
         {
             this.dataAuction = auctions;
             this.dataItem = items;
-            this.dataUser = users;
             this.auctionService = auctionService;
         }
 
@@ -50,11 +47,7 @@
                     return this.View("CreateAuction", auction);
                 }
 
-                var bidders = this.dataUser.All().OrderBy(u => u.UserName).Take(3).ToList();
-
-                //var newAuction = Mapper.Map<Auction>(auction);
-                //this.dataAuction.Add(newAuction);
-
+                var bidders = new List<User>();
 
                 this.dataAuction.Add(new Auction
                 {
@@ -124,15 +117,6 @@
             auction.Active = true;
 
             this.dataAuction.Save();
-
-            /*            var auctionView = new AuctionViewModel
-                        {
-                            Name = auction.Name,
-                            DateOfAuction = auction.DateOfAuction,
-                            Active = auction.Active,
-                            InitialPrice = auction.InitialPrice,
-                            BidStep = auction.BidStep,
-                        };*/
 
             this.TempData["Success"] = "Auction was activated";
 

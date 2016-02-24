@@ -1,7 +1,9 @@
 ﻿@model global::Auction.Web.ViewModels.Item.ItemViewModel
 @{
-    ViewBag.Title = "ItemDetails";
+    ViewBag.Title = "Item Details";
 }
+
+<h2>@ViewBag.Title</h2>
 
 <div class="container">
     <div class="well">
@@ -37,7 +39,7 @@
                         @foreach (var image in Model.Images)
                         {
                             <div class="well well-sm text-center">
-                                <img src="@Url.Action("GetImage", "PublicItem", new { id = image.Id })" width="1000" alt="Item image"/>
+                                <img src="@Url.Action("GetImage", "PublicItem", new { id = image.Id })" width="600" alt="Item image"/>
                                 <br/>
                             </div>
                         }

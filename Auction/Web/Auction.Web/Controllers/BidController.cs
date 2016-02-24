@@ -14,17 +14,16 @@
         private IDbRepository<Auction> dataAuction;
         private IDbRepository<Bid> dataBid;
         private IDbRepository<User> dataUser;
-        private IDbRepository<Image> dataImage;
 
         public BidController(IDbRepository<Auction> auctions, IDbRepository<Bid> bids, IDbRepository<User> users, IDbRepository<Image> dataImage)
         {
             this.dataAuction = auctions;
             this.dataBid = bids;
             this.dataUser = users;
-            this.dataImage = dataImage;
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult JoinToAuction()
         {
             var activeAuctions =
@@ -112,6 +111,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles="Admin")]
         public ActionResult CloseAuction(bool isActive, int auctionId)
         {
             if (!isActive)

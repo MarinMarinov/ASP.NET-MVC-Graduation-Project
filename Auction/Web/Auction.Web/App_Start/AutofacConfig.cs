@@ -7,6 +7,7 @@
     using Auction.Data.Repositories;
     using Auction.Models;
     using Auction.Services.Data;
+    using Auction.Services.Web;
 
     using Autofac;
     using Autofac.Integration.Mvc;
@@ -49,15 +50,10 @@
 
             builder.RegisterGeneric(typeof(DbRepository<>)).As(typeof(IDbRepository<>)).InstancePerRequest();
 
-
-            //builder.Register(x => new AuctionService()).As<IAuctionService>().InstancePerRequest();
-
-            //builder.Register(x => new BidsServices()).As<IBidsServices>().InstancePerRequest();
+            builder.Register(x => new HttpCacheService()).As<ICacheService>().InstancePerRequest();
 
             var servicesAssembly = Assembly.GetAssembly(typeof(IAuctionService));
             builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
-
-
         }
     }
 }

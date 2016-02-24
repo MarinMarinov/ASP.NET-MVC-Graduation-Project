@@ -1,13 +1,9 @@
 ﻿namespace Auction.Services.Data
 {
     using System.Collections.Generic;
-    using System.Data.Entity;
-
     using Auction.Data.Repositories;
     using Auction.Models;
     using System.Linq;
-
-    using Auction.Data;
 
     public class BidsServices : IBidsServices
     {
