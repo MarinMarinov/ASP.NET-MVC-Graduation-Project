@@ -260,6 +260,12 @@
     <Content Include="Areas\Admin\Views\Item\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EmptyPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Users\UserDetails.cshtml" />
+    <None Include="Properties\PublishProfiles\myliveauction %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\myliveauction %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\myliveauction %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\myliveauction %285%29.pubxml" />
+    <None Include="Properties\PublishProfiles\myliveauction %286%29.pubxml" />
+    <None Include="Properties\PublishProfiles\myliveauction.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <None Include="Scripts\jquery-2.0.3-vsdoc.js" />
     <Content Include="Scripts\gridmvc.js" />
